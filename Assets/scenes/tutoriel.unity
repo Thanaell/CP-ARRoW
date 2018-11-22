@@ -319,9 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d8b515f103681478218db454309b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawDebugBoxes: 1
+  DrawDebugBoxes: 0
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 1400613533}
+  myScript: {fileID: 1872758852}
 --- !u!114 &121852418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,11 +625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 1.75
+  TagalongDistance: 2
   EnforceDistance: 1
   PositionUpdateSpeed: 10
-  SmoothMotion: 1
-  SmoothingFactor: 0.75
+  SmoothMotion: 0
+  SmoothingFactor: 0
 --- !u!114 &904995792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 1197277079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8.288438, y: 8.288438, z: 8.288438}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 1872758851}
   m_RootOrder: 0
@@ -1093,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a98b181acba5549af3d852c7664623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrianglesPerCubicMeter: 500
+  TrianglesPerCubicMeter: 150
   TimeBetweenUpdates: 3.5
   observerVolumeType: 0
   extents: {x: 10, y: 10, z: 10}
@@ -1541,6 +1542,7 @@ GameObject:
   - component: {fileID: 1872758848}
   - component: {fileID: 1872758847}
   - component: {fileID: 1872758846}
+  - component: {fileID: 1872758852}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -1645,6 +1647,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1872758852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872758845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74e30d0cc2b84e40b9338667056d191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetDetected: 0
 --- !u!1 &1891120769
 GameObject:
   m_ObjectHideFlags: 0

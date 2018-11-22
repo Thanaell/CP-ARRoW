@@ -18,6 +18,8 @@ public class ObjectPlacer : MonoBehaviour
      **/ 
     public bool DrawObjects = true;
 
+ 
+
 
     public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
 
@@ -27,6 +29,9 @@ public class ObjectPlacer : MonoBehaviour
 
     private bool _timeToHideMesh;
     private BoxDrawer _boxDrawing;
+
+
+    public ChangeColorCube myScript;
 
     // Use this for initialization
     void Start()
@@ -64,12 +69,12 @@ public class ObjectPlacer : MonoBehaviour
         SpatialUnderstandingMesh.DrawProcessedMesh = false;
     }
 
-    public void CreateScene()
+    public bool CreateScene()
     {
         // Only if we're enabled
-        if (!SpatialUnderstanding.Instance.AllowSpatialUnderstanding)
+        if (!SpatialUnderstanding.Instance.AllowSpatialUnderstanding  || !myScript.isTargetDetected)
         {
-            return;
+            return false;
         }
 
         SpatialUnderstandingDllObjectPlacement.Solver_Init();
@@ -84,6 +89,7 @@ public class ObjectPlacer : MonoBehaviour
         }
         
         GetLocationsFromSolver(queries);
+        return true;
     }
 
     /**

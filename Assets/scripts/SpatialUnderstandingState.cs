@@ -21,7 +21,9 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     private bool ready = false;
 
+
     private string _spaceQueryDescription;
+
 
     public string SpaceQueryDescription
     {
@@ -59,7 +61,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             // Check our preset requirements
             if ((stats.TotalSurfaceArea > MinAreaForComplete) ||
                 (stats.HorizSurfaceArea > MinHorizAreaForComplete) ||
-                (stats.WallSurfaceArea > MinWallAreaForComplete))
+                (stats.WallSurfaceArea > MinWallAreaForComplete) )
             {
                 return true;
             }
@@ -197,10 +199,9 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         // Updates
         Update_DebugDisplay();
 
-        if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
+        if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done )
         {
-            _triggered = true;
-            Placer.CreateScene();
+            _triggered = Placer.CreateScene();
         }
     }
 
