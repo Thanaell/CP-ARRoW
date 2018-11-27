@@ -5,11 +5,17 @@ using UnityEngine;
 public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 {
 
-    [Tooltip("A collection of Wide building prefabs to generate in the world.")]
-    public List<GameObject> CubePrefabs;
+    [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
+    public List<GameObject> FloorPrefabs;
 
-    [Tooltip("The desired size of wide buildings in the world.")]
-    public Vector3 SquareSize = new Vector3(.5f, .5f, .5f);
+    [Tooltip("A collection of objects prefabs to generate on wall in the world.")]
+    public List<GameObject> WallPrefabs;
+
+    [Tooltip("The desired size of floor objects in the world.")]
+    public Vector3 FloorObjectSize = new Vector3(.5f, .5f, .5f);
+
+    [Tooltip("The desired size of wall objects in the world.")]
+    public Vector3 WallObjectSize = new Vector3(.5f, .5f, .5f);
 
     [Tooltip("The ground to place under buildings.")]
     public GameObject BuildingGround;
@@ -19,9 +25,13 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     public List<GameObject> ActiveHolograms = new List<GameObject>();
 
-    public void CreateSquare(int number, Vector3 positionCenter, Quaternion rotation)
+    public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        CreateBuilding(CubePrefabs[number], positionCenter, rotation, SquareSize);
+        CreateBuilding(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
+    }
+    public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
+    {
+        CreateBuilding(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
     }
 
     private void CreateBuilding(GameObject buildingToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize)
@@ -80,7 +90,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     {
         float maxScale = float.MaxValue;
 
-        var ratio = CalcScaleFactorHelper(CubePrefabs, SquareSize);
+        var ratio = CalcScaleFactorHelper(FloorPrefabs, FloorObjectSize);
         if (ratio < maxScale)
         {
             maxScale = ratio;
