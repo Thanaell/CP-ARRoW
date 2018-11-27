@@ -28,6 +28,7 @@ public class ChangeColorCube : MonoBehaviour, ITrackableEventHandler
             )
         {
             isTargetDetected = true;
+            Debug.Log("la cible a ete vue");
         }
 
     }
