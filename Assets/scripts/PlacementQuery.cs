@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum ObjectType
 {
-    Square,
+    FloorObject,
+    WallObject,
     //WideBuilding
 }
 

@@ -99,13 +99,15 @@ public class ObjectPlacer : MonoBehaviour
     public List<PlacementQuery> AddObjects()
     {
 
-        var queries = CreateLocationQueriesForSolver(ObjectCollectionManager.Instance.CubePrefabs.Count, ObjectCollectionManager.Instance.SquareSize, ObjectType.Square);
+        var queries = CreateLocationQueriesForSolver(ObjectCollectionManager.Instance.WallPrefabs.Count, ObjectCollectionManager.Instance.WallObjectSize, ObjectType.WallObject);
+        queries.AddRange(CreateLocationQueriesForSolver(ObjectCollectionManager.Instance.FloorPrefabs.Count, ObjectCollectionManager.Instance.FloorObjectSize, ObjectType.FloorObject));
         return queries;
     }
 
    
 
-    private int _placedSquareBuilding;
+    private int _placedFloorObjects;
+    private int _placedWallObjects;
 
     private void ProcessPlacementResults()
     {
@@ -121,8 +123,11 @@ public class ObjectPlacer : MonoBehaviour
 
             switch (toPlace.ObjType)
             {
-                case ObjectType.Square:
-                    ObjectCollectionManager.Instance.CreateSquare(_placedSquareBuilding++, toPlace.Position, rotation);
+                case ObjectType.FloorObject:
+                    ObjectCollectionManager.Instance.CreateFloorObjects(_placedFloorObjects++, toPlace.Position, rotation);
+                    break;
+                case ObjectType.WallObject:
+                    ObjectCollectionManager.Instance.CreateWallObjects(_placedWallObjects++, toPlace.Position, rotation);
                     break;
             }
         }
@@ -209,32 +214,61 @@ public class ObjectPlacer : MonoBehaviour
 
         for (int i = 0; i < desiredLocationCount; ++i)
         {
+            var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>();
+            SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, Camera.main.transform.position.y - 2*halfBoxDims.y, Camera.main.transform.position.y +2* halfBoxDims.y);//Create_OnFloor(halfBoxDims);
+
             /**
-             * Les regles de placemnt d'objet. La regle definit que l'objet doit être éloigné d'un autre objet ou point ou autre...
-             * Variable à exploiter.
-             **/ 
+           * Les regles de placemnt d'objet. La regle definit que l'objet doit être éloigné d'un autre objet ou point ou autre...
+           * Variable à exploiter.
+           **/
             var placementRules = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule>
             {
                 SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(disctanceFromOtherObjects)
             };
 
+            switch (objType)
+            {
+                case ObjectType.FloorObject:
+                    /**
+                    * Les contraintes de placement des objets. On peut placer un objet près d'un centre ou près d'un point à particulier.
+                    * Cette variable est aussi à exploiter par rapport ce qu'on veux voir
+                     **/
+                    // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
+                    placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position+Vector3.forward)
+                    };
 
-            /**
-             * Les contraintes de placement des objets. On peut placer un objet près d'un centre ou près d'un point à particulier.
-             * Cette variable est aussi à exploiter par rapport ce qu'on veux voir
-             **/
-           // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
-            var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter(),
-            };
+                    /**
+                     * Ici nous définissons où veut on placer les objets.
+                     * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
+                     * On peut exploirer plus cette variable pour mieux définir la position des objets.
+                     **/
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnFloor(halfBoxDims);
 
-            /**
-             * Ici nous définissons où veut on placer les objets.
-             * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
-             * On peut exploirer plus cette variable pour mieux définir la position des objets.
-             **/
-            SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.2f, 1.9f);//Create_OnFloor(halfBoxDims);
+                    break;
+                case ObjectType.WallObject:
+                    /**
+                   * Les contraintes de placement des objets. On peut placer un objet près d'un centre ou près d'un point à particulier.
+                   * Cette variable est aussi à exploiter par rapport ce qu'on veux voir
+                    **/
+                    // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
+                    placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                    };
 
+                    /**
+                     * Ici nous définissons où veut on placer les objets.
+                     * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
+                     * On peut exploirer plus cette variable pour mieux définir la position des objets.
+                     **/
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, Camera.main.transform.position.y, 2.5f);//Create_OnFloor(halfBoxDims);
+
+                    break;
+            }
+          
+
+
+            
             placementQueries.Add(
                 new PlacementQuery(placementDefinition,
                     boxFullDims,
