@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 {
+    
 
     [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
     public List<GameObject> FloorPrefabs;
@@ -45,28 +46,13 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
             // Set the parent of the new object the GameObject it was placed on
             newObject.transform.parent = gameObject.transform;
+            
 
             newObject.transform.localScale = RescaleToSameScaleFactor(buildingToCreate);
             ActiveHolograms.Add(newObject);
         }
     }
 
-    public void CreateGround(GameObject groundToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 size)
-    {
-        // Stay center in the square but move down to the ground
-        var position = positionCenter - new Vector3(0, size.y * .5f, 0);
-
-        GameObject newObject = Instantiate(groundToCreate, position, rotation) as GameObject;
-
-        if (newObject != null)
-        {
-            // Set the parent of the new object the GameObject it was placed on
-            newObject.transform.parent = gameObject.transform;
-
-            newObject.transform.localScale = StretchToFit(groundToCreate, size);
-            ActiveHolograms.Add(newObject);
-        }
-    }
 
     private Vector3 RescaleToSameScaleFactor(GameObject objectToScale)
     {

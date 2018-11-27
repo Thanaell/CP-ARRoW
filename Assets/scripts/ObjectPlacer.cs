@@ -33,6 +33,7 @@ public class ObjectPlacer : MonoBehaviour
 
     public ChangeColorCube myScript;
 
+
     // Use this for initialization
     void Start()
     {
@@ -127,7 +128,7 @@ public class ObjectPlacer : MonoBehaviour
                     ObjectCollectionManager.Instance.CreateFloorObjects(_placedFloorObjects++, toPlace.Position, rotation);
                     break;
                 case ObjectType.WallObject:
-                    ObjectCollectionManager.Instance.CreateWallObjects(_placedWallObjects++, toPlace.Position, rotation);
+                    ObjectCollectionManager.Instance.CreateWallObjects(_placedWallObjects++, new Vector3(toPlace.Position.x, Camera.main.transform.position.y, toPlace.Position.z), rotation);
                     break;
             }
         }
@@ -261,7 +262,7 @@ public class ObjectPlacer : MonoBehaviour
                      * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
                      * On peut exploirer plus cette variable pour mieux définir la position des objets.
                      **/
-                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.7f-halfBoxDims.y, 1.7f+halfBoxDims.y);//Create_OnFloor(halfBoxDims);
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 2f, 2.5f);//Create_OnFloor(halfBoxDims);
 
                     break;
             }
