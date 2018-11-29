@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d8b515f103681478218db454309b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawDebugBoxes: 1
+  DrawDebugBoxes: 0
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 1400613533}
   myScript: {fileID: 1872758852}

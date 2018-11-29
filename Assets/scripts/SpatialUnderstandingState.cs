@@ -21,6 +21,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     private bool ready = false;
 
+    private bool drawSpacialMaping = true;
 
     private string _spaceQueryDescription;
 
@@ -189,6 +190,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private void Start()
     {
         InputManager.Instance.PushFallbackInputHandler(gameObject);
+        drawSpacialMaping = true;
     }
 
     // Update is called once per frame
@@ -199,10 +201,19 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         // Updates
         Update_DebugDisplay();
 
-        if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done )
+        if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
         {
+            drawSpacialMaping = false;
             _triggered = Placer.CreateScene();
         }
+        else
+        {
+            // hide mesh
+            var customMesh = SpatialUnderstanding.Instance.GetComponent<SpatialUnderstandingCustomMesh>();
+            customMesh.DrawProcessedMesh = false;
+        }
+
+        SpatialMappingManager.Instance.DrawVisualMeshes = drawSpacialMaping;
     }
 
     public void OnInputClicked(InputClickedEventData eventData)
