@@ -31,9 +31,6 @@ public class ObjectPlacer : MonoBehaviour
     private BoxDrawer _boxDrawing;
 
 
-    public ChangeColorCube myScript;
-
-
     // Use this for initialization
     void Start()
     {
@@ -72,8 +69,9 @@ public class ObjectPlacer : MonoBehaviour
 
     public bool CreateScene()
     {
+       
         // Only if we're enabled
-        if (!SpatialUnderstanding.Instance.AllowSpatialUnderstanding  || !myScript.isTargetDetected)
+        if (!SpatialUnderstanding.Instance.AllowSpatialUnderstanding )
         {
             return false;
         }

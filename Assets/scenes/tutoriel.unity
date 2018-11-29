@@ -322,7 +322,6 @@ MonoBehaviour:
   DrawDebugBoxes: 0
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 1400613533}
-  myScript: {fileID: 1872758852}
 --- !u!114 &121852418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,6 +776,7 @@ MonoBehaviour:
   DebugDisplay: {fileID: 1486122294}
   DebugSubDisplay: {fileID: 1204930682}
   HideText: 0
+  myScript: {fileID: 1872758852}
   Placer: {fileID: 121852417}
 --- !u!1 &1022573323
 GameObject:

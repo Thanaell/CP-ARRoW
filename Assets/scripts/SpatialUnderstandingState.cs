@@ -25,6 +25,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     private string _spaceQueryDescription;
 
+    public ChangeColorCube myScript;
 
     public string SpaceQueryDescription
     {
@@ -99,7 +100,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                         // The stats tell us if we could potentially finish
                         if (DoesScanMeetMinBarForCompletion)
                         {
-                            return "When ready, air tap to finalize your playspace";
+                            return "When ready,scan a target to finalize your playspace";
                         }
                         return "Walk around and scan in your playspace";
                     case SpatialUnderstanding.ScanStates.Finishing:
@@ -121,11 +122,11 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             ready = DoesScanMeetMinBarForCompletion;
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning)
             {
-                if (trackedHandsCount > 0)
-                {
+               // if (trackedHandsCount > 0)
+                //{
                     return ready ? Color.green : Color.red;
-                }
-                return ready ? Color.yellow : Color.white;
+                //}
+                //return ready ? Color.yellow : Color.white;
             }
 
             // If we're looking at the menu, fade it out
@@ -198,6 +199,15 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     private void Update()
     {
+        if (myScript.isTargetDetected) { 
+            if (ready &&
+                (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
+                !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
+            {
+                SpatialUnderstanding.Instance.RequestFinishScan();
+            }
+         }
+
         // Updates
         Update_DebugDisplay();
 
@@ -214,17 +224,24 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
 
         SpatialMappingManager.Instance.DrawVisualMeshes = drawSpacialMaping;
-    }
 
+    }
+    
+
+    /*
+     * ces trois events est appelée lorsque AirTap est detectée
+     * On va le supprimer par la suite si y aurai aucune utilité
+     */ 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        if (ready &&
+       /* if (ready &&
             (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
             !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
         {
             SpatialUnderstanding.Instance.RequestFinishScan();
-        }
+        }*/
     }
+    
 
     void ISourceStateHandler.OnSourceDetected(SourceStateEventData eventData)
     {
