@@ -30,6 +30,7 @@ public class ObjectPlacer : MonoBehaviour
     private bool _timeToHideMesh;
     private BoxDrawer _boxDrawing;
 
+    public Material OccludedMaterial;
 
     // Use this for initialization
     void Start()
@@ -64,7 +65,7 @@ public class ObjectPlacer : MonoBehaviour
 
     private void HideGridEnableOcclulsion()
     {
-        SpatialUnderstandingMesh.DrawProcessedMesh = false;
+        SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
     }
 
     public bool CreateScene()
