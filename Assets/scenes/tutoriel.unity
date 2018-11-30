@@ -322,6 +322,7 @@ MonoBehaviour:
   DrawDebugBoxes: 0
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 1400613533}
+  OccludedMaterial: {fileID: 0}
 --- !u!114 &121852418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,9 +988,9 @@ GameObject:
   - component: {fileID: 904995790}
   - component: {fileID: 904995793}
   - component: {fileID: 904995792}
-  - component: {fileID: 904995791}
   - component: {fileID: 904995794}
   - component: {fileID: 904995795}
+  - component: {fileID: 904995791}
   m_Layer: 0
   m_Name: Spatial Status Billboard
   m_TagString: Untagged
@@ -1020,14 +1021,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 904995789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TagalongDistance: 2
   EnforceDistance: 1
-  PositionUpdateSpeed: 10
+  PositionUpdateSpeed: 9.8
   SmoothMotion: 1
-  SmoothingFactor: 0.727
+  SmoothingFactor: 0.75
+  MinimumHorizontalOverlap: 0.1
+  TargetHorizontalOverlap: 1
+  MinimumVerticalOverlap: 0.1
+  TargetVerticalOverlap: 1
+  HorizontalRayCount: 3
+  VerticalRayCount: 3
+  MinimumTagalongDistance: 1
+  MaintainFixedSize: 1
+  DepthUpdateSpeed: 4
+  DebugDrawLines: 0
+  DebugPointLight: {fileID: 0}
 --- !u!114 &904995792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2735,7 +2747,7 @@ MonoBehaviour:
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/QR_CODE.xml
-  mExtendedTracking: 1
+  mExtendedTracking: 0
   mAspectRatio: 1
   mImageTargetType: 0
   mWidth: 0.148
