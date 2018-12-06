@@ -146,7 +146,7 @@ PlayerSettings:
       maximumSupportedHeadTracking: 1
     hololens:
       depthFormat: 1
-      depthBufferSharingEnabled: 0
+      depthBufferSharingEnabled: 1
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
@@ -172,7 +172,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -573,7 +573,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0007c5fe119cd501
   metroApplicationDescription: TestHolo4
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: TestHolo4
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

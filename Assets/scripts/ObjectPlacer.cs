@@ -210,7 +210,7 @@ public class ObjectPlacer : MonoBehaviour
         /**
          * variable permet de calculer la distance entre les objets
          **/ 
-        var disctanceFromOtherObjects = halfBoxDims.x > halfBoxDims.z ? halfBoxDims.x * 3f : halfBoxDims.z * 3f;
+        var disctanceFromOtherObjects = halfBoxDims.x > halfBoxDims.z ? halfBoxDims.x * 10f : halfBoxDims.z * 10f;
 
         for (int i = 0; i < desiredLocationCount; ++i)
         {
