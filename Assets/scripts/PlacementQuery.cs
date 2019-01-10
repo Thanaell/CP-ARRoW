@@ -5,8 +5,7 @@ using UnityEngine;
 public enum ObjectType
 {
     FloorObject,
-    WallObject,
-    //WideBuilding
+    WallObject
 }
 
 public struct PlacementQuery

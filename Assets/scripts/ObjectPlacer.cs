@@ -235,7 +235,7 @@ public class ObjectPlacer : MonoBehaviour
                      **/
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position+Vector3.forward)
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position+Camera.main.transform.forward)
                     };
 
                     /**

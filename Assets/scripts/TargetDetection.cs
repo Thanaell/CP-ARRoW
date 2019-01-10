@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class ChangeColorCube : MonoBehaviour, ITrackableEventHandler
+public class TargetDetection : MonoBehaviour, ITrackableEventHandler
 {
     private TrackableBehaviour mTrackableBehaviour;
     public bool isTargetDetected;

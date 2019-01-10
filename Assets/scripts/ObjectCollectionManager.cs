@@ -18,9 +18,6 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     [Tooltip("The desired size of wall objects in the world.")]
     public Vector3 WallObjectSize = new Vector3(.5f, .5f, .5f);
 
-    [Tooltip("The ground to place under buildings.")]
-    public GameObject BuildingGround;
-
     [Tooltip("Will be calculated at runtime if is not preset.")]
     public float ScaleFactor;
 
@@ -28,19 +25,19 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        CreateBuilding(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
+        CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
     }
     public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        CreateBuilding(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
+        CreateObject(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
     }
 
-    private void CreateBuilding(GameObject buildingToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize)
+    private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize)
     {
         // Stay center in the square but move down to the ground
         var position = positionCenter ; //new Vector3(0, desiredSize.y * .5f, 0);
 
-        GameObject newObject = Instantiate(buildingToCreate, position, rotation) as GameObject;
+        GameObject newObject = Instantiate(objectToCreate, position, rotation) as GameObject;
 
         if (newObject != null)
         {
@@ -48,7 +45,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
             newObject.transform.parent = gameObject.transform;
             
 
-            newObject.transform.localScale = RescaleToSameScaleFactor(buildingToCreate);
+            newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
             ActiveHolograms.Add(newObject);
         }
     }
