@@ -4,12 +4,10 @@ using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity.SpatialMapping;
 
-public class BillboardScript : MonoBehaviour
+public class BillboardScript : Singleton<BillboardScript>
 {
     public TextMesh DebugDisplay;
     public TextMesh DebugSubDisplay;
-
-    public SpatialUnderstandingUniqueState spatialUndesrstandingUniqueState;
         
     public bool HideText = false;
 
@@ -59,7 +57,7 @@ public class BillboardScript : MonoBehaviour
                         }
 
                         // The stats tell us if we could potentially finish
-                        if (spatialUndesrstandingUniqueState.DoesScanMeetMinBarForCompletion)
+                        if (SpatialUnderstandingUniqueState.Instance.DoesScanMeetMinBarForCompletion)
                         {
                             return "When ready,scan a target to finalize your playspace";
                         }
@@ -80,7 +78,7 @@ public class BillboardScript : MonoBehaviour
     {
         get
         {
-            ready = spatialUndesrstandingUniqueState.DoesScanMeetMinBarForCompletion;
+            ready = SpatialUnderstandingUniqueState.Instance.DoesScanMeetMinBarForCompletion;
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning)
             {
                 // if (trackedHandsCount > 0)
@@ -121,14 +119,14 @@ public class BillboardScript : MonoBehaviour
                 SpatialUnderstandingDll.Imports.PlayspaceStats stats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats();
 
                 // Start showing the stats when they are no longer zero
-                if (stats.TotalSurfaceArea > spatialUndesrstandingUniqueState.MinAreaForStats)
+                if (stats.TotalSurfaceArea > SpatialUnderstandingUniqueState.Instance.MinAreaForStats)
                 {
                     SpatialMappingManager.Instance.DrawVisualMeshes = false;
 
 
-                    string subDisplayText = string.Format("totalArea : {0:0.0} / {1},  ", stats.TotalSurfaceArea, spatialUndesrstandingUniqueState.MinAreaForComplete);
-                    subDisplayText += string.Format("horizArea : {0:0.0} / {1},  ", stats.HorizSurfaceArea, spatialUndesrstandingUniqueState.MinHorizAreaForComplete);
-                    subDisplayText += string.Format("wallArea : {0:0.0} / {1}", stats.WallSurfaceArea, spatialUndesrstandingUniqueState.MinWallAreaForComplete);
+                    string subDisplayText = string.Format("totalArea : {0:0.0} / {1},  ", stats.TotalSurfaceArea, SpatialUnderstandingUniqueState.Instance.MinAreaForComplete);
+                    subDisplayText += string.Format("horizArea : {0:0.0} / {1},  ", stats.HorizSurfaceArea, SpatialUnderstandingUniqueState.Instance.MinHorizAreaForComplete);
+                    subDisplayText += string.Format("wallArea : {0:0.0} / {1}", stats.WallSurfaceArea, SpatialUnderstandingUniqueState.Instance.MinWallAreaForComplete);
 
                     return subDisplayText;
                 }
@@ -159,8 +157,8 @@ public class BillboardScript : MonoBehaviour
 
     private void Update()
     {
-        HideText = spatialUndesrstandingUniqueState.HideText;
-        SpaceQueryDescription = spatialUndesrstandingUniqueState.SpaceQueryDescription;
+        HideText = SpatialUnderstandingUniqueState.Instance.HideText;
+        SpaceQueryDescription = SpatialUnderstandingUniqueState.Instance.SpaceQueryDescription;
         // Updates
         Update_DebugDisplay();
 
