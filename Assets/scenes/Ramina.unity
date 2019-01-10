@@ -270,6 +270,7 @@ Transform:
   m_Children:
   - {fileID: 1373783423}
   - {fileID: 1400613530}
+  - {fileID: 1855933622}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1203,7 +1204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugDisplay: {fileID: 1486122294}
   DebugSubDisplay: {fileID: 1204930682}
-  spatialUndesrstandingUniqueState: {fileID: 1855933621}
   HideText: 0
 --- !u!114 &904995795
 MonoBehaviour:
@@ -2699,7 +2699,6 @@ MonoBehaviour:
   MinHorizAreaForComplete: 2
   MinWallAreaForComplete: 10
   targetDetection: {fileID: 1872758852}
-  HideText: 0
   Placer: {fileID: 121852417}
 --- !u!4 &1855933622
 Transform:
@@ -2707,12 +2706,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1855933620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 72095693}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1872758845
 GameObject:

@@ -157,8 +157,6 @@ public class BillboardScript : Singleton<BillboardScript>
 
     private void Update()
     {
-        HideText = SpatialUnderstandingUniqueState.Instance.HideText;
-        SpaceQueryDescription = SpatialUnderstandingUniqueState.Instance.SpaceQueryDescription;
         // Updates
         Update_DebugDisplay();
 

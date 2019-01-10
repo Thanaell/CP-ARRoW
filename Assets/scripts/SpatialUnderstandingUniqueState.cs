@@ -20,23 +20,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
     public TargetDetection targetDetection;
 
     bool clickDetected = false;
-
-    public bool HideText = false;
-
-
-    private string _spaceQueryDescription;
-
-    public string SpaceQueryDescription
-    {
-        get
-        {
-            return _spaceQueryDescription;
-        }
-        set
-        {
-            _spaceQueryDescription = value;
-        }
-    }
+    
 
     public bool DoesScanMeetMinBarForCompletion
     {
