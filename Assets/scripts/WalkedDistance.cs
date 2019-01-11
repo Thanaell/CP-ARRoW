@@ -18,7 +18,7 @@ public class WalkedDistance : MonoBehaviour {
     void Start () {
         oldX = transform.position.x;
         oldZ = transform.position.z;
-        File.WriteAllText(path, "Total walked distance in last session : " + walkedDistance.ToString());
+        File.WriteAllText(path, "Walked distance every half second in last session : " + walkedDistance.ToString());
     }
 	
 	// Update is called once per frame
@@ -33,9 +33,8 @@ public class WalkedDistance : MonoBehaviour {
             newZ = transform.position.x;
             newX = transform.position.z;
 
-            //write walkedDistance to file in System/File Explorer/LocalAppData/CPARRoW/LocalState
-            
-            File.AppendAllText(path, "Total walked distance in last session : "+ walkedDistance.ToString());
+            //write walkedDistance to file in System/File Explorer/LocalAppData/CPARRoW/LocalState  
+            File.AppendAllText(path, walkedDistance.ToString());
         }
         timer += Time.deltaTime;	
 	}
