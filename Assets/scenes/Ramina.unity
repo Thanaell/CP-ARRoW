@@ -3331,6 +3331,7 @@ GameObject:
   - component: {fileID: 2097937765}
   - component: {fileID: 2097937764}
   - component: {fileID: 2097937769}
+  - component: {fileID: 2097937770}
   m_Layer: 0
   m_Name: BiCamera
   m_TagString: MainCamera
@@ -3450,3 +3451,15 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2097937762}
   m_Enabled: 1
+--- !u!114 &2097937770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2097937762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5abd1e98e83c4449165d9f926dfda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkedDistance: 0
