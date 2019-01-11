@@ -11,14 +11,14 @@ public class WalkedDistance : MonoBehaviour {
     private float newZ;
     private float timer;
     public float walkedDistance;
- 
+    private string path;
 
 
     // Use this for initialization
     void Start () {
         oldX = transform.position.x;
         oldZ = transform.position.z;
-        string path = Path.Combine(Application.persistentDataPath, "MyFile.txt");
+        path = Path.Combine(Application.persistentDataPath, "MyFile.txt");
         File.WriteAllText(path, "Walked distance every half second in last session : " + walkedDistance.ToString());
     }
 	
