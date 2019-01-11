@@ -51,7 +51,8 @@ public class ObjectPlacer : MonoBehaviour
 
         if (_timeToHideMesh)
         {
-            SpatialUnderstandingState.Instance.HideText = true;
+            BillboardScript.Instance.HideText = true;
+            //SpatialUnderstandingUniqueState.Instance.HideText = true;
             HideGridEnableOcclulsion();
             _timeToHideMesh = false;
         }
@@ -79,7 +80,8 @@ public class ObjectPlacer : MonoBehaviour
 
         SpatialUnderstandingDllObjectPlacement.Solver_Init();
 
-        SpatialUnderstandingState.Instance.SpaceQueryDescription = "Generating World";
+        //SpatialUnderstandingUniqueState.Instance.SpaceQueryDescription = "Generating World";
+        BillboardScript.Instance.SpaceQueryDescription = "Generating World";
 
         List<PlacementQuery> queries = new List<PlacementQuery>();
 
