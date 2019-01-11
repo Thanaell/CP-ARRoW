@@ -11,13 +11,13 @@ public class SpeechManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        keywords.Add("Pop object", () =>
+        keywords.Add("Reset Cube", () =>
         {
             // Call the OnReset method on every descendant object.
-            this.BroadcastMessage("OnPop");
+            this.BroadcastMessage("OnReset");
         });
 
-        keywords.Add("Kill object", () =>
+        keywords.Add("Kill Cube", () =>
         {
             var focusObject = GazeGestureManager.Instance.FocusedObject;
             if (focusObject != null)
