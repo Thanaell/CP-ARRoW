@@ -31,6 +31,7 @@ public class GazeGestureManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // Figure out which hologram is focused this frame.
         GameObject oldFocusObject = FocusedObject;
 
@@ -58,5 +59,19 @@ public class GazeGestureManager : MonoBehaviour
             recognizer.CancelGestures();
             recognizer.StartCapturingGestures();
         }
+        
+
+        if (oldFocusObject != FocusedObject)
+        {
+            if (oldFocusObject!=null)
+            {
+                oldFocusObject.SendMessage("OnGazeExit", SendMessageOptions.RequireReceiver);
+            }
+            if (FocusedObject != null)
+            {
+                FocusedObject.SendMessage("OnGazeEnter", SendMessageOptions.RequireReceiver);
+            }
+        }
+
     }
 }
