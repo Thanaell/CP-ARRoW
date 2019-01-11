@@ -17,6 +17,16 @@ public class SpeechManager : MonoBehaviour
             this.BroadcastMessage("OnReset");
         });
 
+        keywords.Add("Stop", () =>
+        {
+            this.BroadcastMessage("OnStop");
+        });
+
+        keywords.Add("Resume", () =>
+        {
+            this.BroadcastMessage("OnResume");
+        });
+
         keywords.Add("Kill Cube", () =>
         {
             var focusObject = GazeGestureManager.Instance.FocusedObject;
