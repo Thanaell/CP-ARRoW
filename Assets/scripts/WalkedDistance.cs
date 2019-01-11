@@ -11,13 +11,15 @@ public class WalkedDistance : MonoBehaviour {
     private float newZ;
     private float timer;
     public float walkedDistance;
+    string path = Path.Combine(Application.persistentDataPath, "MyFile.txt");
 
-  
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         oldX = transform.position.x;
         oldZ = transform.position.z;
-	}
+        File.WriteAllText(path, "Total walked distance in last session : " + walkedDistance.ToString());
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,8 +34,8 @@ public class WalkedDistance : MonoBehaviour {
             newX = transform.position.z;
 
             //write walkedDistance to file in System/File Explorer/LocalAppData/CPARRoW/LocalState
-            string path = Path.Combine(Application.persistentDataPath, "MyFile.txt");
-            File.WriteAllText(path, "Total walked distance in last session : "+ walkedDistance.ToString());
+            
+            File.AppendAllText(path, "Total walked distance in last session : "+ walkedDistance.ToString());
         }
         timer += Time.deltaTime;	
 	}
