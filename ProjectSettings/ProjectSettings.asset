@@ -564,16 +564,16 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: TestHolo4
+  metroPackageName: TestHolo5
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 0007c5fe119cd501
-  metroApplicationDescription: TestHolo4
+  metroApplicationDescription: TestHolo5
   wsaImages: {}
-  metroTileShortName: TestHolo4
+  metroTileShortName: TestHolo5
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
