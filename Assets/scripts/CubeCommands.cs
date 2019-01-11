@@ -41,4 +41,21 @@ public class CubeCommands : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+
+    private Color startColor;
+
+    void OnGazeEnter()
+    {
+        var com = gameObject.GetComponent<Renderer>();
+        startColor = com.material.color;
+        com.material.color = Color.green;
+    }
+
+    void OnGazeExit()
+    {
+        var com = gameObject.GetComponent<Renderer>();
+        com.material.color = startColor;
+    }
+
 }
