@@ -45,7 +45,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
             // Set the parent of the new object the GameObject it was placed on
             newObject.transform.parent = gameObject.transform;
-            newObject.AddComponent<CubeCommands>();
+            newObject.AddComponent<InteractionScript>();
 
             newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
             ActiveHolograms.Add(newObject);

@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 75311455}
   - component: {fileID: 75311454}
   - component: {fileID: 75311452}
+  - component: {fileID: 75311453}
   m_Layer: 0
   m_Name: CameraVuforia
   m_TagString: Untagged
@@ -315,6 +316,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &75311453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75311450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b00a732d6b14440acc2281cddcb2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &75311454
@@ -1996,7 +2008,6 @@ GameObject:
   - component: {fileID: 1293393206}
   - component: {fileID: 1293393208}
   - component: {fileID: 1293393207}
-  - component: {fileID: 1293393209}
   m_Layer: 0
   m_Name: Basic
   m_TagString: Untagged
@@ -2041,17 +2052,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a05b9ec4462ad9c45b441d550625640f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1293393209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1293393205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4b00a732d6b14440acc2281cddcb2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!43 &1357686136
@@ -3688,7 +3688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2097937763
 Transform:
   m_ObjectHideFlags: 0

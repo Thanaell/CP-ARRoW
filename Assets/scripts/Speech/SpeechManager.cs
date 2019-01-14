@@ -29,7 +29,7 @@ public class SpeechManager : MonoBehaviour
 
         keywords.Add("Kill Cube", () =>
         {
-            var focusObject = GazeGestureManager.Instance.FocusedObject;
+            var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
                 // Call the OnDrop method on just the focused object.
