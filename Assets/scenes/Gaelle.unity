@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &23865094
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162097268812814, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1e54a333e2eef7044929b50393f4f03f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!43 &40953293
 Mesh:
   m_ObjectHideFlags: 0
@@ -485,6 +527,7 @@ MonoBehaviour:
   WallObjectSize: {x: 0.25, y: 0.25, z: 0.25}
   ScaleFactor: 0
   ActiveHolograms: []
+  customObject: {fileID: 0}
 --- !u!1 &169515775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470424, guid: ee55cd5ba4761374391d20723b7077fc, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2319566, guid: ee55cd5ba4761374391d20723b7077fc, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -1859,7 +1902,7 @@ Transform:
   m_Children:
   - {fileID: 1606149696}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1218059006
 MonoBehaviour:
@@ -3545,7 +3588,6 @@ GameObject:
   - component: {fileID: 2097937764}
   - component: {fileID: 2097937769}
   - component: {fileID: 2097937771}
-  - component: {fileID: 2097937770}
   m_Layer: 0
   m_Name: BiCamera
   m_TagString: MainCamera
@@ -3665,17 +3707,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2097937762}
   m_Enabled: 1
---- !u!114 &2097937770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2097937762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571b81daad4906d4b9e6c0e3b17057ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2097937771
 MonoBehaviour:
   m_ObjectHideFlags: 0
