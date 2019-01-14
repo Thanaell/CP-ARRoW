@@ -13,10 +13,10 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public List<GameObject> WallPrefabs;
 
     [Tooltip("The desired size of floor objects in the world.")]
-    public Vector3 FloorObjectSize = new Vector3(.5f, .5f, .5f);
+    public Vector3 FloorObjectSize = new Vector3(.25f, .25f, .25f);
 
     [Tooltip("The desired size of wall objects in the world.")]
-    public Vector3 WallObjectSize = new Vector3(.5f, .5f, .5f);
+    public Vector3 WallObjectSize = new Vector3(.25f, .25f, .25f);
 
     [Tooltip("Will be calculated at runtime if is not preset.")]
     public float ScaleFactor;
