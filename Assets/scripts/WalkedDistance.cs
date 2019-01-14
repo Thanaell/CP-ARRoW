@@ -24,9 +24,9 @@ public class WalkedDistance : MonoBehaviour
         oldX = Camera.main.transform.localPosition.x;
         oldZ = Camera.main.transform.localPosition.z;
 
-       tip = (GameObject)Instantiate(TextPrefab);
+        //tip = (GameObject)Instantiate(TextPrefab);
 
-        path = Path.Combine(Application.persistentDataPath, "MyFile.txt");
+        path = Path.Combine(Application.persistentDataPath, "WalkedDistance.txt");
         File.WriteAllText(path, "Walked distance every half second in last session : " + walkedDistance.ToString());
 
     }
@@ -41,14 +41,14 @@ public class WalkedDistance : MonoBehaviour
             Debug.Log(walkedDistance);
             //unit is meter
             txtDistance = string.Format("Distance : {0:#.00}  m", walkedDistance);
-            tip.GetComponent<TextMesh>().text = txtDistance ;
+            //tip.GetComponent<TextMesh>().text = txtDistance ;
 
             oldZ = newZ;
             oldX = newX;
             newZ = Camera.main.transform.localPosition.x;
             newX = Camera.main.transform.localPosition.z;
 
-            File.AppendAllText(path, walkedDistance.ToString());
+            File.AppendAllText(path, walkedDistance.ToString() + System.Environment.NewLine);
         }
         timer += Time.deltaTime;
 
