@@ -22,7 +22,7 @@ public class SpeechManager : MonoBehaviour
             this.BroadcastMessage("OnStop");
         });
 
-        keywords.Add("Resume", () =>
+        keywords.Add("Play", () =>
         {
             this.BroadcastMessage("OnResume");
         });
