@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <variables>
+    <variable name="myInt" value="42"></variable>
+    <variable name="myString" value="this is a string"></variable>
+    <variable name="myDouble" value="1337.1337"></variable>
+  </variables>
