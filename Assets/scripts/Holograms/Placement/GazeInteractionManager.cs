@@ -1,32 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.WSA.Input;
 
-public class GazeGestureManager : MonoBehaviour
+public class GazeInteractionManager : MonoBehaviour
 {
-    public static GazeGestureManager Instance { get; private set; }
+    public static GazeInteractionManager Instance { get; private set; }
 
     // Represents the hologram that is currently being gazed at.
     public GameObject FocusedObject { get; private set; }
+    
 
-    GestureRecognizer recognizer;
-
-    // Use this for initialization
-    void Awake()
-    {
-        Instance = this;
-
-        // Set up a GestureRecognizer to detect Select gestures.
-        recognizer = new GestureRecognizer();
-        recognizer.Tapped += (args) =>
-        {
-            // Send an OnSelect message to the focused object and its ancestors.
-            if (FocusedObject != null)
-            {
-                FocusedObject.SendMessageUpwards("OnSelect", SendMessageOptions.DontRequireReceiver);
-            }
-        };
-        recognizer.StartCapturingGestures();
-    }
+  
 
     // Update is called once per frame
     void Update()
@@ -51,15 +34,6 @@ public class GazeGestureManager : MonoBehaviour
             // If the raycast did not hit a hologram, clear the focused object.
             FocusedObject = null;
         }
-
-        // If the focused object changed this frame,
-        // start detecting fresh gestures again.
-        if (FocusedObject != oldFocusObject)
-        {
-            recognizer.CancelGestures();
-            recognizer.StartCapturingGestures();
-        }
-        
 
         if (oldFocusObject != FocusedObject)
         {
