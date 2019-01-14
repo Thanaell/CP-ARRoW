@@ -10,6 +10,7 @@ public class WalkedDistance : MonoBehaviour
     private float oldZ;
     private float newZ;
     private float timer;
+    private float globalTimer;
 
     public float walkedDistance;
     public string txtDistance { get; set; }
@@ -38,7 +39,6 @@ public class WalkedDistance : MonoBehaviour
         {
             timer = 0;
             walkedDistance += Mathf.Sqrt((oldX - newX) * (oldX - newX) + (oldZ - newZ) * (oldZ - newZ));
-            Debug.Log(walkedDistance);
             //unit is meter
             txtDistance = string.Format("Distance : {0:#.00}  m", walkedDistance);
             //tip.GetComponent<TextMesh>().text = txtDistance ;
@@ -48,11 +48,19 @@ public class WalkedDistance : MonoBehaviour
             newZ = Camera.main.transform.localPosition.x;
             newX = Camera.main.transform.localPosition.z;
 
-            File.AppendAllText(path, walkedDistance.ToString() + System.Environment.NewLine);
+            File.AppendAllText(path, globalTimer.ToString() + "   " + walkedDistance.ToString() + System.Environment.NewLine);
         }
         timer += Time.deltaTime;
+        globalTimer += Time.deltaTime;
+    }
 
+    private void OnApplicationPause(bool pause)
+    {
+        File.AppendAllText(path, "Vitesse moyenne au bout de " + globalTimer.ToString() + " : " + walkedDistance / globalTimer + " m/s");
+    }
 
-
+    private void OnApplicationQuit()
+    {
+        File.AppendAllText(path, "Vitesse moyenne au bout de " + globalTimer.ToString() + " : " + walkedDistance / globalTimer + " m/s");
     }
 }
