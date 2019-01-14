@@ -17,13 +17,15 @@ public class VuforiaCommand : MonoBehaviour {
 
     void OnStop()
     {
-        VuforiaBehaviour.Instance.enabled = false;
+        VuforiaRuntime.Instance.Deinit();
+        GetComponent<VuforiaBehaviour>().enabled = false;
         GetComponent<DefaultInitializationErrorHandler>().enabled = false;
     }
 
     void OnResume()
     {
-        VuforiaBehaviour.Instance.enabled = true;
+        VuforiaRuntime.Instance.InitVuforia();
+        GetComponent<VuforiaBehaviour>().enabled = true;
         GetComponent<DefaultInitializationErrorHandler>().enabled = true;
     }
 }
