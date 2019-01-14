@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/scenes/Ramina.unity
     guid: d238f387c94c4f74cb29e20501d59b1a
   - enabled: 1
