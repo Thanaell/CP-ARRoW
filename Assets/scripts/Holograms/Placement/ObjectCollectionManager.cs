@@ -22,6 +22,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public float ScaleFactor;
 
     public List<GameObject> ActiveHolograms = new List<GameObject>();
+    
+
 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
@@ -43,10 +45,11 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
             // Set the parent of the new object the GameObject it was placed on
             newObject.transform.parent = gameObject.transform;
-            
+            newObject.AddComponent<CubeCommands>();
 
             newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
             ActiveHolograms.Add(newObject);
+            
         }
     }
 

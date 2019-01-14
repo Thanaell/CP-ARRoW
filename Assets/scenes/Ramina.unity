@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 121852416}
   - component: {fileID: 121852417}
   - component: {fileID: 121852418}
+  - component: {fileID: 121852419}
   m_Layer: 0
   m_Name: Placement
   m_TagString: Untagged
@@ -485,6 +486,17 @@ MonoBehaviour:
   WallObjectSize: {x: 0.25, y: 0.25, z: 0.25}
   ScaleFactor: 0
   ActiveHolograms: []
+--- !u!114 &121852419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121852415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05b9ec4462ad9c45b441d550625640f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &169515775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugDisplay: {fileID: 1486122294}
   DebugSubDisplay: {fileID: 1204930682}
+  DebugDisplayDistance: {fileID: 0}
+  walkedDistancerObject: {fileID: 0}
   HideText: 0
 --- !u!114 &904995795
 MonoBehaviour:
@@ -1844,7 +1858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1218059005
 Transform:
   m_ObjectHideFlags: 0
