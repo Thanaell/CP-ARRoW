@@ -24,9 +24,13 @@ public class InteractionScript : MonoBehaviour
         {
             com.material.color = Color.green;
         }
+        if (id == 2)
+        {
+            com.material.color = Color.black;
+        }
         else com.material.color = Color.yellow;
 
-        //ObjectCollectionManager.Instance.activeObject = id;
+        ObjectCollectionManager.Instance.activeObject = id;
     }
 
     void OnGazeExit()

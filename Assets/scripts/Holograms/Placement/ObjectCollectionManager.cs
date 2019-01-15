@@ -27,18 +27,22 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     public CustomObjectScript customObject;
     
-    private int activeObject = 0;
+    public int activeObject = 0;
 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
+        id++;
+        HologramsToCreate.Add(new ObjectProprieties(ObjectType.FloorObject, number, positionCenter, rotation, id));
+        //CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
     }
     public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        CreateObject(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
+        id++;
+        HologramsToCreate.Add(new ObjectProprieties(ObjectType.WallObject, number, positionCenter, rotation, id));
+        //CreateObject(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
     }
 
-    private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize)
+    private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize,int objectId)
     {
         
         GameObject newObject = Instantiate(objectToCreate, positionCenter, rotation) as GameObject;
@@ -49,12 +53,25 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
             newObject.transform.parent = gameObject.transform;
 
             newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
-
-            id++;
-            customObject.addComponents(newObject,id);
+            
+            customObject.addComponents(newObject,objectId);
 
             ActiveHolograms.Add(newObject);
-            
+        }
+    }
+
+    private void Update()
+    {
+        if (id > 0)
+        {
+            if (ActiveHolograms.Count <= activeObject & activeObject<id)
+            {
+                if (HologramsToCreate[activeObject].Type == ObjectType.WallObject)
+                {
+                    CreateObject(WallPrefabs[HologramsToCreate[activeObject].NumberInList], HologramsToCreate[activeObject].PositionCenter, HologramsToCreate[activeObject].Rotation, WallObjectSize, HologramsToCreate[activeObject].ObjectId);
+                }
+                else CreateObject(WallPrefabs[HologramsToCreate[activeObject].NumberInList], HologramsToCreate[activeObject].PositionCenter, HologramsToCreate[activeObject].Rotation, WallObjectSize, HologramsToCreate[activeObject].ObjectId);
+            }
         }
     }
 

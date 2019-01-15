@@ -5,19 +5,22 @@ using UnityEngine;
 public class ObjectProprieties : MonoBehaviour {
     
     public ObjectProprieties(
-        GameObject objectToCreate,
+        ObjectType type,
+        int numberInList,
         Vector3 positionCenter,
         Quaternion rotation,
-        int id)
+        int objectId)
     {
-        ObjectToCreate = ObjectToCreate;
+        Type=type;
+        NumberInList = numberInList;
         PositionCenter = positionCenter;
         Rotation = rotation;
-        Id = id;
+        ObjectId = objectId;
     }
 
-    public readonly GameObject ObjectToCreate;
+    public readonly ObjectType Type;
+    public readonly int NumberInList;
     public readonly Vector3 PositionCenter;
     public readonly Quaternion Rotation;
-    public readonly int Id;
+    public readonly int ObjectId;
 }
