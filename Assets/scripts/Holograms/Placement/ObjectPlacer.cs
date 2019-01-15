@@ -225,7 +225,8 @@ public class ObjectPlacer : MonoBehaviour
            **/
             var placementRules = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule>
             {
-                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(disctanceFromOtherObjects)
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(disctanceFromOtherObjects),
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromPosition(Camera.main.transform.position, 1)
             };
 
             switch (objType)
@@ -255,7 +256,8 @@ public class ObjectPlacer : MonoBehaviour
                     **/
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                        //SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(Camera.main.transform.position)
                     };
 
                     /**

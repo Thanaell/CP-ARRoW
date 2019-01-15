@@ -7,9 +7,11 @@ public class CustomObjectScript : MonoBehaviour {
 
     public AudioClip audio;
 
-    public void addComponents(GameObject go)
+    public void addComponents(GameObject go, int objectId)
     {
         go.AddComponent<InteractionScript>();
+        go.GetComponent<InteractionScript>().id = objectId;
+
         go.AddComponent<AudioSource>();
         go.AddComponent<AudioManager>();
         go.GetComponent<AudioSource>().maxDistance = 2;

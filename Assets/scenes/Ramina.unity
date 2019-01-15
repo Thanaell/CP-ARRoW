@@ -256,6 +256,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4688205994629746, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -293,6 +303,41 @@ Prefab:
       propertyPath: SpatialUnderstandingMesh
       value: 
       objectReference: {fileID: 1400613533}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1536550077349436, guid: 4763c940136987e40bbb17050d224eb3,
+        type: 2}
+    - target: {fileID: 114617637987421408, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: DrawDebugBoxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1536550077349436, guid: 4763c940136987e40bbb17050d224eb3,
+        type: 2}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1819882730313252, guid: fb9633f4d71f56d49957efadb8b704de,
+        type: 2}
+    - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1696306815258264, guid: c1985c4b7f4073f4ab490526f16718b6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
   m_IsPrefabParent: 0

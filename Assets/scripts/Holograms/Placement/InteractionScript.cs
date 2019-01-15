@@ -4,6 +4,8 @@ public class InteractionScript : MonoBehaviour
 {
     Vector3 originalPosition;
 
+    public int id;
+
     // Use this for initialization
     void Start()
     {
@@ -18,7 +20,13 @@ public class InteractionScript : MonoBehaviour
     {
         var com = gameObject.GetComponent<Renderer>();
         startColor = com.material.color;
-        com.material.color = Color.green;
+        if (id == 1)
+        {
+            com.material.color = Color.green;
+        }
+        else com.material.color = Color.yellow;
+
+        //ObjectCollectionManager.Instance.activeObject = id;
     }
 
     void OnGazeExit()

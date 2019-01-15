@@ -22,8 +22,12 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public float ScaleFactor;
 
     public List<GameObject> ActiveHolograms = new List<GameObject>();
+    public List<ObjectProprieties> HologramsToCreate = new List<ObjectProprieties>();
+    private int id = 0;
 
     public CustomObjectScript customObject;
+    
+    private int activeObject = 0;
 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
@@ -36,19 +40,19 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize)
     {
-        // Stay center in the square but move down to the ground
-        var position = positionCenter ; //new Vector3(0, desiredSize.y * .5f, 0);
-
-        GameObject newObject = Instantiate(objectToCreate, position, rotation) as GameObject;
+        
+        GameObject newObject = Instantiate(objectToCreate, positionCenter, rotation) as GameObject;
 
         if (newObject != null)
         {
             // Set the parent of the new object the GameObject it was placed on
             newObject.transform.parent = gameObject.transform;
 
-            customObject.addComponents(newObject);
-
             newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
+
+            id++;
+            customObject.addComponents(newObject,id);
+
             ActiveHolograms.Add(newObject);
             
         }
@@ -78,7 +82,12 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         float maxScale = float.MaxValue;
 
         var ratio = CalcScaleFactorHelper(FloorPrefabs, FloorObjectSize);
-        if (ratio < maxScale)
+        if (ratio < maxScale & ratio>0)
+        {
+            maxScale = ratio;
+        }
+        ratio = CalcScaleFactorHelper(WallPrefabs, WallObjectSize);
+        if (ratio < maxScale & ratio >0)
         {
             maxScale = ratio;
         }
