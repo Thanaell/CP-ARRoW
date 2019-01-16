@@ -10,8 +10,6 @@ public class BillboardScript : Singleton<BillboardScript>
     public TextMesh DebugSubDisplay;
     public TextMesh DebugDisplayDistance;
 
-    WalkedDistance walkedDistance;
-    public GameObject walkedDistancerObject;
 
     public bool HideText = false;
 
@@ -152,10 +150,6 @@ public class BillboardScript : Singleton<BillboardScript>
         DebugDisplay.text = PrimaryText;
         DebugDisplay.color = PrimaryColor;
         DebugSubDisplay.text = DetailsText;
-
-        //display distance
-        walkedDistance = walkedDistancerObject.GetComponent<WalkedDistance>();
-        DebugDisplayDistance.text = walkedDistance.txtDistance;
     }
 
     private void Start()
