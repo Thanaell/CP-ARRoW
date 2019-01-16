@@ -13,10 +13,10 @@ public class CustomObjectScript : MonoBehaviour {
         go.GetComponent<InteractionScript>().id = objectId;
 
         go.AddComponent<AudioSource>();
-        go.AddComponent<AudioManager>();
+        go.AddComponent<SoundManager>();
         go.GetComponent<AudioSource>().maxDistance = 2;
         go.GetComponent<AudioSource>().minDistance = 0;
-        go.GetComponent<AudioManager>().audioData = go.GetComponent<AudioSource>();
-        go.GetComponent<AudioManager>().audio = audio;
+        go.GetComponent<SoundManager>().audioData = go.GetComponent<AudioSource>();
+        go.GetComponent<SoundManager>().audio = audio;
     }
 }

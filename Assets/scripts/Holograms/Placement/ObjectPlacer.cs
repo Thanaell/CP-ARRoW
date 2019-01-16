@@ -32,6 +32,10 @@ public class ObjectPlacer : MonoBehaviour
 
     public Material OccludedMaterial;
 
+    public float distanceFromOtherObject=2;
+    private Vector3 farFromPoint;
+
+
     // Use this for initialization
     void Start()
     {
@@ -82,6 +86,8 @@ public class ObjectPlacer : MonoBehaviour
 
         //SpatialUnderstandingUniqueState.Instance.SpaceQueryDescription = "Generating World";
         BillboardScript.Instance.SpaceQueryDescription = "Generating World";
+
+        farFromPoint = Camera.main.transform.position;
 
         List<PlacementQuery> queries = new List<PlacementQuery>();
 
@@ -212,7 +218,6 @@ public class ObjectPlacer : MonoBehaviour
         /**
          * variable permet de calculer la distance entre les objets
          **/ 
-        var disctanceFromOtherObjects = halfBoxDims.x > halfBoxDims.z ? halfBoxDims.x * 10f : halfBoxDims.z * 10f;
 
         for (int i = 0; i < desiredLocationCount; ++i)
         {
@@ -225,8 +230,8 @@ public class ObjectPlacer : MonoBehaviour
            **/
             var placementRules = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule>
             {
-                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(disctanceFromOtherObjects),
-                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromPosition(Camera.main.transform.position, 1)
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(distanceFromOtherObject),
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromPosition(farFromPoint, distanceFromOtherObject)
             };
 
             switch (objType)
@@ -265,7 +270,7 @@ public class ObjectPlacer : MonoBehaviour
                      * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
                      * On peut exploirer plus cette variable pour mieux définir la position des objets.
                      **/
-                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 2f, 2.5f);//Create_OnFloor(halfBoxDims);
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.6f, 1.8f);//Create_OnFloor(halfBoxDims);
 
                     break;
             }

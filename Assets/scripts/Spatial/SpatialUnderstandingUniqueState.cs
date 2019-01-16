@@ -20,7 +20,8 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
     public TargetDetection targetDetection;
 
     bool clickDetected = false;
-    
+
+    public bool clickIsAllowed = false;
 
     public bool DoesScanMeetMinBarForCompletion
     {
@@ -101,7 +102,10 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
          {
              SpatialUnderstanding.Instance.RequestFinishScan();
          }*/
-        clickDetected = true;
+        if (clickIsAllowed)
+        {
+            clickDetected = true;
+        }
     }
     
 
