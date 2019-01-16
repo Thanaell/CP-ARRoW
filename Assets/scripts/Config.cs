@@ -20,6 +20,7 @@ public class Config : MonoBehaviour
     private XDocument myXmlDoc;
 
     private XmlNode root;
+    private XmlReader xmlReader;
 
 
     //Pour fonctionner, ce code nécessite un fichier myConfig.xml mis dans l'HoloLens : 
@@ -29,7 +30,8 @@ public class Config : MonoBehaviour
         pathToWrite = Path.Combine(Application.persistentDataPath, "TestXMLReader.txt");
         path = Path.Combine(Application.persistentDataPath, "myConfig.xml");
 
-        myXmlDoc = XDocument.Parse(path);
+        xmlReader = XmlReader.Create(path);
+        myXmlDoc = XDocument.Load(xmlReader);
         
         if (!FetchIntFromConfig("myInt"))
         {
@@ -45,8 +47,8 @@ public class Config : MonoBehaviour
         }
 
         //on vérifie que ça a marché
-        Debug.Log(lastStringRead + " " + lastDoubleRead + " " + lastIntRead);
-        File.WriteAllText(pathToWrite, lastStringRead+ " " +lastDoubleRead+ " "+ lastIntRead);
+        //Debug.Log(lastStringRead + " " + lastDoubleRead + " " + lastIntRead);
+        //File.WriteAllText(pathToWrite, lastStringRead+ " " +lastDoubleRead+ " "+ lastIntRead);
    
     }
 
@@ -77,15 +79,16 @@ public class Config : MonoBehaviour
     //récupère un int depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchIntFromConfig(string variableName)
     {
-        var variableNodes = myXmlDoc.Elements("variable");
+        var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
             if (variableNode.Attribute("name").Value == variableName)
             {
+                Debug.Log(variableNode);
                 lastIntRead = System.Convert.ToInt32(variableNode.Attribute("value").Value);
                 return true;
             }
-            
+
         }
         return false;
     }
@@ -93,9 +96,10 @@ public class Config : MonoBehaviour
     //récupère un double depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchDoubleFromConfig(string variableName)
     {
-        var variableNodes = myXmlDoc.Elements("variable");
+        var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
+
             if (variableNode.Attribute("name").Value == variableName)
             {
                 lastDoubleRead = System.Convert.ToDouble(variableNode.Attribute("value").Value);
@@ -111,7 +115,7 @@ public class Config : MonoBehaviour
     //    Sont acceptés pour false : "False", 0, null
     public bool FetchBoolFromConfig(string variableName)
     {
-        var variableNodes = myXmlDoc.Elements("variable");
+        var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
             if (variableNode.Attribute("name").Value == variableName)
@@ -127,7 +131,7 @@ public class Config : MonoBehaviour
     //récupère un string depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchStringFromConfig(string variableName)
     {
-        var variableNodes = myXmlDoc.Elements("variable");
+        var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
             if (variableNode.Attribute("name").Value == variableName)
