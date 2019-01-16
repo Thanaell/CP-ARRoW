@@ -382,7 +382,9 @@ MonoBehaviour:
   WallObjectSize: {x: 0.25, y: 0.25, z: 0.25}
   ScaleFactor: 0
   ActiveHolograms: []
+  HologramsToCreate: []
   customObject: {fileID: 0}
+  activeObject: 0
 --- !u!1 &175945697
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +857,6 @@ MonoBehaviour:
   DebugDisplay: {fileID: 1486122294}
   DebugSubDisplay: {fileID: 1204930682}
   DebugDisplayDistance: {fileID: 0}
-  walkedDistancerObject: {fileID: 0}
   HideText: 0
 --- !u!114 &904995795
 MonoBehaviour:
@@ -1073,6 +1074,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee55cd5ba4761374391d20723b7077fc, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1112296703
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.487423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.4549942
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.5851307
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565827875630042, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 007bce346fec2ab40acb352af5d8c869, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1197277079
 GameObject:
@@ -1890,6 +1933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f1d44e7c114e44e8e87f4eef2b5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &1613539538
 GameObject:
   m_ObjectHideFlags: 0
