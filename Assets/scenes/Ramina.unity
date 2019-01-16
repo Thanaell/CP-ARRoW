@@ -259,7 +259,7 @@ Prefab:
     - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: WallPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
@@ -324,7 +324,7 @@ Prefab:
         type: 2}
       propertyPath: WallPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 1536550077349436, guid: 4763c940136987e40bbb17050d224eb3,
+      objectReference: {fileID: 1696306815258264, guid: c1985c4b7f4073f4ab490526f16718b6,
         type: 2}
     - target: {fileID: 114732317301797420, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}

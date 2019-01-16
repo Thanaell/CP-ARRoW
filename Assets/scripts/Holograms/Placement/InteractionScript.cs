@@ -39,4 +39,6 @@ public class InteractionScript : MonoBehaviour
         com.material.color = startColor;
     }
 
+    
+
 }
