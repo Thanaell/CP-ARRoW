@@ -30,7 +30,10 @@ public class InteractionScript : MonoBehaviour
         }
         else com.material.color = Color.yellow;
 
-        ObjectCollectionManager.Instance.activeObject = id;
+        if (distanceToCamera() < 2)
+        {
+            ObjectCollectionManager.Instance.activeObject = id;
+        }
     }
 
     void OnGazeExit()
@@ -39,6 +42,9 @@ public class InteractionScript : MonoBehaviour
         com.material.color = startColor;
     }
 
-    
+    float distanceToCamera()
+    {
+        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.position.y - Camera.main.transform.position.y, 2)) ;
+    }
 
 }

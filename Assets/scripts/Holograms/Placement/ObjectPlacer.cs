@@ -270,7 +270,7 @@ public class ObjectPlacer : MonoBehaviour
                      * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
                      * On peut exploirer plus cette variable pour mieux définir la position des objets.
                      **/
-                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.5f, 2f);//Create_OnFloor(halfBoxDims);
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.6f, 1.8f);//Create_OnFloor(halfBoxDims);
 
                     break;
             }
