@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 114372643963287200}
   - component: {fileID: 114054921702651712}
   - component: {fileID: 124309004660281876}
-  - component: {fileID: 114712740101211222}
   m_Layer: 0
   m_Name: BiCamera
   m_TagString: MainCamera
@@ -1073,19 +1072,6 @@ MonoBehaviour:
   Stabilizer: {fileID: 114104913919529700}
   GazeTransform: {fileID: 0}
   DebugDrawRay: 0
---- !u!114 &114712740101211222
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1447427476898288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06763fde789716f47afc528c4073fd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkedDistance: 0
-  TextPrefab: {fileID: 0}
 --- !u!114 &114724407077697186
 MonoBehaviour:
   m_ObjectHideFlags: 1
