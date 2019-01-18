@@ -10,6 +10,18 @@ public class TreasureInteractionScript : MonoBehaviour {
     [SerializeField]
     private float distanceToActivate=2;
 
+    [SerializeField]
+    private Config myConfig;
+
+    private void Start()
+    {
+        myConfig = GameObject.FindGameObjectWithTag("Config").GetComponent<Config>();
+        if (myConfig.FetchDoubleFromConfig("distanceToActivateTreasure"))
+        {
+            distanceToActivate = (float) myConfig.getLastDoubleRead();
+        }
+    }
+
     public int ClueIdToActivate
     {
         set
