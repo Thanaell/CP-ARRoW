@@ -51,7 +51,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     private List<GameObject> listPrefabs;
 
     /*
-     * les objets du sol sont créé imediatement
+     * les objets du sol sont créés imediatement
      */ 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
@@ -109,6 +109,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     }
 
+    //TODO : commenter
     private void Update()
     {
         if (idDistributed > 0)
