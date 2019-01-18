@@ -19,7 +19,10 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public Vector3 WallObjectSize = new Vector3(.25f, .25f, .25f);
 
     [Tooltip("Will be calculated at runtime if is not preset.")]
-    public float ScaleFactor;
+    public float WallScaleFactor;
+
+    [Tooltip("Will be calculated at runtime if is not preset.")]
+    public float FloorScaleFactor;
 
     private List<GameObject> WallActiveHolograms = new List<GameObject>();
     private List<ObjectProprieties> WallHologramsToCreate = new List<ObjectProprieties>();
@@ -82,10 +85,10 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
                 // Set the parent of the new object the GameObject it was placed on
                 newObject.transform.parent = gameObject.transform;
 
-                //newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
+                 RescaleToSameScaleFactor();
                 if (type == ObjectType.WallObject)
                 {
-                    newObject.transform.localScale = WallObjectSize;
+                    newObject.transform.localScale = newObject.transform.localScale * WallScaleFactor;
 
                     newObject.AddComponent<ClueInteractionScript>();
                     newObject.GetComponent<ClueInteractionScript>().Id = objectId;
@@ -94,7 +97,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
                 }
                 if (type == ObjectType.FloorObject)
                 {
-                    newObject.transform.localScale = FloorObjectSize;
+                    newObject.transform.localScale = newObject.transform.localScale * FloorScaleFactor;
 
                     newObject.AddComponent<TreasureInteractionScript>();
                     newObject.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
@@ -125,44 +128,46 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         }
     }
 
-    /*
-    private Vector3 RescaleToSameScaleFactor(GameObject objectToScale)
+    
+    private void RescaleToSameScaleFactor()
     {
+        float maxScale = float.MaxValue;
+
         // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (ScaleFactor == 0f)
+        if (WallScaleFactor == 0f )
         {
-            CalculateScaleFactor();
+            var ratio = CalcScaleFactorHelper(WallPrefabs, WallObjectSize);
+            if (ratio < maxScale & ratio > 0)
+            {
+                maxScale = ratio;
+            }
+
+            WallScaleFactor = maxScale;
+        }
+        maxScale = float.MaxValue;
+        if ( FloorScaleFactor == 0f)
+        {
+            var ratio = CalcScaleFactorHelper(FloorPrefabs, FloorObjectSize);
+            if (ratio < maxScale & ratio > 0)
+            {
+                maxScale = ratio;
+            }
+
+            FloorScaleFactor = maxScale;
         }
 
-        return objectToScale.transform.localScale * ScaleFactor;
+        return ;
     }
     
-
+    /*
     private Vector3 StretchToFit(GameObject obj, Vector3 desiredSize)
     {
         var curBounds = GetBoundsForAllChildren(obj).size;
 
         return new Vector3(desiredSize.x / curBounds.x / 2, desiredSize.y, desiredSize.z / curBounds.z / 2);
     }
-
-    private void CalculateScaleFactor()
-    {
-        float maxScale = float.MaxValue;
-
-        var ratio = CalcScaleFactorHelper(FloorPrefabs, FloorObjectSize);
-        if (ratio < maxScale & ratio>0)
-        {
-            maxScale = ratio;
-        }
-        ratio = CalcScaleFactorHelper(WallPrefabs, WallObjectSize);
-        if (ratio < maxScale & ratio >0)
-        {
-            maxScale = ratio;
-        }
-
-        ScaleFactor = maxScale;
-    }
-
+    */
+    
     private float CalcScaleFactorHelper(List<GameObject> objects, Vector3 desiredSize)
     {
         float maxScale = float.MaxValue;
@@ -214,5 +219,5 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         return result;
     }
-    */
+    
 }
