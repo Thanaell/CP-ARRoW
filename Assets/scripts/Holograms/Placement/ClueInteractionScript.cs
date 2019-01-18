@@ -1,34 +1,35 @@
 ﻿using UnityEngine;
 
-public class InteractionScript : MonoBehaviour
+public class ClueInteractionScript : MonoBehaviour
 {
-    Vector3 originalPosition;
+    private int id;
 
-    public int id;
-
-    // Use this for initialization
-    void Start()
+    public int Id
     {
-        // Grab the original local position of the sphere when the app starts.
-        originalPosition = this.transform.localPosition;
-
+        get
+        {
+            return id;
+        }
+        set
+        {
+            id = value;
+        }
     }
 
-
     private Color startColor;
+
+    [SerializeField]
+    private float distanceToActivate = 1.5f;
 
     void OnGazeEnter()
     {
         var com = gameObject.GetComponent<Renderer>();
+        /*on memorise l'ancienne valeur*/
         startColor = com.material.color;
-
-        Debug.Log(id);
-        Debug.Log(id);
-        Debug.Log(id);
-        Debug.Log(id);
-        if (distanceToCamera() < 1.5)
+        
+        if (distanceToCamera() < distanceToActivate)
         {
-            ObjectCollectionManager.Instance.activeObject = id;
+            ObjectCollectionManager.Instance.ActiveObject = id;
             com.material.color = Color.green;
         }
         else com.material.color = Color.yellow;
@@ -40,6 +41,7 @@ public class InteractionScript : MonoBehaviour
         com.material.color = startColor;
     }
 
+    /*distance entre la camera et l'objet selectionné*/
     float distanceToCamera()
     {
         return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.position.z - Camera.main.transform.position.z, 2)) ;

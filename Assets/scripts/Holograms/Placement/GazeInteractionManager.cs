@@ -43,6 +43,7 @@ public class GazeInteractionManager : MonoBehaviour
             }
             if (FocusedObject != null)
             {
+                /*envoie le signal à l'objet ciblé*/
                 FocusedObject.SendMessage("OnGazeEnter", SendMessageOptions.DontRequireReceiver);
             }
         }

@@ -13,7 +13,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public List<GameObject> WallPrefabs;
 
     [Tooltip("The desired size of floor objects in the world.")]
-    public Vector3 FloorObjectSize = new Vector3(.25f, .25f, .25f);
+    public Vector3 FloorObjectSize = new Vector3(.5f, .5f, .5f);
 
     [Tooltip("The desired size of wall objects in the world.")]
     public Vector3 WallObjectSize = new Vector3(.25f, .25f, .25f);
@@ -21,30 +21,54 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     [Tooltip("Will be calculated at runtime if is not preset.")]
     public float ScaleFactor;
 
-    public List<GameObject> ActiveHolograms = new List<GameObject>();
-    public List<ObjectProprieties> HologramsToCreate = new List<ObjectProprieties>();
-    private int id = 0;
+    private List<GameObject> WallActiveHolograms = new List<GameObject>();
+    private List<ObjectProprieties> WallHologramsToCreate = new List<ObjectProprieties>();
+    private List<GameObject> FloorActiveHolograms = new List<GameObject>();
+    //private List<ObjectProprieties> FloorHologramsToCreate = new List<ObjectProprieties>();
 
-    public CustomObjectScript customObject;
+
+    private int idDistributed = 0;
     
-    public int activeObject = 0;
+    /*indique id de WallObject activé */
+    private int activeObject = 0;
+    public int ActiveObject
+    {
+        get
+        {
+            return activeObject;
+        }
+        set
+        {
+            activeObject = value;
+        }
+    }
 
-    public List<GameObject> listPrefabs;
+    /*
+     * differents prefabs possible à integrer sur les objets
+     * permet de personnaliser les objets
+     */
+    [SerializeField]
+    private List<GameObject> listPrefabs;
 
+    /*
+     * les objets du sol sont créé imediatement
+     */ 
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
-        id++;
-        HologramsToCreate.Add(new ObjectProprieties(ObjectType.FloorObject, number, positionCenter, rotation, id));
-        //CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize);
-    }
-    public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
-    {
-        id++;
-        HologramsToCreate.Add(new ObjectProprieties(ObjectType.WallObject, number, positionCenter, rotation, id));
-        //CreateObject(WallPrefabs[number], positionCenter, rotation, WallObjectSize);
+        CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize, idDistributed, ObjectType.FloorObject);
     }
 
-    private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize,int objectId)
+    /*
+     * les objets sur le mur sont crées au fur à mesure
+     */ 
+    public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
+    {
+        idDistributed++;
+        WallHologramsToCreate.Add(new ObjectProprieties(ObjectType.WallObject, number, positionCenter, rotation, idDistributed));
+    }
+
+    /*création de l'objet*/
+    private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize,int objectId,ObjectType type)
     {
         
         GameObject newObject = Instantiate(objectToCreate, positionCenter, rotation) as GameObject;
@@ -52,22 +76,33 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         if (newObject != null)
         {
             GameObject prefab = Instantiate(listPrefabs[0],new Vector3(0,0,0),new Quaternion(0,0,0,0), newObject.transform) as GameObject;
-            Debug.Log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             if (prefab != null)
             {
-                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-                newObject.AddComponent<InteractionScript>();
-                newObject.GetComponent<InteractionScript>().id = objectId;
 
                 // Set the parent of the new object the GameObject it was placed on
                 newObject.transform.parent = gameObject.transform;
 
-                newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
+                //newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
+                if (type == ObjectType.WallObject)
+                {
+                    newObject.transform.localScale = WallObjectSize;
 
+                    newObject.AddComponent<ClueInteractionScript>();
+                    newObject.GetComponent<ClueInteractionScript>().Id = objectId;
 
-                //customObject.addComponents(newObject, objectId);
+                    WallActiveHolograms.Add(newObject);
+                }
+                if (type == ObjectType.FloorObject)
+                {
+                    newObject.transform.localScale = FloorObjectSize;
 
-                ActiveHolograms.Add(newObject);
+                    newObject.AddComponent<TreasureInteractionScript>();
+                    newObject.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
+
+                    FloorActiveHolograms.Add(newObject);
+                }
+                
+
             }
         }
 
@@ -76,20 +111,20 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     private void Update()
     {
-        if (id > 0)
+        if (idDistributed > 0)
         {
-            if (ActiveHolograms.Count <= activeObject & activeObject<id)
+            if (WallActiveHolograms.Count <= activeObject & activeObject<idDistributed)
             {
-                if (HologramsToCreate[activeObject].Type == ObjectType.WallObject)
+                if (WallHologramsToCreate[activeObject].Type == ObjectType.WallObject)
                 {
-                    CreateObject(WallPrefabs[HologramsToCreate[activeObject].NumberInList], HologramsToCreate[activeObject].PositionCenter, HologramsToCreate[activeObject].Rotation, WallObjectSize, HologramsToCreate[activeObject].ObjectId);
+                    CreateObject(WallPrefabs[WallHologramsToCreate[activeObject].PositionInList], WallHologramsToCreate[activeObject].PositionCenter, 
+                        WallHologramsToCreate[activeObject].Rotation, WallObjectSize, WallHologramsToCreate[activeObject].ObjectId, ObjectType.WallObject);
                 }
-                else CreateObject(WallPrefabs[HologramsToCreate[activeObject].NumberInList], HologramsToCreate[activeObject].PositionCenter, HologramsToCreate[activeObject].Rotation, WallObjectSize, HologramsToCreate[activeObject].ObjectId);
             }
         }
     }
 
-
+    /*
     private Vector3 RescaleToSameScaleFactor(GameObject objectToScale)
     {
         // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -100,6 +135,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         return objectToScale.transform.localScale * ScaleFactor;
     }
+    
 
     private Vector3 StretchToFit(GameObject obj, Vector3 desiredSize)
     {
@@ -177,4 +213,5 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         return result;
     }
+    */
 }

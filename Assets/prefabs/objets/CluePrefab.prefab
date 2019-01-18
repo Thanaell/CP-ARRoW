@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208264594505092}
-  - component: {fileID: 114096642595473656}
   - component: {fileID: 82595752935527768}
   m_Layer: 0
   m_Name: CluePrefab
@@ -50,11 +49,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.315
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -74,11 +73,11 @@ AudioSource:
       time: 0
       value: 0.99858856
       inSlope: -2500.9998
-      outSlope: -2.1046035
+      outSlope: -2.3001378
       tangentMode: 65
     - serializedVersion: 2
-      time: 0.3497386
-      value: 0.26252747
+      time: 0.33490705
+      value: 0.22825623
       inSlope: -0.94627714
       outSlope: -0.94627714
       tangentMode: 0
@@ -126,23 +125,10 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 1.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114096642595473656
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1735580405255546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa16bf625156684dbf578a0580d41b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioData: {fileID: 82595752935527768}
-  audio: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
