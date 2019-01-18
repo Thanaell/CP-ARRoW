@@ -39,11 +39,11 @@ public class GazeInteractionManager : MonoBehaviour
         {
             if (oldFocusObject!=null)
             {
-                oldFocusObject.SendMessage("OnGazeExit", SendMessageOptions.RequireReceiver);
+                oldFocusObject.SendMessage("OnGazeExit", SendMessageOptions.DontRequireReceiver);
             }
             if (FocusedObject != null)
             {
-                FocusedObject.SendMessage("OnGazeEnter", SendMessageOptions.RequireReceiver);
+                FocusedObject.SendMessage("OnGazeEnter", SendMessageOptions.DontRequireReceiver);
             }
         }
 

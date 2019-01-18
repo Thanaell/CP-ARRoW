@@ -11,6 +11,7 @@ public class InteractionScript : MonoBehaviour
     {
         // Grab the original local position of the sphere when the app starts.
         originalPosition = this.transform.localPosition;
+
     }
 
 
@@ -20,20 +21,17 @@ public class InteractionScript : MonoBehaviour
     {
         var com = gameObject.GetComponent<Renderer>();
         startColor = com.material.color;
-        if (id == 1)
-        {
-            com.material.color = Color.green;
-        }
-        if (id == 2)
-        {
-            com.material.color = Color.black;
-        }
-        else com.material.color = Color.yellow;
 
-        if (distanceToCamera() < 2)
+        Debug.Log(id);
+        Debug.Log(id);
+        Debug.Log(id);
+        Debug.Log(id);
+        if (distanceToCamera() < 1.5)
         {
             ObjectCollectionManager.Instance.activeObject = id;
+            com.material.color = Color.green;
         }
+        else com.material.color = Color.yellow;
     }
 
     void OnGazeExit()
@@ -44,7 +42,7 @@ public class InteractionScript : MonoBehaviour
 
     float distanceToCamera()
     {
-        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.position.y - Camera.main.transform.position.y, 2)) ;
+        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.position.z - Camera.main.transform.position.z, 2)) ;
     }
 
 }

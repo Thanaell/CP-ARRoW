@@ -29,6 +29,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     
     public int activeObject = 0;
 
+    public List<GameObject> listPrefabs;
+
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
         id++;
@@ -49,15 +51,27 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         if (newObject != null)
         {
-            // Set the parent of the new object the GameObject it was placed on
-            newObject.transform.parent = gameObject.transform;
+            GameObject prefab = Instantiate(listPrefabs[0],new Vector3(0,0,0),new Quaternion(0,0,0,0), newObject.transform) as GameObject;
+            Debug.Log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+            if (prefab != null)
+            {
+                Debug.Log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+                newObject.AddComponent<InteractionScript>();
+                newObject.GetComponent<InteractionScript>().id = objectId;
 
-            newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
-            
-            customObject.addComponents(newObject,objectId);
+                // Set the parent of the new object the GameObject it was placed on
+                newObject.transform.parent = gameObject.transform;
 
-            ActiveHolograms.Add(newObject);
+                newObject.transform.localScale = RescaleToSameScaleFactor(objectToCreate);
+
+
+                //customObject.addComponents(newObject, objectId);
+
+                ActiveHolograms.Add(newObject);
+            }
         }
+
+
     }
 
     private void Update()

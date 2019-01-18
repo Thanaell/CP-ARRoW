@@ -32,7 +32,7 @@ public class ObjectPlacer : MonoBehaviour
 
     public Material OccludedMaterial;
 
-    public float distanceFromOtherObject=2;
+    public float distanceFromOtherObject=1;
     private Vector3 farFromPoint;
 
 
