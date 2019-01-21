@@ -54,8 +54,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
      * differents prefabs possible à integrer sur les objets
      * permet de personnaliser les objets
      */
-    [SerializeField]
-    private List<GameObject> listPrefabs;
+    public List<GameObject> listPrefabs;
 
     /*
      * les objets du sol sont créés imediatement
