@@ -18,14 +18,14 @@ public class VuforiaCommand : MonoBehaviour {
     void OnStop()
     {
         CameraDevice.Instance.Stop();
-        CameraDevice.Instance.Deinit();
+        //CameraDevice.Instance.Deinit();
         //GetComponent<VuforiaBehaviour>().enabled = false;
         //GetComponent<DefaultInitializationErrorHandler>().enabled = false;
     }
 
     void OnResume()
     {
-        CameraDevice.Instance.Init(CameraDevice.CameraDirection.CAMERA_DEFAULT);
+        //CameraDevice.Instance.Init(CameraDevice.CameraDirection.CAMERA_DEFAULT);
         CameraDevice.Instance.Start();
         //GetComponent<VuforiaBehaviour>().enabled = true;
         //GetComponent<DefaultInitializationErrorHandler>().enabled = true;
