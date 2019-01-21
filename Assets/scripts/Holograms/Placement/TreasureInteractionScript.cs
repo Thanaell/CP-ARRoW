@@ -13,13 +13,18 @@ public class TreasureInteractionScript : MonoBehaviour {
     [SerializeField]
     private Config myConfig;
 
+    private MeshFilter rewardFilter;
+    private GameObject newObject;
+
     private void Start()
     {
-        myConfig = GameObject.FindGameObjectWithTag("Config").GetComponent<Config>();
+        // rewardFilter = ObjectCollectionManager.Instance.OpenTreasurePrefabs[0].GetComponent<MeshFilter>();
+      
+      /*  myConfig = GameObject.FindGameObjectWithTag("Config").GetComponent<Config>();
         if (myConfig.FetchDoubleFromConfig("distanceToActivateTreasure"))
         {
             distanceToActivate = (float) myConfig.getLastDoubleRead();
-        }
+        }*/
     }
 
     public int ClueIdToActivate
@@ -36,17 +41,32 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
         var com = gameObject.GetComponent<Renderer>();
         startColor = com.material.color;
-        
+
         if (distanceToCamera() < distanceToActivate)
         {
+
+            Debug.Log("Proche");
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
             {
-                com.material.color = Color.green;
+                newObject = Instantiate(ObjectCollectionManager.Instance.OpenTreasurePrefabs[0], transform.position, transform.rotation) as GameObject;
+                if (newObject != null) {
+                    newObject.transform.parent = transform;
+                    newObject.transform.localScale = transform.localScale*0.2f;
+                    gameObject.GetComponent<MeshFilter>().mesh.Clear();
+                    Debug.Log("Activé");
+                }
+                else Debug.Log("Ca marche paaaaaaaaas!");
+                // com.material.color = Color.green;
+
+                //gameObject.GetComponent<MeshFilter>().mesh = rewardFilter.mesh;
+
             }
+       
             else com.material.color = Color.red;
         }
         else com.material.color = Color.yellow;
     }
+    
 
     void OnGazeExit()
     {

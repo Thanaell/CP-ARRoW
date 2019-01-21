@@ -256,6 +256,26 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: listPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: OpenTreasurePrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4197181455469838, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -296,7 +316,46 @@ Prefab:
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: FloorObjectSize.x
-      value: 0.75
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: listPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1052973611314580, guid: ebece881ee701354d8208ef0bde92cb8,
+        type: 2}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1819882730313252, guid: fb9633f4d71f56d49957efadb8b704de,
+        type: 2}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: OpenTreasurePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 100002, guid: 685782ce9858e0f4fb309eaa54fba318, type: 3}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1696306815258264, guid: c1985c4b7f4073f4ab490526f16718b6,
+        type: 2}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorObjectSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorObjectSize.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}

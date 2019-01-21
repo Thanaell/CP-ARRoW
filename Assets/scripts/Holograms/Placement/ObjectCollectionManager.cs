@@ -8,6 +8,10 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
     public List<GameObject> FloorPrefabs;
+    
+
+    [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
+    public List<GameObject> OpenTreasurePrefabs;
 
     [Tooltip("A collection of objects prefabs to generate on wall in the world.")]
     public List<GameObject> WallPrefabs;
@@ -50,8 +54,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
      * differents prefabs possible à integrer sur les objets
      * permet de personnaliser les objets
      */
-    [SerializeField]
-    private List<GameObject> listPrefabs;
+    public List<GameObject> listPrefabs;
 
     /*
      * les objets du sol sont créés imediatement
@@ -78,35 +81,45 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         if (newObject != null)
         {
-            GameObject prefab = Instantiate(listPrefabs[0],new Vector3(0,0,0),new Quaternion(0,0,0,0), newObject.transform) as GameObject;
-            if (prefab != null)
-            {
-
-                // Set the parent of the new object the GameObject it was placed on
-                newObject.transform.parent = gameObject.transform;
-
-                 RescaleToSameScaleFactor();
-                if (type == ObjectType.WallObject)
+           if (type == ObjectType.WallObject)
+           {
+                GameObject prefab = Instantiate(listPrefabs[0], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), newObject.transform) as GameObject;
+                if (prefab != null)
                 {
-                    newObject.transform.localScale = newObject.transform.localScale * WallScaleFactor;
+                    // Set the parent of the new object the GameObject it was placed on
+                    newObject.transform.parent = gameObject.transform;
+
+                    RescaleToSameScaleFactor();
+
+                    newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * WallObjectSize.x, newObject.transform.localScale.y * WallObjectSize.y, newObject.transform.localScale.z * WallObjectSize.z) * WallScaleFactor / WallObjectSize.y;
 
                     newObject.AddComponent<ClueInteractionScript>();
                     newObject.GetComponent<ClueInteractionScript>().Id = objectId;
 
                     WallActiveHolograms.Add(newObject);
                 }
-                if (type == ObjectType.FloorObject)
+            }
+           if (type == ObjectType.FloorObject)
+           {
+                GameObject prefab = Instantiate(listPrefabs[1], positionCenter, rotation, newObject.transform) as GameObject;
+                if (prefab != null)
                 {
-                    newObject.transform.localScale = newObject.transform.localScale * FloorScaleFactor;
+                    // Set the parent of the new object the GameObject it was placed on
+                    newObject.transform.parent = gameObject.transform;
+
+                    RescaleToSameScaleFactor();
+
+                    newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
                     newObject.AddComponent<TreasureInteractionScript>();
                     newObject.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
 
                     FloorActiveHolograms.Add(newObject);
                 }
+           }
                 
 
-            }
+            
         }
 
 
@@ -179,19 +192,19 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
             float ratio;
 
-            if (difference.x > difference.y && difference.x > difference.z)
+            /*if (difference.x > difference.y && difference.x > difference.z)
             {
                 ratio = desiredSize.x / curBounds.x;
             }
             else if (difference.y > difference.x && difference.y > difference.z)
-            {
+            {*/
                 ratio = desiredSize.y / curBounds.y;
-            }
+            /*}
             else
             {
                 ratio = desiredSize.z / curBounds.z;
             }
-
+            */
             if (ratio < maxScale)
             {
                 maxScale = ratio;
