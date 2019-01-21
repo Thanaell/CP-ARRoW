@@ -316,7 +316,7 @@ Prefab:
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: FloorObjectSize.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
@@ -334,8 +334,7 @@ Prefab:
         type: 2}
       propertyPath: OpenTreasurePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 1459363247149060, guid: 51dc3df6e33fc8c46bec3f93912e9d01,
-        type: 2}
+      objectReference: {fileID: 100002, guid: 685782ce9858e0f4fb309eaa54fba318, type: 3}
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: WallPrefabs.Array.data[1]
@@ -351,12 +350,12 @@ Prefab:
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: FloorObjectSize.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: FloorObjectSize.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
