@@ -13,8 +13,11 @@ public class TreasureInteractionScript : MonoBehaviour {
     [SerializeField]
     private Config myConfig;
 
+    private MeshFilter rewardFilter;
+
     private void Start()
     {
+        rewardFilter = ObjectCollectionManager.Instance.OpenTreasurePrefabs[0].GetComponent<MeshFilter>();
         myConfig = GameObject.FindGameObjectWithTag("Config").GetComponent<Config>();
         if (myConfig.FetchDoubleFromConfig("distanceToActivateTreasure"))
         {
@@ -41,12 +44,14 @@ public class TreasureInteractionScript : MonoBehaviour {
         {
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
             {
+                gameObject.GetComponent<MeshFilter>().mesh = rewardFilter.mesh;
                 com.material.color = Color.green;
             }
             else com.material.color = Color.red;
         }
         else com.material.color = Color.yellow;
     }
+    
 
     void OnGazeExit()
     {

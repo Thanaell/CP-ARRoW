@@ -30,7 +30,8 @@ public class ClueInteractionScript : MonoBehaviour
         if (distanceToCamera() < distanceToActivate)
         {
             ObjectCollectionManager.Instance.ActiveObject = id;
-            com.material.color = Color.green;
+            //com.material.color = Color.green;
+            gameObject.SetActive(false);
         }
         else com.material.color = Color.yellow;
     }
