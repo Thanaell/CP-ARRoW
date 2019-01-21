@@ -3,4 +3,5 @@
     <variable name="myInt" value="42"></variable>
     <variable name="myString" value="this is a string"></variable>
     <variable name="myDouble" value="1337.1337"></variable>
+    <variable name="distanceToActivateTreasure" value="5"></variable>
   </variables>

@@ -6,21 +6,66 @@ using HoloToolkit.Unity.SpatialMapping;
 
 public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUniqueState>, IInputClickHandler, ISourceStateHandler
 {
-    public float MinAreaForStats = 5.0f;
-    public float MinAreaForComplete = 15.0f;
-    public float MinHorizAreaForComplete = 2.0f;
-    public float MinWallAreaForComplete = 10.0f;
+    [SerializeField]
+    private float minAreaForStats = .5f;
+    public float MinAreaForStats
+    {
+        get
+        {
+            return minAreaForStats;
+        }
+    }
 
+    [SerializeField]
+    private float minAreaForComplete = 5.0f;
+    public float MinAreaForComplete
+    {
+        get
+        {
+            return minAreaForComplete;
+        }
+    }
+
+    [SerializeField]
+    private float minHorizAreaForComplete = 1.0f;
+    public float MinHorizAreaForComplete
+    {
+        get
+        {
+            return minHorizAreaForComplete;
+        }
+    }
+
+    [SerializeField]
+    private float minWallAreaForComplete = 8.0f;
+    public float MinWallAreaForComplete
+    {
+        get
+        {
+            return minWallAreaForComplete;
+        }
+    }
+
+    /*
+     * Dans la scéne de jeu Click n'est pas autorisé
+     * Ici le click est utilisé dans le cas de debug et lors de LivePreview car Vuforia n'est pas compatible avec LivePreview
+     */ 
+    public bool clickIsAllowed = false;
     private uint trackedHandsCount = 0;
+    bool clickDetected = false;
 
     private bool _triggered = false;
 
-    private bool drawSpacialMaping = true;
+    [SerializeField]
+    private bool drawSpacialMaping = false;
 
-    public TargetDetection targetDetection;
+    /*
+     * detection de la cible vuforia pour créer la scéne
+     */ 
+    [SerializeField]
+    private TargetDetection targetDetection;
 
-    bool clickDetected = false;
-    
+
 
     public bool DoesScanMeetMinBarForCompletion
     {
@@ -42,9 +87,9 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
             SpatialUnderstandingDll.Imports.PlayspaceStats stats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats();
 
             // Check our preset requirements
-            if ((stats.TotalSurfaceArea > MinAreaForComplete) &&
-                (stats.HorizSurfaceArea > MinHorizAreaForComplete) &&
-                (stats.WallSurfaceArea > MinWallAreaForComplete) )
+            if ((stats.TotalSurfaceArea > minAreaForComplete) &&
+                (stats.HorizSurfaceArea > minHorizAreaForComplete) &&
+                (stats.WallSurfaceArea > minWallAreaForComplete) )
             {
                 return true;
             }
@@ -58,11 +103,15 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         InputManager.Instance.PushFallbackInputHandler(gameObject);
     }
 
-    // Update is called once per frame
-    public ObjectPlacer Placer;
+    [SerializeField]
+    private ObjectPlacer Placer;
 
     private void Update()
     {
+        /*
+         * lancement de la finalisation du scan de la scéne que si la cible est détectée ou
+         * si le click est detecté (dans le cas où le click est autorisé)
+         */ 
         if (targetDetection.isTargetDetected || clickDetected) { 
             if (DoesScanMeetMinBarForCompletion &&
                 (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
@@ -72,6 +121,9 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
             }
          }
         
+        /*
+         * triggered permet de lancer une seule fois la création de la scene
+         */ 
         if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
         {
             drawSpacialMaping = false;
@@ -95,13 +147,10 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
      */ 
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        /* if (ready &&
-             (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
-             !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
-         {
-             SpatialUnderstanding.Instance.RequestFinishScan();
-         }*/
-        clickDetected = true;
+        if (clickIsAllowed)
+        {
+            clickDetected = true;
+        }
     }
     
 

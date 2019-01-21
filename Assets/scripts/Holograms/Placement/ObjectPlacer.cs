@@ -6,31 +6,57 @@ using UnityEngine;
 public class ObjectPlacer : MonoBehaviour
 {
     /**
-     * Comme son nom indique ce sont des boîtes de debug. L'objet est centré dans ces boîtes.
+     * Comme son nom indique ce sont des boîtes de debug. L'objet est alignés en y avec les DebugBoxes.
      * Et ce sont ces boîtes là qui sont en contact direct avec les autres objets (murs/sol).
      * Si l'objet semble d'être mal placé, passez DrawDebugBoxes en true.
      **/ 
-    public bool DrawDebugBoxes = false;
+     [SerializeField]
+    private bool DrawDebugBoxes = false;
 
     /**
      * Permet de dessiner les halogrammes. Sa valeur est toujeour TRUE 
      * sauf si on veut travailler qu'avec les DebugBoxes pour les positions précis
      **/ 
-    public bool DrawObjects = true;
+     [SerializeField]
+    private bool DrawObjects = true;
 
  
+    /**
+     * Recuperation de spatialUnderstanding pour placer les objets sur la mesh
+     **/
+    [SerializeField]
+    private SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
 
-
-    public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
-
+    /**
+     * List de lignes tracant les boîtes de debug
+     **/
     private readonly List<BoxDrawer.Box> _lineBoxList = new List<BoxDrawer.Box>();
 
-    private readonly Queue<PlacementResult> _results = new Queue<PlacementResult>();
-
-    private bool _timeToHideMesh;
     private BoxDrawer _boxDrawing;
 
+    /**
+     * List des contraintes pour chaque objet nécessaire pour placer correctement des objets
+     **/
+    private readonly Queue<PlacementResult> _results = new Queue<PlacementResult>();
+
+    /**
+     * Quand on lance le tracé des objets, on désactive l'affichage de Mesh
+     **/ 
+    private bool _timeToHideMesh;
+
+    /*
+     * permet de cacher l'aperçu des objets derriere des objets du monde réel
+     * */
     public Material OccludedMaterial;
+
+    /*
+     * distance minimale entre objets de la scene 
+     * et distance minimale entre la position de depart de la camera et chaque objet
+     */ 
+     [SerializeField]
+    private float distanceFromOtherObject=2;
+    
+
 
     // Use this for initialization
     void Start()
@@ -51,9 +77,12 @@ public class ObjectPlacer : MonoBehaviour
 
         if (_timeToHideMesh)
         {
-            BillboardScript.Instance.HideText = true;
-            //SpatialUnderstandingUniqueState.Instance.HideText = true;
+            BillboardScript.Instance.HideText = true;            
             HideGridEnableOcclulsion();
+
+            /*
+             * permet de ne pas lancer plusieurs fois la focntion
+             */ 
             _timeToHideMesh = false;
         }
 
@@ -69,6 +98,10 @@ public class ObjectPlacer : MonoBehaviour
         SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
     }
 
+    /*
+     * Est appelé par SpatialUnderstandingUniqueState
+     * Lance la création de la scéne avec ses objets
+     */ 
     public bool CreateScene()
     {
        
@@ -78,27 +111,29 @@ public class ObjectPlacer : MonoBehaviour
             return false;
         }
 
-        SpatialUnderstandingDllObjectPlacement.Solver_Init();
-
-        //SpatialUnderstandingUniqueState.Instance.SpaceQueryDescription = "Generating World";
-        BillboardScript.Instance.SpaceQueryDescription = "Generating World";
-
-        List<PlacementQuery> queries = new List<PlacementQuery>();
-
-        if (DrawObjects)
+        if (SpatialUnderstandingDllObjectPlacement.Solver_Init() > 0)
         {
-            queries.AddRange(AddObjects());
+
+            BillboardScript.Instance.SpaceQueryDescription = "Generating World";
+
+            /*Liste des contraintes*/
+            List<PlacementQuery> queries = new List<PlacementQuery>();
+
+            if (DrawObjects)
+            {
+                queries.AddRange(AddObjects());
+            }
+
+            GetLocationsFromSolver(queries);
+            return true;
         }
-        
-        GetLocationsFromSolver(queries);
-        return true;
+        return false;
     }
 
     /**
-     * 
-     * 
+     * renvoie la liste des contraintes completée plus loin
      **/ 
-    public List<PlacementQuery> AddObjects()
+    private List<PlacementQuery> AddObjects()
     {
 
         var queries = CreateLocationQueriesForSolver(ObjectCollectionManager.Instance.WallPrefabs.Count, ObjectCollectionManager.Instance.WallObjectSize, ObjectType.WallObject);
@@ -111,8 +146,14 @@ public class ObjectPlacer : MonoBehaviour
     private int _placedFloorObjects;
     private int _placedWallObjects;
 
+    /*
+     * affichage des objets à chaque frame
+     */ 
     private void ProcessPlacementResults()
     {
+        /*
+         * vérification si les objets exists
+         */ 
         if (_results.Count > 0)
         {
             var toPlace = _results.Dequeue();
@@ -129,12 +170,16 @@ public class ObjectPlacer : MonoBehaviour
                     ObjectCollectionManager.Instance.CreateFloorObjects(_placedFloorObjects++, toPlace.Position, rotation);
                     break;
                 case ObjectType.WallObject:
+                    /*On change la hauteur de la position de l'objet pour le mettre à l'hauteur de l'utilisateur*/
                     ObjectCollectionManager.Instance.CreateWallObjects(_placedWallObjects++, new Vector3(toPlace.Position.x, Camera.main.transform.position.y, toPlace.Position.z), rotation);
                     break;
             }
         }
     }
 
+    /*
+     * Draw debug boxes
+     */ 
     private void DrawBox(PlacementResult boxLocation, Color color)
     {
         if (boxLocation != null)
@@ -176,6 +221,8 @@ public class ObjectPlacer : MonoBehaviour
 #endif
     }
 
+
+
     private PlacementResult PlaceObject(string placementName,
         SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition placementDefinition,
         Vector3 boxFullDims,
@@ -202,6 +249,10 @@ public class ObjectPlacer : MonoBehaviour
         return null;
     }
 
+
+    /*
+     * création des contraintes pour les objets
+     */ 
     private List<PlacementQuery> CreateLocationQueriesForSolver(int desiredLocationCount, Vector3 boxFullDims, ObjectType objType)
     {
         List<PlacementQuery> placementQueries = new List<PlacementQuery>();
@@ -209,23 +260,19 @@ public class ObjectPlacer : MonoBehaviour
         var halfBoxDims = boxFullDims * .5f;
 
 
-        /**
-         * variable permet de calculer la distance entre les objets
-         **/ 
-        var disctanceFromOtherObjects = halfBoxDims.x > halfBoxDims.z ? halfBoxDims.x * 10f : halfBoxDims.z * 10f;
-
         for (int i = 0; i < desiredLocationCount; ++i)
         {
             var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>();
             SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, Camera.main.transform.position.y - 2*halfBoxDims.y, Camera.main.transform.position.y +2* halfBoxDims.y);//Create_OnFloor(halfBoxDims);
 
             /**
-           * Les regles de placemnt d'objet. La regle definit que l'objet doit être éloigné d'un autre objet ou point ou autre...
+           * Les regles de placement d'objet. La regle definit que l'objet doit être éloigné d'un autre objet ou point ou autre...
            * Variable à exploiter.
            **/
             var placementRules = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule>
             {
-                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(disctanceFromOtherObjects)
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromOtherObjects(distanceFromOtherObject),
+                SpatialUnderstandingDllObjectPlacement.ObjectPlacementRule.Create_AwayFromPosition(Camera.main.transform.position, distanceFromOtherObject)
             };
 
             switch (objType)
@@ -237,7 +284,8 @@ public class ObjectPlacer : MonoBehaviour
                      **/
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position+Camera.main.transform.forward)
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position - 2 * Camera.main.transform.forward),
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(Camera.main.transform.position)
                     };
 
                     /**
@@ -255,7 +303,8 @@ public class ObjectPlacer : MonoBehaviour
                     **/
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                        //SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(Camera.main.transform.position)
                     };
 
                     /**
@@ -263,7 +312,7 @@ public class ObjectPlacer : MonoBehaviour
                      * Nous utilisons pour le moment que deux création d'objet : Create_OnFloor et Create_OnWall.
                      * On peut exploirer plus cette variable pour mieux définir la position des objets.
                      **/
-                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 2f, 2.5f);//Create_OnFloor(halfBoxDims);
+                    placementDefinition = SpatialUnderstandingDllObjectPlacement.ObjectPlacementDefinition.Create_OnWall(halfBoxDims, 1.6f, 1.8f);//Create_OnFloor(halfBoxDims);
 
                     break;
             }

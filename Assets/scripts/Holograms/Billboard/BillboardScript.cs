@@ -6,14 +6,13 @@ using HoloToolkit.Unity.SpatialMapping;
 
 public class BillboardScript : Singleton<BillboardScript>
 {
-    public TextMesh DebugDisplay;
-    public TextMesh DebugSubDisplay;
-    public TextMesh DebugDisplayDistance;
+    [SerializeField]
+    private TextMesh DebugDisplay;
 
-    WalkedDistance walkedDistance;
-    public GameObject walkedDistancerObject;
+    [SerializeField]
+    private TextMesh DebugSubDisplay;
 
-    public bool HideText = false;
+    private bool hideText = false;
 
     private bool ready = false;
 
@@ -31,10 +30,21 @@ public class BillboardScript : Singleton<BillboardScript>
         }
     }
 
+    public bool HideText
+    {
+        get
+        {
+            return hideText;
+        }
+        set
+        {
+            hideText = value;
+        }
+    }
 
 
 
-    public string PrimaryText
+    private string PrimaryText
     {
         get
         {
@@ -78,18 +88,14 @@ public class BillboardScript : Singleton<BillboardScript>
         }
     }
 
-    public Color PrimaryColor
+    private Color PrimaryColor
     {
         get
         {
             ready = SpatialUnderstandingUniqueState.Instance.DoesScanMeetMinBarForCompletion;
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning)
             {
-                // if (trackedHandsCount > 0)
-                //{
                 return ready ? Color.green : Color.red;
-                //}
-                //return ready ? Color.yellow : Color.white;
             }
 
             // If we're looking at the menu, fade it out
@@ -102,7 +108,7 @@ public class BillboardScript : Singleton<BillboardScript>
         }
     }
 
-    public string DetailsText
+    private string DetailsText
     {
         get
         {
@@ -139,8 +145,9 @@ public class BillboardScript : Singleton<BillboardScript>
             return "";
         }
     }
+    
 
-    private void Update_DebugDisplay()
+    private void Update()
     {
         // Basic checks
         if (DebugDisplay == null)
@@ -152,22 +159,6 @@ public class BillboardScript : Singleton<BillboardScript>
         DebugDisplay.text = PrimaryText;
         DebugDisplay.color = PrimaryColor;
         DebugSubDisplay.text = DetailsText;
-
-        //display distance
-        walkedDistance = walkedDistancerObject.GetComponent<WalkedDistance>();
-        DebugDisplayDistance.text = walkedDistance.txtDistance;
-    }
-
-    private void Start()
-    {
-    }
-    
-
-    private void Update()
-    {
-        // Updates
-        Update_DebugDisplay();
-
     }
 
 
