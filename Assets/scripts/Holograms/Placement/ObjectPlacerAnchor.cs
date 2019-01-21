@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using HoloToolkit.Unity;
 using UnityEngine;
+using UnityEngine.XR.WSA;
+using UnityEngine.XR.WSA.Persistence;
 
 public class ObjectPlacerAnchor : MonoBehaviour
 {
@@ -50,6 +52,11 @@ public class ObjectPlacerAnchor : MonoBehaviour
     public Material OccludedMaterial;
 
     /*
+     * Contient toutes les WorldAnchor persistentes
+     * */
+    public WorldAnchorStore store;
+
+    /*
      * distance minimale entre objets de la scene 
      * et distance minimale entre la position de depart de la camera et chaque objet
      */
@@ -61,6 +68,7 @@ public class ObjectPlacerAnchor : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        WorldAnchorManager.Instance.AttachAnchor(this.gameObject, "test");
         if (DrawDebugBoxes)
         {
             /**
@@ -92,6 +100,7 @@ public class ObjectPlacerAnchor : MonoBehaviour
         }
 
     }
+
 
     private void HideGridEnableOcclulsion()
     {
