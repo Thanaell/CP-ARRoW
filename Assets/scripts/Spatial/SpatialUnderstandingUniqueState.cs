@@ -57,7 +57,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
     private bool _triggered = false;
 
     [SerializeField]
-    private bool drawSpacialMaping = false;
+    private bool drawSpatialMapping = true;
 
     /*
      * detection de la cible vuforia pour créer la scéne
@@ -126,7 +126,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
          */ 
         if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
         {
-            drawSpacialMaping = false;
+            //drawSpatialMapping = false;
             _triggered = Placer.CreateScene();
         }
         else
@@ -136,7 +136,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
             customMesh.DrawProcessedMesh = false;
         }
 
-        SpatialMappingManager.Instance.DrawVisualMeshes = drawSpacialMaping;
+        SpatialMappingManager.Instance.DrawVisualMeshes = drawSpatialMapping;
 
     }
     
