@@ -54,7 +54,7 @@ public class ObjectPlacer : MonoBehaviour
      * et distance minimale entre la position de depart de la camera et chaque objet
      */ 
      [SerializeField]
-    private float distanceFromOtherObject=2;
+    private float distanceFromOtherObject=0.5f;
     
 
 
@@ -285,7 +285,7 @@ public class ObjectPlacer : MonoBehaviour
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
                         SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearPoint(Camera.main.transform.position - 2 * Camera.main.transform.forward),
-                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(Camera.main.transform.position)
+                        //SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(2*Camera.main.transform.position)
                     };
 
                     /**
@@ -303,7 +303,7 @@ public class ObjectPlacer : MonoBehaviour
                     **/
                     // var placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint>(); //->par défaut
                     placementConstraints = new List<SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint> {
-                        //SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter()
+                        SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_NearCenter(),
                         SpatialUnderstandingDllObjectPlacement.ObjectPlacementConstraint.Create_AwayFromPoint(Camera.main.transform.position)
                     };
 
