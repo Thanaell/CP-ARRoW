@@ -12,21 +12,9 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     [SerializeField]
     private Config myConfig;
-
-    private MeshFilter rewardFilter;
-    private GameObject newObject;
-
-    private void Start()
-    {
-        // rewardFilter = ObjectCollectionManager.Instance.OpenTreasurePrefabs[0].GetComponent<MeshFilter>();
-      
-      /*  myConfig = GameObject.FindGameObjectWithTag("Config").GetComponent<Config>();
-        if (myConfig.FetchDoubleFromConfig("distanceToActivateTreasure"))
-        {
-            distanceToActivate = (float) myConfig.getLastDoubleRead();
-        }*/
-    }
-
+    
+    private GameObject rewardObject;
+    
     public int ClueIdToActivate
     {
         set
@@ -39,26 +27,22 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void OnGazeEnter()
     {
-        var com = gameObject.GetComponent<Renderer>();
+        var com = gameObject.transform.GetComponentInParent<Renderer>(); 
         startColor = com.material.color;
 
+        Debug.Log(distanceToCamera());
         if (distanceToCamera() < distanceToActivate)
         {
-
-            Debug.Log("Proche");
+            
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
             {
-                newObject = Instantiate(ObjectCollectionManager.Instance.OpenTreasurePrefabs[0], transform.position, transform.rotation) as GameObject;
-                if (newObject != null) {
-                    newObject.transform.parent = transform;
-                    newObject.transform.localScale = transform.localScale*0.2f;
-                    gameObject.GetComponent<MeshFilter>().mesh.Clear();
-                    Debug.Log("Activé");
+                rewardObject = Instantiate(ObjectCollectionManager.Instance.OpenTreasurePrefabs[0], transform.position, transform.rotation) as GameObject;
+                if (rewardObject != null) {
+                    rewardObject.transform.parent = transform.parent;
+                    rewardObject.transform.localScale = transform.localScale*0.2f;
+                    gameObject.transform.parent.GetComponent<MeshFilter>().mesh.Clear();
+                    SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                 }
-                else Debug.Log("Ca marche paaaaaaaaas!");
-                // com.material.color = Color.green;
-
-                //gameObject.GetComponent<MeshFilter>().mesh = rewardFilter.mesh;
 
             }
        
@@ -70,13 +54,13 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void OnGazeExit()
     {
-        var com = gameObject.GetComponent<Renderer>();
+        var com = gameObject.transform.GetComponentInParent<Renderer>();
         com.material.color = startColor;
     }
 
     float distanceToCamera()
     {
-        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x - Camera.main.transform.position.x, 2) + Mathf.Pow(gameObject.transform.position.z - Camera.main.transform.position.z, 2));
+        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.parent.position.x - Camera.main.transform.position.x, 2) + Mathf.Pow(gameObject.transform.parent.position.z - Camera.main.transform.position.z, 2));
     }
 
 }
