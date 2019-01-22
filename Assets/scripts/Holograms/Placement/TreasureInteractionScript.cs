@@ -13,13 +13,18 @@ public class TreasureInteractionScript : MonoBehaviour {
     [SerializeField]
     private Config myConfig;
     
-    private GameObject rewardObject;
-    Renderer currentRenderer;
+  //  private GameObject rewardObject;
+
+    Renderer[] newRenderer;
+
 
     private void Awake()
     {
-        currentRenderer = GetComponentInChildren<Renderer>();
-        currentRenderer.enabled = false;
+        newRenderer = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            newRenderer[i].enabled = false;
+        }
     }
 
     public int ClueIdToActivate
@@ -43,11 +48,17 @@ public class TreasureInteractionScript : MonoBehaviour {
             
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
             {
-                currentRenderer.enabled = true;
-            
+                for (int i = 0; i < newRenderer.Length; i++)
+                {
+                    newRenderer[i].enabled = true;
+                }
 
+                Renderer[] oldRenderer = gameObject.transform.GetComponentsInParent<Renderer>();
                 SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
-                gameObject.GetComponentInParent<Renderer>().enabled = false;
+                for (int i = 0; i < oldRenderer.Length; i++)
+                {
+                    oldRenderer[i].enabled = true;
+                }
                 gameObject.transform.GetChild(0).localScale = transform.localScale * 0.2f;
 
                 /*
