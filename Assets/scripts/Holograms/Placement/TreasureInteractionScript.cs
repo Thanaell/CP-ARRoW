@@ -9,9 +9,6 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     [SerializeField]
     private float distanceToActivate=2;
-
-    [SerializeField]
-    private Config myConfig;
     
   //  private GameObject rewardObject;
 

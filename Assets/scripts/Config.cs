@@ -4,11 +4,11 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 using UnityEngine;
+using HoloToolkit.Unity;
 
 //file that defines variables and gets their values from an xml file stored in the File Explore : LocalData/CPARRoW/LocalState
-public class Config : MonoBehaviour
+public class Config : Singleton<Config>
 {
-
     private string lastStringRead="unupdated string";
     private int lastIntRead;
     private double lastDoubleRead;
