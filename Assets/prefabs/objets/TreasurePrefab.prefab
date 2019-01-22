@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4433654327163238}
+  - component: {fileID: 114621155685533932}
   - component: {fileID: 82925117697944972}
   m_Layer: 0
   m_Name: TreasurePrefab
@@ -53,7 +54,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.521
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -132,3 +133,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114621155685533932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052973611314580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cb70fe9464e15419f4efc81ea81bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioTreasureClosed: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
+  audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
+  audioSource: {fileID: 82925117697944972}

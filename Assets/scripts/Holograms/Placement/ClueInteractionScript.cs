@@ -23,29 +23,29 @@ public class ClueInteractionScript : MonoBehaviour
 
     void OnGazeEnter()
     {
-        var com = gameObject.GetComponent<Renderer>();
+        var com = gameObject.transform.GetComponentInParent<Renderer>();
         /*on memorise l'ancienne valeur*/
         startColor = com.material.color;
-        
+
+        Debug.Log(distanceToCamera());
         if (distanceToCamera() < distanceToActivate)
         {
             ObjectCollectionManager.Instance.ActiveObject = id;
-            //com.material.color = Color.green;
-            gameObject.SetActive(false);
+            gameObject.transform.parent.gameObject.SetActive(false);
         }
         else com.material.color = Color.yellow;
     }
 
     void OnGazeExit()
     {
-        var com = gameObject.GetComponent<Renderer>();
+        var com = gameObject.transform.GetComponentInParent<Renderer>();
         com.material.color = startColor;
     }
 
     /*distance entre la camera et l'objet selectionné*/
     float distanceToCamera()
     {
-        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.position.z - Camera.main.transform.position.z, 2)) ;
+        return Mathf.Sqrt(Mathf.Pow(gameObject.transform.parent.gameObject.transform.position.x-Camera.main.transform.position.x,2)+ Mathf.Pow(gameObject.transform.parent.gameObject.transform.position.z - Camera.main.transform.position.z, 2)) ;
     }
 
 }

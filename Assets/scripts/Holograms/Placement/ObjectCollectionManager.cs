@@ -83,18 +83,21 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
            if (type == ObjectType.WallObject)
            {
-                GameObject prefab = Instantiate(listPrefabs[0], new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), newObject.transform) as GameObject;
+                GameObject prefab = Instantiate(listPrefabs[0], positionCenter, rotation, newObject.transform) as GameObject;
                 if (prefab != null)
                 {
                     // Set the parent of the new object the GameObject it was placed on
                     newObject.transform.parent = gameObject.transform;
 
+                    prefab.transform.SetSiblingIndex(0);
+
                     RescaleToSameScaleFactor();
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * WallObjectSize.x, newObject.transform.localScale.y * WallObjectSize.y, newObject.transform.localScale.z * WallObjectSize.z) * WallScaleFactor / WallObjectSize.y;
 
-                    newObject.AddComponent<ClueInteractionScript>();
-                    newObject.GetComponent<ClueInteractionScript>().Id = objectId;
+                    prefab.AddComponent<ClueInteractionScript>().Id = objectId;
+                   // prefab.GetComponent<ClueInteractionScript>().Id = objectId;
+                    newObject.AddComponent<MessageListener>();
 
                     WallActiveHolograms.Add(newObject);
                 }
@@ -107,12 +110,15 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
                     // Set the parent of the new object the GameObject it was placed on
                     newObject.transform.parent = gameObject.transform;
 
+                    prefab.transform.SetSiblingIndex(0);
+
                     RescaleToSameScaleFactor();
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
-                    newObject.AddComponent<TreasureInteractionScript>();
-                    newObject.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
+                    prefab.AddComponent<TreasureInteractionScript>().ClueIdToActivate= objectId;
+                   //prefab.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
+                    newObject.AddComponent<MessageListener>();
 
                     FloorActiveHolograms.Add(newObject);
                 }
