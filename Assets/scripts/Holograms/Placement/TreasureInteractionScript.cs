@@ -14,7 +14,14 @@ public class TreasureInteractionScript : MonoBehaviour {
     private Config myConfig;
     
     private GameObject rewardObject;
-    
+    Renderer currentRenderer;
+
+    private void Awake()
+    {
+        currentRenderer = GetComponentInChildren<Renderer>();
+        currentRenderer.enabled = false;
+    }
+
     public int ClueIdToActivate
     {
         set
@@ -36,13 +43,22 @@ public class TreasureInteractionScript : MonoBehaviour {
             
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
             {
-                rewardObject = Instantiate(ObjectCollectionManager.Instance.OpenTreasurePrefabs[0], transform.position, transform.rotation) as GameObject;
+                currentRenderer.enabled = true;
+            
+
+                SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+                gameObject.GetComponentInParent<Renderer>().enabled = false;
+                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.2f;
+
+                /*
+                rewardObject = Instantiate(gameObject.transform.GetChild(0), transform.position, transform.rotation) as GameObject;
                 if (rewardObject != null) {
                     rewardObject.transform.parent = transform.parent;
                     rewardObject.transform.localScale = transform.localScale*0.2f;
                     gameObject.transform.parent.GetComponent<MeshFilter>().mesh.Clear();
                     SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                 }
+                */
 
             }
        

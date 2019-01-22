@@ -8,10 +8,6 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
     public List<GameObject> FloorPrefabs;
-    
-
-    [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
-    public List<GameObject> OpenTreasurePrefabs;
 
     [Tooltip("A collection of objects prefabs to generate on wall in the world.")]
     public List<GameObject> WallPrefabs;
@@ -31,7 +27,6 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     private List<GameObject> WallActiveHolograms = new List<GameObject>();
     private List<ObjectProprieties> WallHologramsToCreate = new List<ObjectProprieties>();
     private List<GameObject> FloorActiveHolograms = new List<GameObject>();
-    //private List<ObjectProprieties> FloorHologramsToCreate = new List<ObjectProprieties>();
 
 
     private int idDistributed = 0;
