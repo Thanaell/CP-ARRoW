@@ -274,7 +274,7 @@ Prefab:
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
       propertyPath: OpenTreasurePrefabs.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4197181455469838, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
       propertyPath: m_LocalPosition.x
@@ -322,7 +322,7 @@ Prefab:
         type: 2}
       propertyPath: listPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1052973611314580, guid: ebece881ee701354d8208ef0bde92cb8,
+      objectReference: {fileID: 1201188172335796, guid: ebece881ee701354d8208ef0bde92cb8,
         type: 2}
     - target: {fileID: 114489491260534456, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
