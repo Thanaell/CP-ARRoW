@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4857305694709776}
   - component: {fileID: 114342020226177510}
   - component: {fileID: 82126166439835426}
+  - component: {fileID: 114809459496233100}
   m_Layer: 0
   m_Name: TreasurePrefab
   m_TagString: CluePrefab
@@ -567,3 +568,14 @@ MonoBehaviour:
   audioTreasureClosed: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
   audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
   audioSource: {fileID: 82126166439835426}
+--- !u!114 &114809459496233100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201188172335796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735ef2e78d4b404196e2ba9a1c535c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
