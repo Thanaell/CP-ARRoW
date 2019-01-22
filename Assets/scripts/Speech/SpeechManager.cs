@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using HoloToolkit.Unity;
 
 public class SpeechManager : MonoBehaviour
 {
@@ -11,29 +12,45 @@ public class SpeechManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        keywords.Add("Reset Cube", () =>
-        {
-            // Call the OnReset method on every descendant object.
-            this.BroadcastMessage("OnReset");
-        });
-
-        keywords.Add("Stop", () =>
-        {
-            this.BroadcastMessage("OnStop");
-        });
-
-        keywords.Add("Play", () =>
-        {
-            this.BroadcastMessage("OnResume");
-        });
-
-        keywords.Add("Kill Cube", () =>
+        keywords.Add("Lock", () =>
         {
             var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
                 // Call the OnDrop method on just the focused object.
-                focusObject.SendMessage("OnKill", SendMessageOptions.DontRequireReceiver);
+                //focusObject.SendMessage("OnKill", SendMessageOptions.DontRequireReceiver);
+                WorldAnchorManager.Instance.AttachAnchor(focusObject);
+            }
+        });
+
+        keywords.Add("Unlock", () =>
+        {
+            var focusObject = GazeInteractionManager.Instance.FocusedObject;
+            if (focusObject != null)
+            {
+                // Call the OnDrop method on just the focused object.
+                //focusObject.SendMessage("OnKill", SendMessageOptions.DontRequireReceiver);
+                WorldAnchorManager.Instance.RemoveAnchor(focusObject);
+            }
+        });
+
+        keywords.Add("Move", () =>
+        {
+            var focusObject = GazeInteractionManager.Instance.FocusedObject;
+            if (focusObject != null)
+            {
+                // Call the OnDrop method on just the focused object.
+                focusObject.SendMessage("OnMove", SendMessageOptions.DontRequireReceiver);
+            }
+        });
+
+        keywords.Add("Stop", () =>
+        {
+            var focusObject = GazeInteractionManager.Instance.FocusedObject;
+            if (focusObject != null)
+            {
+                // Call the OnDrop method on just the focused object.
+                focusObject.SendMessage("OnStop", SendMessageOptions.DontRequireReceiver);
             }
         });
 
