@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4208264594505092}
   - component: {fileID: 82595752935527768}
+  - component: {fileID: 114738938245172938}
   m_Layer: 0
   m_Name: CluePrefab
   m_TagString: CluePrefab
@@ -132,3 +133,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114738938245172938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735580405255546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735ef2e78d4b404196e2ba9a1c535c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
