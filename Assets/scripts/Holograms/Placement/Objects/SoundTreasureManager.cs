@@ -11,17 +11,24 @@ public class SoundTreasureManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         audioSource.clip = audioTreasureClosed;
-        audioSource.loop = true;
-        audioSource.volume = 0.18f;
-        audioSource.Play();
-	}
+        audioSource.loop = false;
+        audioSource.volume = 0.55f;
+        audioSource.PlayOneShot(audioTreasureClosed);
+    }
 	
 	void OpenTreasure()
     {
         audioSource.Stop();
         audioSource.clip = audioTreasureOpened;
-        audioSource.loop = false;
         audioSource.volume = 0.55f;
         audioSource.PlayOneShot(audioTreasureOpened);
+    }
+
+    void CloseTreasure()
+    {
+        audioSource.Stop();
+        audioSource.clip = audioTreasureClosed;
+        audioSource.volume = 0.55f;
+        audioSource.PlayOneShot(audioTreasureClosed);
     }
 }
