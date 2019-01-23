@@ -17,11 +17,14 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     private void Awake()
     {
-        newRenderer = GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < newRenderer.Length; i++)
+        newRenderer = GetComponentsInChildren<Renderer>();//transform.Find("paz_F_Blend").gameObject.GetComponents<Renderer>();
+           //gameObject.transform.GetChild(0).gameObject.GetComponents<Renderer>();
+        
+           // GetComponentsInChildren<Renderer>();
+      /*  for (int i = 0; i < newRenderer.Length; i++)
         {
             newRenderer[i].enabled = false;
-        }
+        }*/
     }
 
     public int ClueIdToActivate

@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+<<<<<<< HEAD
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+=======
+>>>>>>> 5618921cb91b585cbaf92c7d2131ad909e666d5c
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/scenes/Ramina.unity
     guid: d238f387c94c4f74cb29e20501d59b1a
   - enabled: 1
