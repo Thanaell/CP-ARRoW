@@ -45,8 +45,8 @@ public class TreasureInteractionScript : MonoBehaviour {
         Debug.Log(distanceToCamera());
         if (distanceToCamera() < distanceToActivate)
         {
-            
-            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate)
+            Config.Instance.FetchIntFromConfig("minDistanceTraveled");
+            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > Config.Instance.getLastIntRead())
             {
                 for (int i = 0; i < newRenderer.Length; i++)
                 {

@@ -111,8 +111,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
-                    //prefab.AddComponent<TreasureInteractionScript>().ClueIdToActivate= objectId;
-                    prefab.AddComponent<TreasureInteractionScript2>().ClueIdToActivate = objectId;
+                    prefab.AddComponent<TreasureInteractionScript>().ClueIdToActivate= objectId;
+                    //prefab.AddComponent<TreasureInteractionScript2>().ClueIdToActivate = objectId;
                     //prefab.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
                     newObject.AddComponent<MessageListener>();
 

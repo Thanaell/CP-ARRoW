@@ -53,7 +53,7 @@ public class WalkedDistance : Singleton<WalkedDistance>
         }
         timer += Time.deltaTime;
         globalTimer += Time.deltaTime;
-        Debug.Log(walkedDistance);
+        //Debug.Log(walkedDistance);
     }
 
 
