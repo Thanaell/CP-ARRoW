@@ -19,6 +19,8 @@ public class TreasureBillboard : MonoBehaviour {
             if (hideText)
                 return string.Empty;
 
+            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate) hideText = true;
+
             return string.Format("{0} / {1}", ObjectCollectionManager.Instance.ActiveObject , clueIdToActivate);
             
         }
