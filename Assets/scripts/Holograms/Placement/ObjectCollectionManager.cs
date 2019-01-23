@@ -90,8 +90,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * WallObjectSize.x, newObject.transform.localScale.y * WallObjectSize.y, newObject.transform.localScale.z * WallObjectSize.z) * WallScaleFactor / WallObjectSize.y;
 
-                    prefab.AddComponent<ClueInteractionScript>().Id = objectId;
-                   // prefab.GetComponent<ClueInteractionScript>().Id = objectId;
+                    prefab.AddComponent<ID>().id = objectId;
                     newObject.AddComponent<MessageListener>();
 
                     WallActiveHolograms.Add(newObject);
@@ -111,8 +110,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
-                    prefab.AddComponent<TreasureInteractionScript>().ClueIdToActivate= objectId;
-                   //prefab.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
+                    prefab.AddComponent<ID>().id = objectId;
                     newObject.AddComponent<MessageListener>();
 
                     FloorActiveHolograms.Add(newObject);

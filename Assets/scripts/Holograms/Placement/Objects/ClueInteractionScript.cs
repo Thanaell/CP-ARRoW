@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
 
+
 public class ClueInteractionScript : MonoBehaviour
 {
-    private int id;
+    private int id=0;
 
-    public int Id
+    private void Start()
     {
-        get
-        {
-            return id;
-        }
-        set
-        {
-            id = value;
-        }
+       
     }
 
     private Color startColor;
@@ -23,6 +17,7 @@ public class ClueInteractionScript : MonoBehaviour
 
     void OnGazeEnter()
     {
+        id = gameObject.GetComponent<ID>().id;
         var com = gameObject.transform.GetComponentInParent<Renderer>();
         /*on memorise l'ancienne valeur*/
         startColor = com.material.color;
