@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 {
-    
+
 
     [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
     public List<GameObject> FloorPrefabs;
@@ -30,7 +30,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
 
     private int idDistributed = 0;
-    
+
     /*indique id de WallObject activé */
     private int activeObject = 0;
     public int ActiveObject
@@ -53,7 +53,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     /*
      * les objets du sol sont créés imediatement
-     */ 
+     */
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
         CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize, idDistributed, ObjectType.FloorObject);
@@ -61,7 +61,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     /*
      * les objets sur le mur sont crées au fur à mesure
-     */ 
+     */
     public void CreateWallObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
         idDistributed++;
@@ -71,7 +71,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     /*création de l'objet*/
     private void CreateObject(GameObject objectToCreate, Vector3 positionCenter, Quaternion rotation, Vector3 desiredSize,int objectId,ObjectType type)
     {
-        
+
         GameObject newObject = Instantiate(objectToCreate, positionCenter, rotation) as GameObject;
 
         if (newObject != null)
@@ -90,8 +90,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * WallObjectSize.x, newObject.transform.localScale.y * WallObjectSize.y, newObject.transform.localScale.z * WallObjectSize.z) * WallScaleFactor / WallObjectSize.y;
 
-                    prefab.AddComponent<ClueInteractionScript>().Id = objectId;
-                   // prefab.GetComponent<ClueInteractionScript>().Id = objectId;
+                    prefab.AddComponent<ID>().id = objectId;
                     newObject.AddComponent<MessageListener>();
 
                     WallActiveHolograms.Add(newObject);
@@ -111,17 +110,15 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
-                    prefab.AddComponent<TreasureInteractionScript>().ClueIdToActivate= objectId;
-                    //prefab.AddComponent<TreasureInteractionScript2>().ClueIdToActivate = objectId;
-                    //prefab.GetComponent<TreasureInteractionScript>().ClueIdToActivate = objectId;
+                    prefab.AddComponent<ID>().id = objectId;
                     newObject.AddComponent<MessageListener>();
 
                     FloorActiveHolograms.Add(newObject);
                 }
            }
-                
 
-            
+
+
         }
 
 
@@ -136,14 +133,14 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
             {
                 if (WallHologramsToCreate[activeObject].Type == ObjectType.WallObject)
                 {
-                    CreateObject(WallPrefabs[WallHologramsToCreate[activeObject].PositionInList], WallHologramsToCreate[activeObject].PositionCenter, 
+                    CreateObject(WallPrefabs[WallHologramsToCreate[activeObject].PositionInList], WallHologramsToCreate[activeObject].PositionCenter,
                         WallHologramsToCreate[activeObject].Rotation, WallObjectSize, WallHologramsToCreate[activeObject].ObjectId, ObjectType.WallObject);
                 }
             }
         }
     }
 
-    
+
     private void RescaleToSameScaleFactor()
     {
         float maxScale = float.MaxValue;
@@ -173,7 +170,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         return ;
     }
-    
+
     /*
     private Vector3 StretchToFit(GameObject obj, Vector3 desiredSize)
     {
@@ -182,7 +179,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         return new Vector3(desiredSize.x / curBounds.x / 2, desiredSize.y, desiredSize.z / curBounds.z / 2);
     }
     */
-    
+
     private float CalcScaleFactorHelper(List<GameObject> objects, Vector3 desiredSize)
     {
         float maxScale = float.MaxValue;
@@ -234,5 +231,5 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
         return result;
     }
-    
+
 }

@@ -5,40 +5,31 @@ using UnityEngine;
 public class TreasureInteractionScript : MonoBehaviour {
     
     
-    private int clueIdToActivate;
+    private int clueIdToActivate=0;
 
     [SerializeField]
     private float distanceToActivate=2;
     
-  //  private GameObject rewardObject;
 
     Renderer[] newRenderer;
 
 
     private void Awake()
     {
-        newRenderer = GetComponentsInChildren<Renderer>();//transform.Find("paz_F_Blend").gameObject.GetComponents<Renderer>();
-           //gameObject.transform.GetChild(0).gameObject.GetComponents<Renderer>();
-        
-           // GetComponentsInChildren<Renderer>();
-      /*  for (int i = 0; i < newRenderer.Length; i++)
-        {
-            newRenderer[i].enabled = false;
-        }*/
+        newRenderer = GetComponentsInChildren<Renderer>();
     }
-
-    public int ClueIdToActivate
-    {
-        set
-        {
-            clueIdToActivate = value;
-        }
-    }
+    
 
     private Color startColor;
 
+    private void Start()
+    {
+    }
+
     void OnGazeEnter()
     {
+
+        clueIdToActivate = gameObject.GetComponent<ID>().id;
         var com = gameObject.transform.GetComponentInParent<Renderer>(); 
         startColor = com.material.color;
 
