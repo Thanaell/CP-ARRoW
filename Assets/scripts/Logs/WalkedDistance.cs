@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using HoloToolkit.Unity;
 
-public class WalkedDistance : MonoBehaviour
+public class WalkedDistance : Singleton<WalkedDistance>
 {
 
     public float tempsEchantillon;
@@ -52,6 +53,7 @@ public class WalkedDistance : MonoBehaviour
         }
         timer += Time.deltaTime;
         globalTimer += Time.deltaTime;
+        Debug.Log(walkedDistance);
     }
 
 
