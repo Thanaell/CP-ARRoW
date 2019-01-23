@@ -30,7 +30,7 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
 
         clueIdToActivate = gameObject.GetComponent<ID>().id;
-        var com = gameObject.transform.GetComponentInParent<Renderer>(); 
+        var com = gameObject.transform.GetComponentInParent<Renderer>();
         startColor = com.material.color;
 
         Debug.Log(distanceToCamera());
@@ -44,7 +44,7 @@ public class TreasureInteractionScript : MonoBehaviour {
                     newRenderer[i].enabled = true;
                 }
 
-                gameObject.transform.GetComponentInParent<Renderer>().enabled=false;
+                gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
                 SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                 gameObject.transform.GetChild(0).localScale = transform.localScale * 0.2f;
 
@@ -59,10 +59,18 @@ public class TreasureInteractionScript : MonoBehaviour {
                 */
 
             }
-       
-            else com.material.color = Color.red;
+
+            else
+            {
+                com.material.color = Color.red;
+                SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+            }
         }
-        else com.material.color = Color.yellow;
+        else
+        {
+            SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+            com.material.color = Color.yellow;
+        }
     }
     
 
