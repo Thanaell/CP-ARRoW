@@ -18,13 +18,21 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
         newRenderer = GetComponentsInChildren<Renderer>();
     }
-    
 
-    private Color startColor;
+    int minDistanceTraveled;
 
     private void Start()
     {
+        if (Config.Instance.FetchIntFromConfig("minDistanceTraveled"))
+        {
+            minDistanceTraveled = Config.Instance.getLastIntRead();
+        }
+        else minDistanceTraveled = 0;
     }
+
+    private Color startColor;
+
+    private bool TreasureActivated=false;
 
     void OnGazeEnter()
     {
@@ -36,8 +44,7 @@ public class TreasureInteractionScript : MonoBehaviour {
         Debug.Log(distanceToCamera());
         if (distanceToCamera() < distanceToActivate)
         {
-            Config.Instance.FetchIntFromConfig("minDistanceTraveled");
-            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > Config.Instance.getLastIntRead())
+            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
             {
                 for (int i = 0; i < newRenderer.Length; i++)
                 {
@@ -47,6 +54,7 @@ public class TreasureInteractionScript : MonoBehaviour {
                 gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
                 SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                 gameObject.transform.GetChild(0).localScale = transform.localScale * 0.2f;
+                TreasureActivated = true;
 
                 /*
                 rewardObject = Instantiate(gameObject.transform.GetChild(0), transform.position, transform.rotation) as GameObject;
@@ -68,7 +76,8 @@ public class TreasureInteractionScript : MonoBehaviour {
         }
         else
         {
-            SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+            if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver) ;
+            else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
             com.material.color = Color.yellow;
         }
     }
