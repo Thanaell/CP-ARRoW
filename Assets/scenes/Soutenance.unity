@@ -327,15 +327,39 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
-      propertyPath: listPrefabs.Array.data[1]
+      propertyPath: WallPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 1191586510852524, guid: 3cbe59797354e774c97557ff69954f80,
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
         type: 2}
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
-      propertyPath: listPrefabs.Array.data[2]
+      propertyPath: WallPrefabs.Array.data[4]
       value: 
-      objectReference: {fileID: 1201188172335796, guid: ebece881ee701354d8208ef0bde92cb8,
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
@@ -502,6 +526,11 @@ Prefab:
         type: 2}
       propertyPath: clickIsAllowed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712919737115182, guid: 8bad8de1a1ff3154884d1f69040319be,
+        type: 2}
+      propertyPath: minAreaForStats
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bad8de1a1ff3154884d1f69040319be, type: 2}
