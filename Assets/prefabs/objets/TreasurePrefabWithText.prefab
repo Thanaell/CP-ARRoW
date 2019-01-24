@@ -551,7 +551,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.521
   m_Pitch: 1
@@ -562,7 +562,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -573,25 +573,31 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0.99858856
+      value: 0.8178444
       inSlope: -2500.9998
-      outSlope: -2.3001378
+      outSlope: -0.7429253
       tangentMode: 65
     - serializedVersion: 2
-      time: 0.33490705
-      value: 0.22825623
+      time: 0.06342508
+      value: 0.7707243
+      inSlope: -0.7429253
+      outSlope: -4.1362643
+      tangentMode: 5
+    - serializedVersion: 2
+      time: 0.13999128
+      value: 0.33106995
       inSlope: -0.94627714
       outSlope: -0.94627714
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.900522
-      value: 0.048339844
+      time: 0.63779616
+      value: 0.1324768
       inSlope: -0.23826537
       outSlope: -0.23826537
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0.0001
+      value: 0.006325586
       inSlope: -0.00010003987
       outSlope: -0.00010003987
       tangentMode: 0
@@ -731,6 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41cb70fe9464e15419f4efc81ea81bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioTreasureClosed: {fileID: 8300000, guid: a9f60f23bc152d242afe3f1c09397c34, type: 3}
+  audioTreasureClosed: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
   audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
   audioSource: {fileID: 82576872609269572}
