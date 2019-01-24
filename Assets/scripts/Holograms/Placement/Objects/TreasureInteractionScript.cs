@@ -25,7 +25,7 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
         if (Config.Instance.FetchIntFromConfig("minDistanceTraveled"))
         {
-            minDistanceTraveled = Config.Instance.getLastIntRead();
+            minDistanceTraveled = Config.Instance.GetInt("minDistanceTraveled");
         }
         else minDistanceTraveled = 0;
     }

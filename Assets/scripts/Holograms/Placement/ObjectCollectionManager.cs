@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 {
+    private int cluePrefabIndex;
 
+    private int treasurePrefabIndex;
+
+    private int clueNumber;
 
     [Tooltip("A collection of objects prefabs to generate on floor in the world.")]
     public List<GameObject> FloorPrefabs;
 
     [Tooltip("A collection of objects prefabs to generate on wall in the world.")]
     public List<GameObject> WallPrefabs;
+
+    [Tooltip("A collection of meshs to use to generate objects on wall in the world")]
+    public List<GameObject> Meshs;
 
     [Tooltip("The desired size of floor objects in the world.")]
     public Vector3 FloorObjectSize = new Vector3(.5f, .5f, .5f);
@@ -45,6 +52,47 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         }
     }
 
+    void Start()
+    {
+        if (Config.Instance.FetchIntFromConfig("cluePrefabIndex"))
+        {
+            cluePrefabIndex = Config.Instance.GetInt("cluePrefabIndex");
+        }
+
+        if (Config.Instance.FetchIntFromConfig("treasurePrefabIndex"))
+        {
+            treasurePrefabIndex = Config.Instance.GetInt("treasurePrefabIndex");
+        }
+
+        if (Config.Instance.FetchDoubleFromConfig("wallScaleFactor"))
+        {
+            WallScaleFactor = (float)Config.Instance.GetDouble("wallScaleFactor");
+        }
+
+        if (Config.Instance.FetchDoubleFromConfig("floorScaleFactor"))
+        {
+            FloorScaleFactor = (float)Config.Instance.GetDouble("floorScaleFactor");
+        }
+        if (Config.Instance.FetchIntFromConfig("clueNumberToUnlock"))
+        {
+            WallPrefabs.Clear();
+            clueNumber = Config.Instance.GetInt("clueNumberToUnlock");
+            if (clueNumber <= Meshs.Count)
+            {
+                for (int i = 0; i < clueNumber; i++)
+                {
+                    WallPrefabs.Add(Meshs[i]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < clueNumber; i++)
+                {
+                    WallPrefabs.Add(Meshs[Random.Range(0, Meshs.Count)]);
+                }
+            }
+        }
+    }
     /*
      * differents prefabs possible à integrer sur les objets
      * permet de personnaliser les objets
@@ -78,7 +126,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
            if (type == ObjectType.WallObject)
            {
-                GameObject prefab = Instantiate(listPrefabs[0], positionCenter, rotation, newObject.transform) as GameObject;
+                GameObject prefab = Instantiate(listPrefabs[cluePrefabIndex], positionCenter, rotation, newObject.transform) as GameObject;
                 if (prefab != null)
                 {
                     // Set the parent of the new object the GameObject it was placed on
@@ -98,7 +146,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
             }
            if (type == ObjectType.FloorObject)
            {
-                GameObject prefab = Instantiate(listPrefabs[1], positionCenter, rotation, newObject.transform) as GameObject;
+                GameObject prefab = Instantiate(listPrefabs[treasurePrefabIndex], positionCenter, rotation, newObject.transform) as GameObject;
                 if (prefab != null)
                 {
                     // Set the parent of the new object the GameObject it was placed on
@@ -187,7 +235,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         foreach (var obj in objects)
         {
             var curBounds = GetBoundsForAllChildren(obj).size;
-            var difference = curBounds - desiredSize;
+            //var difference = curBounds - desiredSize;
 
             float ratio;
 

@@ -50,14 +50,14 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
      * Dans la scéne de jeu Click n'est pas autorisé
      * Ici le click est utilisé dans le cas de debug et lors de LivePreview car Vuforia n'est pas compatible avec LivePreview
      */ 
-    public bool clickIsAllowed = false;
+    public bool clickIsAllowed = true;
     private uint trackedHandsCount = 0;
     bool clickDetected = false;
 
     private bool _triggered = false;
 
     [SerializeField]
-    private bool drawSpacialMaping = false;
+    private bool drawSpatialMapping = false;
 
     /*
      * detection de la cible vuforia pour créer la scéne
@@ -100,6 +100,29 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
 
     private void Start()
     {
+        if (Config.Instance.FetchDoubleFromConfig("minAreaForComplete"))
+        {
+            minAreaForComplete = (float)Config.Instance.GetDouble("minAreaForComplete");
+            Debug.Log("minTotal : " + minAreaForComplete);
+        }
+
+        if (Config.Instance.FetchDoubleFromConfig("minHorizontalAreaForComplete"))
+        {
+            minHorizAreaForComplete = (float)Config.Instance.GetDouble("minHorizontalAreaForComplete");
+            Debug.Log("minHoriz : " + minHorizAreaForComplete);
+        }
+
+        if (Config.Instance.FetchDoubleFromConfig("minVerticalAreaForComplete"))
+        {
+            minWallAreaForComplete = (float)Config.Instance.GetDouble("minVerticalAreaForComplete");
+            Debug.Log("minWall : " + minWallAreaForComplete);
+        }
+       
+        if (Config.Instance.FetchBoolFromConfig("clickIsAllowed"))
+        {
+            clickIsAllowed = Config.Instance.GetBool("clickIsAllowed");
+            Debug.Log("clic : " + clickIsAllowed);
+        }
         InputManager.Instance.PushFallbackInputHandler(gameObject);
     }
 
@@ -125,7 +148,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
          */ 
         if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
         {
-            drawSpacialMaping = false;
+            drawSpatialMapping = false;
             _triggered = Placer.CreateScene();
         }
         else
@@ -135,7 +158,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
             customMesh.DrawProcessedMesh = false;
         }
 
-        SpatialMappingManager.Instance.DrawVisualMeshes = drawSpacialMaping;
+        SpatialMappingManager.Instance.DrawVisualMeshes = drawSpatialMapping;
 
     }
     

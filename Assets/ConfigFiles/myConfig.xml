@@ -3,16 +3,28 @@
     <variable name="myInt" value="42"></variable>
     <variable name="myString" value="this is a string"></variable>
     <variable name="myDouble" value="1337.1337"></variable>
+	<!--Distance maximale entre l'utilisateur et le trésor pour l'activer-->
     <variable name="distanceToActivateTreasure" value="5"></variable>
-	<variable name="minDistanceTraveled" value="10"></variable>
-	<variable name="clueNumberToUnlock" value="3"></variable>
+	<!--Distance minimale parcourue par l'utilisateur avant de pouvoir activer le trésor-->
+	<variable name="minDistanceTraveled" value="0"></variable>
+	<!--Nombre d'indices minimal devant être activés avant de pouvoir activer le trésor-->
+	<variable name="clueNumberToUnlock" value="9"></variable>
+	<!--Index du prefab voulu dans la liste ListPrefabs à utiliser comme CluePrefab-->
 	<variable name="cluePrefabIndex" value="0"></variable>
+	<!--Index du prefab voulu dans la liste ListPrefabs à utiliser comme TreasurePrefab-->
 	<variable name="treasurePrefabIndex" value="1"></variable>
+	<!--Facteur de taille des objets placés sur le mur-->
 	<variable name="wallScaleFactor" value="0.0"></variable>
+	<!--Facteur de taille des objets placés sur le sol-->
 	<variable name="floorScaleFactor" value="0.0"></variable>
+	<!--Distance minimale entre les objets-->
 	<variable name="distanceBetweenObjects" value="0.5"></variable>
-	<variable name="minAreaForComplete" value="5"></variable>
-	<variable name="minHorizontalAreaForComplete" value="1"></variable>
+	<!--Aire minimum à scanner avant de pouvoir placer les objets-->
+	<variable name="minAreaForComplete" value="10"></variable>
+	<!--Aire minimum horizontale (sol) avant de pouvoir placer les objets-->
+	<variable name="minHorizontalAreaForComplete" value="2"></variable>
+	<!--Aire verticale (murs) avant de pouvoir placer les objets-->
 	<variable name="minVerticalAreaForComplete" value="8"></variable>
+	<!--Booleen pour déterminer si l'on peut utiliser le clic dans l'application ou non-->
 	<variable name="clickIsAllowed" value="True"></variable>
   </variables>

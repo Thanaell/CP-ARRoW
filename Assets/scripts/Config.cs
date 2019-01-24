@@ -22,7 +22,6 @@ public class Config : Singleton<Config>
     private XmlNode root;
     private XmlReader xmlReader;
 
-
     //Pour fonctionner, ce code nécessite un fichier myConfig.xml mis dans l'HoloLens : 
     void Start()
     {
@@ -47,32 +46,71 @@ public class Config : Singleton<Config>
         }
 
         //on vérifie que ça a marché
-        //Debug.Log(lastStringRead + " " + lastDoubleRead + " " + lastIntRead);
+        Debug.Log(lastStringRead + " " + lastDoubleRead + " " + lastIntRead);
         //File.WriteAllText(pathToWrite, lastStringRead+ " " +lastDoubleRead+ " "+ lastIntRead);
-   
     }
 
 
     //getter des dernières valeurs lues pour chaque type
 
-    public int getLastIntRead()
+    public int GetInt(string variableName)
     {
-        return lastIntRead;
+        int IntRead = 0;
+        var variableNodes = myXmlDoc.Descendants("variable");
+        foreach (XElement variableNode in variableNodes)
+        {
+            if (variableNode.Attribute("name").Value == variableName)
+            {
+                IntRead = System.Convert.ToInt32(variableNode.Attribute("value").Value);
+            }
+        }
+        return IntRead;
     }
 
-    public double getLastDoubleRead()
+    public double GetDouble(string variableName)
     {
-        return lastDoubleRead;
+        double doubleRead = 0.0;
+        var variableNodes = myXmlDoc.Descendants("variable");
+        foreach (XElement variableNode in variableNodes)
+        {
+
+            if (variableNode.Attribute("name").Value == variableName)
+            {
+                doubleRead = System.Convert.ToDouble(variableNode.Attribute("value").Value);
+            }
+
+        }
+        return doubleRead;
     }
 
-    public string getLastStringRead()
+    public string GetString(string variableName)
     {
-        return lastStringRead;
+        string stringRead = "";
+        var variableNodes = myXmlDoc.Descendants("variable");
+        foreach (XElement variableNode in variableNodes)
+        {
+            if (variableNode.Attribute("name").Value == variableName)
+            {
+                stringRead = variableNode.Attribute("value").Value;
+            }
+
+        }
+        return stringRead;
     }
 
-    public bool getLastBoolRead()
+    public bool GetBool(string variableName)
     {
-        return lastBoolRead;
+        bool boolRead = false;
+        var variableNodes = myXmlDoc.Descendants("variable");
+        foreach (XElement variableNode in variableNodes)
+        {
+            if (variableNode.Attribute("name").Value == variableName)
+            {
+                boolRead = System.Convert.ToBoolean(variableNode.Attribute("value").Value);
+            }
+
+        }
+        return boolRead;
     }
 
 
@@ -84,7 +122,6 @@ public class Config : Singleton<Config>
         {
             if (variableNode.Attribute("name").Value == variableName)
             {
-                Debug.Log(variableNode);
                 lastIntRead = System.Convert.ToInt32(variableNode.Attribute("value").Value);
                 return true;
             }

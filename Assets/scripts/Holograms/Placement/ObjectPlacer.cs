@@ -68,7 +68,10 @@ public class ObjectPlacer : MonoBehaviour
              **/ 
             _boxDrawing = new BoxDrawer(gameObject);
         }
-
+        if (Config.Instance.FetchDoubleFromConfig("distanceBetweenObjects"))
+        {
+            distanceFromOtherObject = (float)Config.Instance.GetDouble("distanceBetweenObjects");
+        }
     }
 
     void Update()
