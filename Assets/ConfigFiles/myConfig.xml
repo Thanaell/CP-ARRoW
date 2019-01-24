@@ -4,5 +4,15 @@
     <variable name="myString" value="this is a string"></variable>
     <variable name="myDouble" value="1337.1337"></variable>
     <variable name="distanceToActivateTreasure" value="5"></variable>
-	<variable name="minDistanceTraveled" value="20"></variable>
+	<variable name="minDistanceTraveled" value="10"></variable>
+	<variable name="clueNumberToUnlock" value="3"></variable>
+	<variable name="cluePrefabIndex" value="0"></variable>
+	<variable name="treasurePrefabIndex" value="1"></variable>
+	<variable name="wallScaleFactor" value="0.0"></variable>
+	<variable name="floorScaleFactor" value="0.0"></variable>
+	<variable name="distanceBetweenObjects" value="0.5"></variable>
+	<variable name="minAreaForComplete" value="5"></variable>
+	<variable name="minHorizontalAreaForComplete" value="1"></variable>
+	<variable name="minVerticalAreaForComplete" value="8"></variable>
+	<variable name="clickIsAllowed" value="True"></variable>
   </variables>
