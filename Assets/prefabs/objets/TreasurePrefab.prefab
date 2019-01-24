@@ -566,7 +566,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7735ef2e78d4b404196e2ba9a1c535c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114874154380840658
+  audioTreasureClosed: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
+  audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
+  audioSource: {fileID: 82126166439835426}
+--- !u!114 &114809459496233100
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
