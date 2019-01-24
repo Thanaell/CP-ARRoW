@@ -464,6 +464,7 @@ MonoBehaviour:
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 1400613533}
   OccludedMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
+  distanceFromOtherObject: 0.5
 --- !u!114 &121852418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,8 +484,9 @@ MonoBehaviour:
   - {fileID: 1696306815258264, guid: c1985c4b7f4073f4ab490526f16718b6, type: 2}
   FloorObjectSize: {x: 0.25, y: 0.25, z: 0.25}
   WallObjectSize: {x: 0.25, y: 0.25, z: 0.25}
-  ScaleFactor: 0
-  ActiveHolograms: []
+  WallScaleFactor: 0
+  FloorScaleFactor: 0
+  listPrefabs: []
 --- !u!1 &169515775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,9 +1207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugDisplay: {fileID: 1486122294}
   DebugSubDisplay: {fileID: 1204930682}
-  DebugDisplayDistance: {fileID: 0}
-  walkedDistancerObject: {fileID: 0}
-  HideText: 0
 --- !u!114 &904995795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,7 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicsLayer: 31
-  surfaceMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
+  surfaceMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
   autoStartObserver: 1
   drawVisualMeshes: 0
   castShadows: 0
@@ -2690,6 +2689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f1d44e7c114e44e8e87f4eef2b5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToActivate: 1.5
 --- !u!1 &1613539538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,10 +3007,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d610e3c74fc28cf46bdb11d81cf1aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinAreaForStats: 5
-  MinAreaForComplete: 15
-  MinHorizAreaForComplete: 2
-  MinWallAreaForComplete: 10
+  minAreaForStats: 0.5
+  minAreaForComplete: 5
+  minHorizAreaForComplete: 1
+  minWallAreaForComplete: 8
+  clickIsAllowed: 0
+  drawSpacialMaping: 0
   targetDetection: {fileID: 1872758852}
   Placer: {fileID: 121852417}
 --- !u!4 &1855933622
@@ -3266,8 +3268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06763fde789716f47afc528c4073fd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkedDistance: 0
-  TextPrefab: {fileID: 949803707}
+  tempsEchantillon: 0
 --- !u!1 &1910887169
 GameObject:
   m_ObjectHideFlags: 0
