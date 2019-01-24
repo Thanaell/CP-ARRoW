@@ -12,7 +12,11 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
+<<<<<<< HEAD
   productName: CP-ARRoW Test
+=======
+  productName: CP-ARRoW
+>>>>>>> f511b4b374193300f852ea187555dd5ef014f7fd
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -573,7 +577,11 @@ PlayerSettings:
   metroCertificateNotAfter: 0007c5fe119cd501
   metroApplicationDescription: CP-ARRoW Test
   wsaImages: {}
+<<<<<<< HEAD
   metroTileShortName: CP-ARRoW Test
+=======
+  metroTileShortName: CP-ARRoW
+>>>>>>> f511b4b374193300f852ea187555dd5ef014f7fd
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

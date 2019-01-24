@@ -609,6 +609,11 @@ Prefab:
       propertyPath: minAreaForStats
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114991129096397752, guid: 8bad8de1a1ff3154884d1f69040319be,
+        type: 2}
+      propertyPath: surfaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bad8de1a1ff3154884d1f69040319be, type: 2}
   m_IsPrefabParent: 0
