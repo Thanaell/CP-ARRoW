@@ -126,6 +126,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         {
            if (type == ObjectType.WallObject)
            {
+                newObject.name = "WallObject" + objectId;
                 GameObject prefab = Instantiate(listPrefabs[cluePrefabIndex], positionCenter, rotation, newObject.transform) as GameObject;
                 if (prefab != null)
                 {
@@ -146,6 +147,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
             }
            if (type == ObjectType.FloorObject)
            {
+                newObject.name = "FloorObject" + objectId;
                 GameObject prefab = Instantiate(listPrefabs[treasurePrefabIndex], positionCenter, rotation, newObject.transform) as GameObject;
                 if (prefab != null)
                 {
