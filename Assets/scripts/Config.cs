@@ -9,6 +9,8 @@ using HoloToolkit.Unity;
 //file that defines variables and gets their values from an xml file stored in the File Explore : LocalData/CPARRoW/LocalState
 public class Config : Singleton<Config>
 {
+    private static Config instance;
+
     private string lastStringRead="unupdated string";
     private int lastIntRead;
     private double lastDoubleRead;
@@ -23,15 +25,25 @@ public class Config : Singleton<Config>
     private XmlReader xmlReader;
 
     //Pour fonctionner, ce code nécessite un fichier myConfig.xml mis dans l'HoloLens : 
+    protected override void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogErrorFormat("Trying to instantiate a second instance of singleton class {0}", GetType().Name);
+        }
+        else
+        {
+            instance = (Config)this;
+            pathToWrite = Path.Combine(Application.persistentDataPath, "TestXMLReader.txt");
+            path = Path.Combine(Application.persistentDataPath, "myConfig.xml");
+
+            xmlReader = XmlReader.Create(path);
+            myXmlDoc = XDocument.Load(xmlReader);
+        }
+    }
+
     void Start()
     {
-        
-        pathToWrite = Path.Combine(Application.persistentDataPath, "TestXMLReader.txt");
-        path = Path.Combine(Application.persistentDataPath, "myConfig.xml");
-
-        xmlReader = XmlReader.Create(path);
-        myXmlDoc = XDocument.Load(xmlReader);
-        
         if (!FetchIntFromConfig("myInt"))
         {
             Debug.Log("erreur à la récupération de l'entier");
@@ -133,6 +145,7 @@ public class Config : Singleton<Config>
     //récupère un double depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchDoubleFromConfig(string variableName)
     {
+        Debug.Log(myXmlDoc);
         var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {

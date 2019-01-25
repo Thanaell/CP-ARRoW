@@ -24,6 +24,10 @@ namespace HoloToolkit.Unity.SpatialMapping
         [SerializeField]
         private Material surfaceMaterial;
 
+        //[Tooltip("Optional Material to use when rendering Spatial Mapping meshes after the observer has been stopped")]
+        //[SerializeField]
+        //private Material secondaryMaterial;
+
         [Tooltip("Determines if the surface observer should be automatically started.")]
         [SerializeField]
         private bool autoStartObserver = true;
