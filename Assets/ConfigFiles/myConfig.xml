@@ -8,7 +8,7 @@
 	<!--Distance minimale parcourue par l'utilisateur avant de pouvoir activer le trésor-->
 	<variable name="minDistanceTraveled" value="0"></variable>
 	<!--Nombre d'indices minimal devant être activés avant de pouvoir activer le trésor-->
-	<variable name="clueNumberToUnlock" value="9"></variable>
+	<variable name="clueNumberToUnlock" value="3"></variable>
 	<!--Index du prefab voulu dans la liste ListPrefabs à utiliser comme CluePrefab-->
 	<variable name="cluePrefabIndex" value="0"></variable>
 	<!--Index du prefab voulu dans la liste ListPrefabs à utiliser comme TreasurePrefab-->
