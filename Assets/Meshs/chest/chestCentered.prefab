@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23934817612574210}
   - component: {fileID: 65971274787963862}
   m_Layer: 0
-  m_Name: chestCenterd
+  m_Name: chestCentered
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

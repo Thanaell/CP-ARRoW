@@ -345,6 +345,12 @@ Prefab:
       propertyPath: SpatialUnderstandingMesh
       value: 
       objectReference: {fileID: 1400613533}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1999304134979716, guid: aec89c0c832d30c40bf9fa40b17a9b92,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
   m_IsPrefabParent: 0
