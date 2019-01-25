@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 114655401719122086}
   - component: {fileID: 114006014762121798}
   - component: {fileID: 114022544038744764}
+  - component: {fileID: 114864715224499430}
   m_Layer: 0
   m_Name: Placement
   m_TagString: Untagged
@@ -246,7 +247,7 @@ BoxCollider:
   m_GameObject: {fileID: 1428250629838500}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -376,7 +377,7 @@ MonoBehaviour:
   DrawObjects: 1
   SpatialUnderstandingMesh: {fileID: 0}
   OccludedMaterial: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
-  distanceFromOtherObject: 2
+  distanceFromOtherObject: 0.5
 --- !u!114 &114568082409650906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,16 +417,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloorPrefabs:
-  - {fileID: 1819882730313252, guid: fb9633f4d71f56d49957efadb8b704de, type: 2}
+  - {fileID: 1510601207632476, guid: e7468dfe81cab834da9cf95fbad79125, type: 2}
   WallPrefabs:
   - {fileID: 1536550077349436, guid: 4763c940136987e40bbb17050d224eb3, type: 2}
-  FloorObjectSize: {x: 0.5, y: 0.5, z: 0.5}
-  WallObjectSize: {x: 0.25, y: 0.25, z: 0.25}
+  - {fileID: 1459363247149060, guid: 51dc3df6e33fc8c46bec3f93912e9d01, type: 2}
+  - {fileID: 1777697911998406, guid: 0b7793346aef01648b4f13f600ea90c7, type: 2}
+  Meshs:
+  - {fileID: 1006224794650248, guid: 040e81561432be64aabc6cfe9aaa5dca, type: 2}
+  FloorObjectSize: {x: 0.6, y: 0.6, z: 0.6}
+  WallObjectSize: {x: 0.1, y: 0.1, z: 0.1}
   WallScaleFactor: 0
   FloorScaleFactor: 0
   listPrefabs:
   - {fileID: 1735580405255546, guid: d784a296e35ad414a8f121583af7444b, type: 2}
-  - {fileID: 1201188172335796, guid: ebece881ee701354d8208ef0bde92cb8, type: 2}
+  - {fileID: 1867593567066102, guid: 3cbe59797354e774c97557ff69954f80, type: 2}
+  - {fileID: 1774961940348488, guid: ebece881ee701354d8208ef0bde92cb8, type: 2}
 --- !u!114 &114762834236459798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,6 +445,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivotAxis: 1
   targetTransform: {fileID: 0}
+--- !u!114 &114864715224499430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752050233356568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -594688902, guid: f7b54ff4a43d4fcf81b4538b678e0bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SurfaceParent: {fileID: 0}
+  m_FreezeUpdates: 0
+  m_VolumeType: 1
+  m_SphereRadius: 2
+  m_HalfBoxExtents: {x: 4, y: 4, z: 4}
+  m_LodType: 1
+  m_NumUpdatesBeforeRemoval: 10
+  m_SecondsBetweenUpdates: 2.5
+  m_CurrentRenderState: 1
+  m_VisualMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  m_OcclusionMaterial: {fileID: 15302, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &114938334163220484
 MonoBehaviour:
   m_ObjectHideFlags: 1

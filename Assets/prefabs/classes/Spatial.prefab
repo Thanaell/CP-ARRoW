@@ -189,10 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d610e3c74fc28cf46bdb11d81cf1aea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinAreaForStats: 5
-  MinAreaForComplete: 15
-  MinHorizAreaForComplete: 2
-  MinWallAreaForComplete: 10
+  minAreaForStats: 0
+  minAreaForComplete: 5
+  minHorizAreaForComplete: 1
+  minWallAreaForComplete: 6
+  clickIsAllowed: 1
+  drawSpatialMapping: 0
   targetDetection: {fileID: 0}
   Placer: {fileID: 0}
 --- !u!114 &114789267823476666
@@ -218,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicsLayer: 31
-  surfaceMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
+  surfaceMaterial: {fileID: 2100000, guid: 306e8696961f8d04b9ad00ea7a2582cf, type: 2}
   autoStartObserver: 1
   drawVisualMeshes: 0
   castShadows: 0

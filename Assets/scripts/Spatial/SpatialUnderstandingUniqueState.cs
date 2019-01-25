@@ -6,6 +6,7 @@ using HoloToolkit.Unity.SpatialMapping;
 
 public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUniqueState>, IInputClickHandler, ISourceStateHandler
 {
+    [Tooltip("Minimum area needed to show the numbers needed to finish the scan")]
     [SerializeField]
     private float minAreaForStats = .5f;
 
@@ -17,6 +18,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         }
     }
 
+    [Tooltip("Minimum area needed to finish the scan")]
     [SerializeField]
     private float minAreaForComplete = 5.0f;
     public float MinAreaForComplete
@@ -27,6 +29,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         }
     }
 
+    [Tooltip("Minimum horizontal area (floor) needed to finish the scan")]
     [SerializeField]
     private float minHorizAreaForComplete = 1.0f;
     public float MinHorizAreaForComplete
@@ -37,6 +40,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         }
     }
 
+    [Tooltip("Minimum vertical area (wall) needed to finish the scan")]
     [SerializeField]
     private float minWallAreaForComplete = 8.0f;
     public float MinWallAreaForComplete
@@ -50,22 +54,27 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
     /*
      * Dans la scéne de jeu Click n'est pas autorisé
      * Ici le click est utilisé dans le cas de debug et lors de LivePreview car Vuforia n'est pas compatible avec LivePreview
-     */ 
+     */
+    [Tooltip("Determines if we can tap in the HoloLens or not in order to finish the scan")]
     public bool clickIsAllowed = true;
     private uint trackedHandsCount = 0;
     bool clickDetected = false;
 
     private bool _triggered = false;
 
+    [Tooltip("Determines if we show the Spatial Mapping in the HoloLens or not")]
     [SerializeField]
     private bool drawSpatialMapping = false;
 
     /*
      * detection de la cible vuforia pour créer la scéne
-     */ 
+     */
+    [Tooltip("Vuforia ImageTarget used to finish the scan when detected")]
     [SerializeField]
     private TargetDetection targetDetection;
 
+    [Tooltip("Script which is used when whe finish the scan in order to create the virtual world")]
+    public ObjectPlacer Placer;
 
 
     public bool DoesScanMeetMinBarForCompletion
@@ -103,30 +112,24 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         if (Config.Instance.FetchDoubleFromConfig("minAreaForComplete"))
         {
             minAreaForComplete = (float)Config.Instance.GetDouble("minAreaForComplete");
-            Debug.Log("minTotal : " + minAreaForComplete);
         }
 
         if (Config.Instance.FetchDoubleFromConfig("minHorizontalAreaForComplete"))
         {
             minHorizAreaForComplete = (float)Config.Instance.GetDouble("minHorizontalAreaForComplete");
-            Debug.Log("minHoriz : " + minHorizAreaForComplete);
         }
 
         if (Config.Instance.FetchDoubleFromConfig("minVerticalAreaForComplete"))
         {
             minWallAreaForComplete = (float)Config.Instance.GetDouble("minVerticalAreaForComplete");
-            Debug.Log("minWall : " + minWallAreaForComplete);
         }
        
         if (Config.Instance.FetchBoolFromConfig("clickIsAllowed"))
         {
             clickIsAllowed = Config.Instance.GetBool("clickIsAllowed");
-            Debug.Log("clic : " + clickIsAllowed);
         }
         InputManager.Instance.PushFallbackInputHandler(gameObject);
     }
-
-    public ObjectPlacer Placer;
 
     private void Update()
     {

@@ -10,18 +10,9 @@ using HoloToolkit.Unity;
 public class Config : Singleton<Config>
 {
     private static Config instance;
-
-    private string lastStringRead="unupdated string";
-    private int lastIntRead;
-    private double lastDoubleRead;
-    private bool lastBoolRead;
-
-    private string path;
-    private string pathToWrite;
-    
+    private string path;    
     private XDocument myXmlDoc;
-
-    private XmlNode root;
+    private readonly XmlNode root;
     private XmlReader xmlReader;
 
     //Pour fonctionner, ce code nécessite un fichier myConfig.xml mis dans l'HoloLens : 
@@ -34,34 +25,12 @@ public class Config : Singleton<Config>
         else
         {
             instance = (Config)this;
-            pathToWrite = Path.Combine(Application.persistentDataPath, "TestXMLReader.txt");
             path = Path.Combine(Application.persistentDataPath, "myConfig.xml");
 
             xmlReader = XmlReader.Create(path);
             myXmlDoc = XDocument.Load(xmlReader);
         }
     }
-
-    void Start()
-    {
-        if (!FetchIntFromConfig("myInt"))
-        {
-            Debug.Log("erreur à la récupération de l'entier");
-        }
-        if (!FetchDoubleFromConfig("myDouble"))
-        {
-            Debug.Log("erreur à la récupération du double");
-        }
-        if (!FetchStringFromConfig("myString"))
-        {
-            Debug.Log("erreur à la récupération du string");
-        }
-
-        //on vérifie que ça a marché
-        Debug.Log(lastStringRead + " " + lastDoubleRead + " " + lastIntRead);
-        //File.WriteAllText(pathToWrite, lastStringRead+ " " +lastDoubleRead+ " "+ lastIntRead);
-    }
-
 
     //getter des dernières valeurs lues pour chaque type
 
@@ -134,7 +103,6 @@ public class Config : Singleton<Config>
         {
             if (variableNode.Attribute("name").Value == variableName)
             {
-                lastIntRead = System.Convert.ToInt32(variableNode.Attribute("value").Value);
                 return true;
             }
 
@@ -145,14 +113,12 @@ public class Config : Singleton<Config>
     //récupère un double depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchDoubleFromConfig(string variableName)
     {
-        Debug.Log(myXmlDoc);
         var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
 
             if (variableNode.Attribute("name").Value == variableName)
             {
-                lastDoubleRead = System.Convert.ToDouble(variableNode.Attribute("value").Value);
                 return true;
             }
 
@@ -170,7 +136,6 @@ public class Config : Singleton<Config>
         {
             if (variableNode.Attribute("name").Value == variableName)
             {
-                lastBoolRead = System.Convert.ToBoolean(variableNode.Attribute("value").Value);
                 return true;
             }
 
@@ -186,7 +151,6 @@ public class Config : Singleton<Config>
         {
             if (variableNode.Attribute("name").Value == variableName)
             {
-                lastStringRead = variableNode.Attribute("value").Value;
                 return true;
             }
 
