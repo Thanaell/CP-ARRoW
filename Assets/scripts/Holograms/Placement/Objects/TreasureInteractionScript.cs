@@ -53,7 +53,7 @@ public class TreasureInteractionScript : MonoBehaviour {
 
                 gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
                 SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
-                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.2f;
+                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
                 TreasureActivated = true;
 
                 /*

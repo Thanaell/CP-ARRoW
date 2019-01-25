@@ -258,8 +258,13 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
-      propertyPath: WallPrefabs.Array.size
+      propertyPath: Meshs.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
@@ -373,6 +378,98 @@ Prefab:
       value: 
       objectReference: {fileID: 1774961940348488, guid: ebece881ee701354d8208ef0bde92cb8,
         type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1006224794650248, guid: 040e81561432be64aabc6cfe9aaa5dca,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[4]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[5]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[6]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[7]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[8]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: Meshs.Array.data[9]
+      value: 
+      objectReference: {fileID: 100000, guid: e9f562abdc4c47e4aae72b90bd26e147, type: 3}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorScaleFactor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallObjectSize.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallObjectSize.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallObjectSize.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1999304134979716, guid: aec89c0c832d30c40bf9fa40b17a9b92,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorObjectSize.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorObjectSize.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: FloorObjectSize.z
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
   m_IsPrefabParent: 0
@@ -544,6 +641,21 @@ Prefab:
       propertyPath: minAreaForStats
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114991129096397752, guid: 8bad8de1a1ff3154884d1f69040319be,
+        type: 2}
+      propertyPath: surfaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 306e8696961f8d04b9ad00ea7a2582cf, type: 2}
+    - target: {fileID: 114991129096397752, guid: 8bad8de1a1ff3154884d1f69040319be,
+        type: 2}
+      propertyPath: drawVisualMeshes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114712919737115182, guid: 8bad8de1a1ff3154884d1f69040319be,
+        type: 2}
+      propertyPath: drawSpatialMapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bad8de1a1ff3154884d1f69040319be, type: 2}
   m_IsPrefabParent: 0
@@ -595,6 +707,15 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320446789431216, guid: e02c1c0b8c9327f46aff367ded390ea7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235332664684022, guid: e02c1c0b8c9327f46aff367ded390ea7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e02c1c0b8c9327f46aff367ded390ea7, type: 2}
@@ -695,6 +816,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3e216fb1ca013246831642da088b076, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1048552215 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1242819773182250, guid: 8bad8de1a1ff3154884d1f69040319be,
+    type: 2}
+  m_PrefabInternal: {fileID: 747063912}
+--- !u!114 &1048552216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048552215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d883c0118351e4890753200e0ac916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomModel: {fileID: 100002, guid: 324ab301fd4eb634480cb1165f1686d3, type: 3}
+  SimulatedUpdatePeriodInSeconds: -1
 --- !u!1001 &1318349348
 Prefab:
   m_ObjectHideFlags: 0
@@ -768,6 +907,33 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+--- !u!1 &1663971466 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1752050233356568, guid: fec66ec4a3cca58449c200e282d731fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 437300644}
+--- !u!114 &1663971471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1663971466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -594688902, guid: f7b54ff4a43d4fcf81b4538b678e0bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SurfaceParent: {fileID: 0}
+  m_FreezeUpdates: 0
+  m_VolumeType: 1
+  m_SphereRadius: 2
+  m_HalfBoxExtents: {x: 4, y: 4, z: 4}
+  m_LodType: 1
+  m_NumUpdatesBeforeRemoval: 10
+  m_SecondsBetweenUpdates: 2.5
+  m_CurrentRenderState: 1
+  m_VisualMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  m_OcclusionMaterial: {fileID: 15302, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &1872758852
 MonoBehaviour:
   m_ObjectHideFlags: 0
