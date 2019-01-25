@@ -133,6 +133,7 @@ public class Config : Singleton<Config>
     //récupère un double depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
     public bool FetchDoubleFromConfig(string variableName)
     {
+        Debug.Log(myXmlDoc);
         var variableNodes = myXmlDoc.Descendants("variable");
         foreach (XElement variableNode in variableNodes)
         {
