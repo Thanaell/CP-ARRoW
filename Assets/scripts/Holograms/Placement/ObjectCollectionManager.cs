@@ -40,6 +40,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     /*indique id de WallObject activé */
     private int activeObject = 0;
+
     public int ActiveObject
     {
         get

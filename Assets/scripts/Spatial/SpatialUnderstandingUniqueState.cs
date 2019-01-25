@@ -8,6 +8,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
 {
     [SerializeField]
     private float minAreaForStats = .5f;
+
     public float MinAreaForStats
     {
         get
@@ -96,7 +97,6 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
             return false;
         }
     }
-
 
     private void Start()
     {

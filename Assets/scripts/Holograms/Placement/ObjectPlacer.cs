@@ -55,10 +55,11 @@ public class ObjectPlacer : MonoBehaviour
      */ 
      [SerializeField]
     private float distanceFromOtherObject=0.5f;
-    
+
 
 
     // Use this for initialization
+
     void Start()
     {
         if (DrawDebugBoxes)
