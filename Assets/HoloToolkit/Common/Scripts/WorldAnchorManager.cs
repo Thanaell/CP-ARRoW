@@ -316,7 +316,6 @@ namespace HoloToolkit.Unity
             {
                 Debug.LogWarning("[WorldAnchorManager] RemoveAllAnchors called before anchor store is ready.");
             }
-
             var anchors = FindObjectsOfType<WorldAnchor>();
 
             if (anchors == null) { return; }
