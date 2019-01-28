@@ -5,9 +5,17 @@ public class ClueInteractionScript : MonoBehaviour
 {
     private int id=0;
 
+    Renderer com;
+    bool isOnGaze = false;
     private void Start()
     {
-       
+
+        id = gameObject.GetComponent<ID>().id;
+        com = gameObject.transform.GetComponentInParent<Renderer>();
+        isOnGaze = false;
+
+        /*on memorise l'ancienne valeur*/
+        startColor = com.material.color;
     }
 
     private Color startColor;
@@ -15,26 +23,30 @@ public class ClueInteractionScript : MonoBehaviour
     [SerializeField]
     private float distanceToActivate = 1.5f;
 
+
+    private void Update()
+    {
+        if (isOnGaze)
+        {
+
+            if (distanceToCamera() < distanceToActivate)
+            {
+                ObjectCollectionManager.Instance.ActiveObject = id;
+                gameObject.transform.parent.gameObject.SetActive(false);
+            }
+            else com.material.color = Color.yellow;
+        }
+    }
+
     void OnGazeEnter()
     {
-        id = gameObject.GetComponent<ID>().id;
-        var com = gameObject.transform.GetComponentInParent<Renderer>();
-        /*on memorise l'ancienne valeur*/
-        startColor = com.material.color;
-
-        Debug.Log(distanceToCamera());
-        if (distanceToCamera() < distanceToActivate)
-        {
-            ObjectCollectionManager.Instance.ActiveObject = id;
-            gameObject.transform.parent.gameObject.SetActive(false);
-        }
-        else com.material.color = Color.yellow;
+        isOnGaze = true;
     }
 
     void OnGazeExit()
     {
-        var com = gameObject.transform.GetComponentInParent<Renderer>();
         com.material.color = startColor;
+        isOnGaze = false;
     }
 
     /*distance entre la camera et l'objet selectionné*/

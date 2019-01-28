@@ -21,6 +21,8 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     int minDistanceTraveled;
 
+    Renderer com;
+
     private void Start()
     {
         if (Config.Instance.FetchIntFromConfig("minDistanceTraveled"))
@@ -28,64 +30,66 @@ public class TreasureInteractionScript : MonoBehaviour {
             minDistanceTraveled = Config.Instance.GetInt("minDistanceTraveled");
         }
         else minDistanceTraveled = 0;
+        isOnGaze = false;
+
+
+        clueIdToActivate = gameObject.GetComponent<ID>().id;
+        com = gameObject.transform.GetComponentInParent<Renderer>();
+        startColor = com.material.color;
     }
 
     private Color startColor;
 
     private bool TreasureActivated=false;
 
-    void OnGazeEnter()
+    bool isOnGaze = false;
+
+    void Update()
     {
-
-        clueIdToActivate = gameObject.GetComponent<ID>().id;
-        var com = gameObject.transform.GetComponentInParent<Renderer>();
-        startColor = com.material.color;
-
-        Debug.Log(distanceToCamera());
-        if (distanceToCamera() < distanceToActivate)
+        if (isOnGaze)
         {
-            if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
+
+            if (distanceToCamera() < distanceToActivate)
             {
-                for (int i = 0; i < newRenderer.Length; i++)
+                if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
                 {
-                    newRenderer[i].enabled = true;
-                }
+                    for (int i = 0; i < newRenderer.Length; i++)
+                    {
+                        newRenderer[i].enabled = true;
+                    }
 
-                gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
-                SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
-                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
-                TreasureActivated = true;
-
-                /*
-                rewardObject = Instantiate(gameObject.transform.GetChild(0), transform.position, transform.rotation) as GameObject;
-                if (rewardObject != null) {
-                    rewardObject.transform.parent = transform.parent;
-                    rewardObject.transform.localScale = transform.localScale*0.2f;
-                    gameObject.transform.parent.GetComponent<MeshFilter>().mesh.Clear();
+                    gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
                     SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+                    gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
+                    TreasureActivated = true;
                 }
-                */
 
+                else
+                {
+                    com.material.color = Color.red;
+                    SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+                }
             }
-
             else
             {
-                com.material.color = Color.red;
-                SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+                if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+                else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
+                com.material.color = Color.yellow;
             }
         }
-        else
-        {
-            if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver) ;
-            else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
-            com.material.color = Color.yellow;
-        }
+    }
+
+    void OnGazeEnter()
+    {
+        isOnGaze = true;
+        
     }
     
 
     void OnGazeExit()
     {
-        var com = gameObject.transform.GetComponentInParent<Renderer>();
+        isOnGaze = false;
+        //var com = gameObject.transform.GetComponentInParent<Renderer>();
         com.material.color = startColor;
     }
 
