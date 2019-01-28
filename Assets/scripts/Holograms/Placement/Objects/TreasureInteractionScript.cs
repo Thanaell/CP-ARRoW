@@ -59,7 +59,6 @@ public class TreasureInteractionScript : MonoBehaviour {
                     }
 
                     gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
-                    SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                     gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
                     TreasureActivated = true;
                 }
@@ -67,13 +66,10 @@ public class TreasureInteractionScript : MonoBehaviour {
                 else
                 {
                     com.material.color = Color.red;
-                    SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
                 }
             }
             else
             {
-                if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
-                else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
                 com.material.color = Color.yellow;
             }
         }
@@ -82,7 +78,8 @@ public class TreasureInteractionScript : MonoBehaviour {
     void OnGazeEnter()
     {
         isOnGaze = true;
-        
+        if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+        else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
     }
     
 
