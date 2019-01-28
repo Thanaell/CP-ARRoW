@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -13,9 +14,11 @@ public class LogPosition : MonoBehaviour {
     private float timer=0;
     private float globalTimer=0;
 
-    void Start () {
-        path = Path.Combine(Application.persistentDataPath, "LogPosition.txt");
-        File.WriteAllText(path,"");
+    void Start ()
+    {
+        DateTime now = DateTime.Now;
+        path = Path.Combine(Application.persistentDataPath, "LogPosition_" + now.Day + "_" + now.Month + "_" + now.Year + "_" + now.Hour + "_" + now.Minute + "_" + now.Second + ".txt");
+        File.WriteAllText(path,"Timer;X;Y;Z" + System.Environment.NewLine);
     }
 	
 	void Update () {

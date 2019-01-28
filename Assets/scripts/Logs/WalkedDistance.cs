@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -31,8 +32,10 @@ public class WalkedDistance : Singleton<WalkedDistance>
         oldX = Camera.main.transform.position.x;
         oldZ = Camera.main.transform.position.z;
 
-        path = Path.Combine(Application.persistentDataPath, "WalkedDistance.txt");
-        File.WriteAllText(path, "0;0" + System.Environment.NewLine);
+        DateTime now = DateTime.Now;
+        path = Path.Combine(Application.persistentDataPath, "WalkedDistance_" + now.Day + "_" + now.Month + "_" + now.Year + "_" + now.Hour + "_" + now.Minute + "_" + now.Second + ".txt");
+        File.WriteAllText(path, "Temps (en secondes);Distance parcourue" + System.Environment.NewLine);
+        File.AppendAllText(path, "0;0" + System.Environment.NewLine);
 
     }
 

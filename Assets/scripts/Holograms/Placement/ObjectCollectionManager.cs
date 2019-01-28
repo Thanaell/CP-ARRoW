@@ -73,7 +73,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         if (Config.Instance.FetchDoubleFromConfig("floorScaleFactor"))
         {
             FloorScaleFactor = (float)Config.Instance.GetDouble("floorScaleFactor");
-        }
+        } 
         if (Config.Instance.FetchIntFromConfig("clueNumberToUnlock"))
         {
             WallPrefabs.Clear();

@@ -39,7 +39,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         public bool AllowMeshVisualizationControl = true;
 
         [Tooltip("Should the center of the Collider be used instead of the gameObjects world transform.")]
-        public bool UseColliderCenter;
+        public bool UseColliderCenter = false;
 
         private Interpolator interpolator;
 
@@ -67,7 +67,18 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
             else // If we are not starting out with actively placing the object, give it a World Anchor
             {
-                AttachWorldAnchor();
+                if (Config.Instance.FetchBoolFromConfig("resetAnchorOnLaunch"))
+                {
+                    if (!Config.Instance.GetBool("resetAnchorOnLaunch"))
+                    {
+                        AttachWorldAnchor();
+                    }
+                    else
+                    {
+                        //RemoveWorldAnchor();
+                        WorldAnchorManager.Instance.RemoveAnchor(gameObject.name);
+                    }
+                }
             }
         }
 
@@ -106,7 +117,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             Transform cameraTransform = CameraCache.Main.transform;
 
             Vector3 placementPosition = GetPlacementPosition(cameraTransform.position, cameraTransform.forward, DefaultGazeDistance);
-
+            Debug.Log(UseColliderCenter);
             if (UseColliderCenter)
             {
                 placementPosition += PlacementPosOffset;
