@@ -48,29 +48,32 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
         if (isOnGaze)
         {
-
-            if (distanceToCamera() < distanceToActivate)
+            if (!TreasureActivated)
             {
-                if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
+                if (distanceToCamera() < distanceToActivate)
                 {
-                    for (int i = 0; i < newRenderer.Length; i++)
+                    if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
                     {
-                        newRenderer[i].enabled = true;
+                        for (int i = 0; i < newRenderer.Length; i++)
+                        {
+                            newRenderer[i].enabled = true;
+                        }
+
+                        gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
+                        gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
+                        TreasureActivated = true;
+                        SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                     }
 
-                    gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
-                    gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
-                    TreasureActivated = true;
+                    else
+                    {
+                        com.material.color = Color.red;
+                    }
                 }
-
                 else
                 {
-                    com.material.color = Color.red;
+                    com.material.color = Color.yellow;
                 }
-            }
-            else
-            {
-                com.material.color = Color.yellow;
             }
         }
     }
