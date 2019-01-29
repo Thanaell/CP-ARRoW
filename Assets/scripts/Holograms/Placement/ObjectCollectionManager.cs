@@ -205,6 +205,9 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     }
 
 
+
+
+
     private void RescaleToSameScaleFactor()
     {
         float maxScale = float.MaxValue;
@@ -235,15 +238,6 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         return ;
     }
 
-    /*
-    private Vector3 StretchToFit(GameObject obj, Vector3 desiredSize)
-    {
-        var curBounds = GetBoundsForAllChildren(obj).size;
-
-        return new Vector3(desiredSize.x / curBounds.x / 2, desiredSize.y, desiredSize.z / curBounds.z / 2);
-    }
-    */
-
     private float CalcScaleFactorHelper(List<GameObject> objects, Vector3 desiredSize)
     {
         float maxScale = float.MaxValue;
@@ -251,23 +245,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         foreach (var obj in objects)
         {
             var curBounds = GetBoundsForAllChildren(obj).size;
-            //var difference = curBounds - desiredSize;
-
             float ratio;
-
-            /*if (difference.x > difference.y && difference.x > difference.z)
-            {
-                ratio = desiredSize.x / curBounds.x;
-            }
-            else if (difference.y > difference.x && difference.y > difference.z)
-            {*/
-                ratio = desiredSize.y / curBounds.y;
-            /*}
-            else
-            {
-                ratio = desiredSize.z / curBounds.z;
-            }
-            */
+            ratio = desiredSize.y / curBounds.y;
             if (ratio < maxScale)
             {
                 maxScale = ratio;
