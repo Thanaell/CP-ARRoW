@@ -53,6 +53,19 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
         }
     }
 
+    private bool treasureIsSeen = false;
+    public bool TreasureIsSeen
+    {
+        get
+        {
+            return treasureIsSeen;
+        }
+        set
+        {
+            treasureIsSeen = value;
+        }
+    }
+
     void Start()
     {
         if (Config.Instance.FetchIntFromConfig("cluePrefabIndex"))
@@ -178,7 +191,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     //TODO : commenter
     private void Update()
     {
-        if (idDistributed > 0)
+        if (idDistributed > 0 & treasureIsSeen)
         {
             if (WallActiveHolograms.Count <= activeObject & activeObject<idDistributed)
             {
