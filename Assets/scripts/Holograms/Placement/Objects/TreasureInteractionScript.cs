@@ -80,6 +80,7 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void OnGazeEnter()
     {
+        ObjectCollectionManager.Instance.TreasureIsSeen = true;
         isOnGaze = true;
         if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
         else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
