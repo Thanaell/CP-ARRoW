@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Ce script est utilisé dans le prefab TreasurePrefabWithClueWithText afin d'afficher le nombre d'objet nécessaires
+ * pour débloquer le trésor
+ */
+
 public class TreasureBillboard : MonoBehaviour {
 
     [SerializeField]
@@ -37,6 +42,7 @@ public class TreasureBillboard : MonoBehaviour {
 
     private void Start()
     {
+        /*on positionne l'objet au centre de son parent*/
         transform.position = gameObject.transform.parent.position;
     }
 
