@@ -12,7 +12,7 @@ public class SoundTreasureManager : MonoBehaviour {
 	void Start () {
         audioSource.clip = audioTreasureClosed;
         audioSource.loop = false;
-        audioSource.volume = 0.40f;
+        audioSource.volume = 0.55f;
         audioSource.PlayOneShot(audioTreasureClosed);
     }
 	
@@ -20,7 +20,7 @@ public class SoundTreasureManager : MonoBehaviour {
     {
         audioSource.Stop();
         audioSource.clip = audioTreasureOpened;
-        audioSource.volume = 0.70f;
+        audioSource.volume = 0.55f;
         audioSource.PlayOneShot(audioTreasureOpened);
     }
 
@@ -28,7 +28,7 @@ public class SoundTreasureManager : MonoBehaviour {
     {
         audioSource.Stop();
         audioSource.clip = audioTreasureClosed;
-        audioSource.volume = 0.40f;
+        audioSource.volume = 0.55f;
         audioSource.PlayOneShot(audioTreasureClosed);
     }
 }
