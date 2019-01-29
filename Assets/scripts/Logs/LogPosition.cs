@@ -11,6 +11,9 @@ public class LogPosition : MonoBehaviour {
     private float x;
     private float y;
     private float z;
+    private float alpha;
+    private float beta;
+    private float gamma;
     private float timer=0;
     private float globalTimer=0;
 
@@ -18,7 +21,7 @@ public class LogPosition : MonoBehaviour {
     {
         DateTime now = DateTime.Now;
         path = Path.Combine(Application.persistentDataPath, "LogPosition_" + now.Day + "_" + now.Month + "_" + now.Year + "_" + now.Hour + "_" + now.Minute + "_" + now.Second + ".txt");
-        File.WriteAllText(path,"Timer (s);X (m);Y (m);Z (m)" + System.Environment.NewLine);
+        File.WriteAllText(path,"Timer (s);X (m);Y (m);Z (m); alpha (selon x); beta (selon y); gamma (selon z)" + System.Environment.NewLine);
     }
 	
 	void Update () {
@@ -28,8 +31,13 @@ public class LogPosition : MonoBehaviour {
             x = Camera.main.transform.position.x;
             y = Camera.main.transform.position.y;
             z = Camera.main.transform.position.z;
+            alpha = Camera.main.transform.position.x;
+            beta = Camera.main.transform.position.y;
+            gamma = Camera.main.transform.position.z;
 
-            File.AppendAllText(path, globalTimer.ToString() + ";" + x + ";" + y + ";" + z + System.Environment.NewLine);
+
+
+            File.AppendAllText(path, globalTimer.ToString() + ";" + x + ";" + y + ";" + z + ";" + alpha + ";" + beta + ";" + gamma + System.Environment.NewLine);
         }
         timer += Time.deltaTime;
         globalTimer += Time.deltaTime;
