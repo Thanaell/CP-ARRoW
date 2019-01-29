@@ -16,7 +16,7 @@ public class ClueInteractionScript : MonoBehaviour
         com = gameObject.transform.GetComponentInParent<Renderer>();
         isOnGaze = false;
         objectActivated = false;
-        timeLeft = 1;
+        timeLeft = 0.5f;
 
         /*on memorise l'ancienne valeur*/
         startColor = com.material.color;

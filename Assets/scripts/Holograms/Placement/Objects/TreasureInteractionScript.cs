@@ -9,7 +9,7 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     [SerializeField]
     private float distanceToActivate=2;
-    
+    float timeLeft;
 
     Renderer[] newRenderer;
 
@@ -31,6 +31,7 @@ public class TreasureInteractionScript : MonoBehaviour {
         }
         else minDistanceTraveled = 0;
         isOnGaze = false;
+        timeLeft = 1;
 
 
         clueIdToActivate = gameObject.GetComponent<ID>().id;
@@ -46,6 +47,21 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void Update()
     {
+        if (TreasureActivated)
+        {
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                for (int i = 0; i < newRenderer.Length; i++)
+                {
+                    newRenderer[i].enabled = true;
+                }
+
+                gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
+                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
+                SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+            }
+        }
         if (isOnGaze)
         {
             if (!TreasureActivated)
@@ -54,18 +70,9 @@ public class TreasureInteractionScript : MonoBehaviour {
                 {
                     if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
                     {
-                        for (int i = 0; i < newRenderer.Length; i++)
-                        {
-                            newRenderer[i].enabled = true;
-                        }
-
-                        gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
-                        gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
                         TreasureActivated = true;
-                        SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                         gameObject.transform.GetChild(2).GetComponent<ParticleSystem>().Play();
                     }
-
                     else
                     {
                         com.material.color = Color.red;
