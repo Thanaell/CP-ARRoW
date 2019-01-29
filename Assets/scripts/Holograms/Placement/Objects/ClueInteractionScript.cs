@@ -7,12 +7,16 @@ public class ClueInteractionScript : MonoBehaviour
 
     Renderer com;
     bool isOnGaze = false;
+    float timeLeft;
+    bool objectActivated;
     private void Start()
     {
 
         id = gameObject.GetComponent<ID>().id;
         com = gameObject.transform.GetComponentInParent<Renderer>();
         isOnGaze = false;
+        objectActivated = false;
+        timeLeft = 1;
 
         /*on memorise l'ancienne valeur*/
         startColor = com.material.color;
@@ -26,14 +30,21 @@ public class ClueInteractionScript : MonoBehaviour
 
     private void Update()
     {
-        if (isOnGaze)
+        if (objectActivated)
         {
-
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                gameObject.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        if (isOnGaze && !objectActivated)
+        {
             if (distanceToCamera() < distanceToActivate)
             {
                 ObjectCollectionManager.Instance.ActiveObject = id;
-                gameObject.transform.parent.gameObject.SetActive(false);
                 gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                objectActivated = true;
             }
             else com.material.color = Color.yellow;
         }
