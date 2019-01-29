@@ -33,6 +33,7 @@ public class ClueInteractionScript : MonoBehaviour
             {
                 ObjectCollectionManager.Instance.ActiveObject = id;
                 gameObject.transform.parent.gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
             }
             else com.material.color = Color.yellow;
         }

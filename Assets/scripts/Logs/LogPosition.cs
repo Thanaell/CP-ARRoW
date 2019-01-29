@@ -18,7 +18,7 @@ public class LogPosition : MonoBehaviour {
     {
         DateTime now = DateTime.Now;
         path = Path.Combine(Application.persistentDataPath, "LogPosition_" + now.Day + "_" + now.Month + "_" + now.Year + "_" + now.Hour + "_" + now.Minute + "_" + now.Second + ".txt");
-        File.WriteAllText(path,"Timer;X;Y;Z" + System.Environment.NewLine);
+        File.WriteAllText(path,"Timer (s);X (m);Y (m);Z (m)" + System.Environment.NewLine);
     }
 	
 	void Update () {

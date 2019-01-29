@@ -34,7 +34,7 @@ public class WalkedDistance : Singleton<WalkedDistance>
 
         DateTime now = DateTime.Now;
         path = Path.Combine(Application.persistentDataPath, "WalkedDistance_" + now.Day + "_" + now.Month + "_" + now.Year + "_" + now.Hour + "_" + now.Minute + "_" + now.Second + ".txt");
-        File.WriteAllText(path, "Temps (en secondes);Distance parcourue" + System.Environment.NewLine);
+        File.WriteAllText(path, "Temps (s);Distance parcourue (m)" + System.Environment.NewLine);
         File.AppendAllText(path, "0;0" + System.Environment.NewLine);
 
     }
