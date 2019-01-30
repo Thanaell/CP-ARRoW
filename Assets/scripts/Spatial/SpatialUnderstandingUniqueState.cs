@@ -4,6 +4,12 @@ using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity.SpatialMapping;
 
+/*
+ * SpatialUnderstandingUniqueState est un script permettant d'appeler la création du "monde" lorsque toutes les conditions nécessaires sont 
+ * respectées.  (La création du "monde" se fait dans le script ObjectPlacer)
+ */
+
+
 public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUniqueState>, IInputClickHandler, ISourceStateHandler
 {
     [Tooltip("Minimum area needed to show the numbers needed to finish the scan")]
@@ -107,6 +113,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
         }
     }
 
+    /*initialisation des variables fournies dans le fichier config*/
     private void Start()
     {
         if (Config.Instance.FetchDoubleFromConfig("minAreaForComplete"))
@@ -168,7 +175,7 @@ public class SpatialUnderstandingUniqueState : Singleton<SpatialUnderstandingUni
 
     /*
      * ces trois events est appelée lorsque AirTap est detectée
-     * On va le supprimer par la suite si y aurai aucune utilité
+     * Ceci est utiliséé dans le cas de debug 
      */ 
     public void OnInputClicked(InputClickedEventData eventData)
     {

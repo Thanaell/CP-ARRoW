@@ -4,6 +4,11 @@ using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity.SpatialMapping;
 
+/*
+ * BillboardScript est utilisé dans Holograms / Spatial Status Billboard.
+ * Ce script affiche le status récupéré du SpatialUnderstandingUniqueState
+ */ 
+
 public class BillboardScript : Singleton<BillboardScript>
 {
     [SerializeField]
@@ -16,6 +21,12 @@ public class BillboardScript : Singleton<BillboardScript>
 
     private bool ready = false;
 
+
+    /*
+     * la description du monde qui peut être mise de l'exterieur
+     * En affichant cette valeur, le status de SpatialUnderstandingUniqueState n'est plus affiché
+     * Actuellement utilisé par ObjectPlacer pour informer l'utilisateur de création du monde
+     */
     private string _spaceQueryDescription;
 
     public string SpaceQueryDescription

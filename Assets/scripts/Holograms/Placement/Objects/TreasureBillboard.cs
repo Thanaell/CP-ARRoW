@@ -26,6 +26,7 @@ public class TreasureBillboard : MonoBehaviour {
 
             if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate) hideText = true;
 
+            /*affichage du text : "nombre d'objet activés / nombre d'objets nécessaires à activés*/
             return string.Format("{0} / {1}", ObjectCollectionManager.Instance.ActiveObject , clueIdToActivate);
             
         }
