@@ -46,8 +46,10 @@ public class ClueInteractionScript : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 objectActivated = true;
             }
-            else com.material.color = Color.yellow;
-            com.material.color = new Color((int)com.material.color.r/2, (int)com.material.color.g/2, (int)com.material.color.b/2);
+            else
+            {
+                com.material.color = 0.6f * startColor;//new Color((int)com.material.color.r * 0.7f, (int)com.material.color.g * 0.7f, (int)com.material.color.b * 0.7f);
+            }
         }
     }
 
