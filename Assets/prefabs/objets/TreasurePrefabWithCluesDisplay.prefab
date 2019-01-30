@@ -614,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d56188060a9ac40ba4c7e53f3d7319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StatusDisplay: {fileID: 0}
 --- !u!114 &114476483091015398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -652,4 +653,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioTreasureClosed: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
   audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
+  audioCluesCollected: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
   audioSource: {fileID: 82930761379476340}

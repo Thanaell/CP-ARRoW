@@ -28,5 +28,5 @@
 	<!--Booleen pour déterminer si l'on peut utiliser le clic dans l'application ou non-->
 	<variable name="clickIsAllowed" value="True"></variable>
 	<!--Booleen pour déterminer si on garde les anchors de l'utilisation précédente ou on replace les éléments de manière aléatoire-->
-	<variable name="resetAnchorOnLaunch" value="False"></variable>
+	<variable name="resetAnchorOnLaunch" value="True"></variable>
   </variables>
