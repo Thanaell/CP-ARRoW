@@ -30,6 +30,11 @@ public class TreasureInteractionScript : MonoBehaviour {
             minDistanceTraveled = Config.Instance.GetInt("minDistanceTraveled");
         }
         else minDistanceTraveled = 0;
+        if (Config.Instance.FetchIntFromConfig("distanceToActivateTreasure"))
+        {
+            distanceToActivate = Config.Instance.GetInt("distanceToActivateTreasure");
+        }
+        else distanceToActivate = 2;
         isOnGaze = false;
         timeLeft = 1;
 
@@ -43,11 +48,13 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     private bool TreasureActivated=false;
 
+    private bool autobusActivated = false;
+
     bool isOnGaze = false;
 
     void Update()
     {
-        if (TreasureActivated)
+        if (TreasureActivated && !autobusActivated)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
@@ -58,8 +65,10 @@ public class TreasureInteractionScript : MonoBehaviour {
                 }
 
                 gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
-                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.15f;
+                gameObject.transform.GetChild(0).localScale = transform.localScale * 0.18f;
+                gameObject.transform.GetChild(0).localPosition -= new Vector3(0, 0.3f, 0);
                 SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+                autobusActivated = true;
             }
         }
         if (isOnGaze)
@@ -90,7 +99,10 @@ public class TreasureInteractionScript : MonoBehaviour {
     {
         ObjectCollectionManager.Instance.TreasureIsSeen = true;
         isOnGaze = true;
-        if (TreasureActivated) SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+        if (TreasureActivated && timeLeft < 0)
+        {
+            SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+        }
         else SendMessage("CloseTreasure", SendMessageOptions.DontRequireReceiver);
     }
     
