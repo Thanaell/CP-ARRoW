@@ -54,6 +54,11 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void Update()
     {
+        if(ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate & !autobusActivated)
+        {
+            SendMessage("CluesAreCollected", SendMessageOptions.DontRequireReceiver);
+        }
+
         if (TreasureActivated && !autobusActivated)
         {
             timeLeft -= Time.deltaTime;
@@ -86,10 +91,6 @@ public class TreasureInteractionScript : MonoBehaviour {
                     {
                         com.material.color = Color.red;
                     }
-                }
-                else
-                {
-                    com.material.color = Color.yellow;
                 }
             }
         }

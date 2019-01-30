@@ -6,6 +6,7 @@ public class SoundTreasureManager : MonoBehaviour {
 
     public AudioClip audioTreasureClosed;
     public AudioClip audioTreasureOpened;
+    public AudioClip audioCluesCollected;
     public AudioSource audioSource;
 
 	// Use this for initialization
@@ -18,17 +19,34 @@ public class SoundTreasureManager : MonoBehaviour {
 	
 	void OpenTreasure()
     {
-        audioSource.Stop();
-        audioSource.clip = audioTreasureOpened;
-        audioSource.volume = 0.70f;
-        audioSource.PlayOneShot(audioTreasureOpened);
+        if (!audioSource.isPlaying || audioSource.clip == audioTreasureClosed)
+        {
+            audioSource.Stop();
+            audioSource.clip = audioTreasureOpened;
+            audioSource.volume = 0.70f;
+            audioSource.PlayOneShot(audioSource.clip);
+        }
     }
 
     void CloseTreasure()
     {
-        audioSource.Stop();
-        audioSource.clip = audioTreasureClosed;
-        audioSource.volume = 0.40f;
-        audioSource.PlayOneShot(audioTreasureClosed);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            // audioSource.clip = audioTreasureClosed;
+            audioSource.volume = 0.40f;
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+    }
+
+    bool isAudioCluesCollectedPlayed = false;
+    void CluesAreCollected()
+    {
+        if (!isAudioCluesCollectedPlayed)
+        {
+            audioSource.clip = audioCluesCollected;
+            isAudioCluesCollectedPlayed = true;
+            audioSource.PlayOneShot(audioSource.clip);
+        }
     }
 }

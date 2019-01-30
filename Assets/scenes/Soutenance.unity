@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -292,6 +292,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1537789412}
+    - target: {fileID: 1842580924352408, guid: 846ccedb14abbaf47a38d90590d44936, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 846ccedb14abbaf47a38d90590d44936, type: 2}
   m_IsPrefabParent: 0
@@ -317,6 +321,11 @@ Prefab:
         type: 2}
       propertyPath: listPrefabs.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: WallPrefabs.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4146626297780666, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
       propertyPath: m_LocalPosition.x
@@ -365,7 +374,7 @@ Prefab:
         type: 2}
       propertyPath: listPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1261763712201184, guid: 99070450fe41d724db8d4d125633e9a2,
+      objectReference: {fileID: 1461906568048940, guid: 47a333e10bd3a2c4b8489b221fe24774,
         type: 2}
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}
@@ -390,6 +399,18 @@ Prefab:
       propertyPath: Meshs.Array.data[0]
       value: 
       objectReference: {fileID: 1364158616373760, guid: e8a4515170d5da94c8db1352534f31ef,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: listPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1216910509051500, guid: 130551ddfd5bafe4ca57c7758aada4f6,
+        type: 2}
+    - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
+        type: 2}
+      propertyPath: listPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1261763712201184, guid: 99070450fe41d724db8d4d125633e9a2,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec66ec4a3cca58449c200e282d731fb, type: 2}
