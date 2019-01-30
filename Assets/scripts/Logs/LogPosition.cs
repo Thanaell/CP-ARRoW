@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// Classe créeant un fichier Log_Position_date.txt et qui écrit dessus les positions et rotations de la caméra 
+/// </summary>
 public class LogPosition : MonoBehaviour {
     //temps d'échantillonnage à définir dans l'inspecteur
     public float tempsEchantillon;
@@ -33,9 +36,7 @@ public class LogPosition : MonoBehaviour {
             z = Camera.main.transform.position.z;
             alpha = Camera.main.transform.position.x;
             beta = Camera.main.transform.position.y;
-            gamma = Camera.main.transform.position.z;
-
-
+            gamma = Camera.main.transform.position.z;  
 
             File.AppendAllText(path, globalTimer.ToString() + ";" + x + ";" + y + ";" + z + ";" + alpha + ";" + beta + ";" + gamma + System.Environment.NewLine);
         }

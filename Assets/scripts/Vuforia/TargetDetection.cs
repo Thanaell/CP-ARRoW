@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
+/// <summary>
+/// Classe permettant de savoir si la caméra détecte la cible Vuforia ou non
+/// </summary>
 public class TargetDetection : MonoBehaviour, ITrackableEventHandler
 {
     private TrackableBehaviour mTrackableBehaviour;
@@ -18,6 +21,11 @@ public class TargetDetection : MonoBehaviour, ITrackableEventHandler
         }
     }
 
+/// <summary>
+/// Méthode permettant de déterminer si la cible est détectée ou non par la caméra
+/// </summary>
+/// <param name="previousStatus">statut passé du tracking de la cible</param>
+/// <param name="newStatus">statut présent du tracking de la cible</param>
     public void OnTrackableStateChanged(
                                     TrackableBehaviour.Status previousStatus,
                                     TrackableBehaviour.Status newStatus)
@@ -28,7 +36,6 @@ public class TargetDetection : MonoBehaviour, ITrackableEventHandler
             )
         {
             isTargetDetected = true;
-            Debug.Log("la cible a ete vue");
         }
 
     }

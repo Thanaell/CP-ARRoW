@@ -6,7 +6,10 @@ using System.IO;
 using UnityEngine;
 using HoloToolkit.Unity;
 
-//file that defines variables and gets their values from an xml file stored in the File Explore : LocalData/CPARRoW/LocalState
+/// <summary>
+///  Classe récupérant les données contenus dans un fichier XML, récupérable dans le File Explorer
+///  de l'HoloLens à l'emplacement : LocalData/CPARRoW/LocalState, afin d'utiliser ces données dans les autres scripts
+/// </summary>
 public class Config : Singleton<Config>
 {
     private static Config instance;
@@ -32,8 +35,10 @@ public class Config : Singleton<Config>
         }
     }
 
-    //getter des dernières valeurs lues pour chaque type
-
+    /// <summary>
+    /// Méthode récupérant la valeur d'une variable Int
+    /// </summary>
+    /// <param name="variableName"> Nom de la variable </param>
     public int GetInt(string variableName)
     {
         int IntRead = 0;
@@ -48,6 +53,10 @@ public class Config : Singleton<Config>
         return IntRead;
     }
 
+    /// <summary>
+    /// Méthode récupérant la valeur d'une variable Double
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
     public double GetDouble(string variableName)
     {
         double doubleRead = 0.0;
@@ -64,6 +73,10 @@ public class Config : Singleton<Config>
         return doubleRead;
     }
 
+    /// <summary>
+    /// Méthode récupérant la valeur d'une valeur String
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
     public string GetString(string variableName)
     {
         string stringRead = "";
@@ -79,6 +92,10 @@ public class Config : Singleton<Config>
         return stringRead;
     }
 
+    /// <summary>
+    /// Méthode récupérant la valeur d'une variable Boolean
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
     public bool GetBool(string variableName)
     {
         bool boolRead = false;
@@ -95,7 +112,11 @@ public class Config : Singleton<Config>
     }
 
 
-    //récupère un int depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
+    /// <summary>
+    /// Méthode permettant de vérifier l'existence d'un entier en fonction de son nom
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
+    /// <returns>True si l'élément existe, False sinon.</returns>
     public bool FetchIntFromConfig(string variableName)
     {
         var variableNodes = myXmlDoc.Descendants("variable");
@@ -110,7 +131,11 @@ public class Config : Singleton<Config>
         return false;
     }
 
-    //récupère un double depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
+    /// <summary>
+    /// Méthode permettant de vérifier l'existence d'un double en fonction de son nom
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
+    /// <returns>True si l'élément existe, False sinon.</returns>    
     public bool FetchDoubleFromConfig(string variableName)
     {
         var variableNodes = myXmlDoc.Descendants("variable");
@@ -126,9 +151,13 @@ public class Config : Singleton<Config>
         return false;
     }
 
-    //récupère un booléen depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
-    //Rq: Sont acceptés pour true : "True", tout entier strictement positif
-    //    Sont acceptés pour false : "False", 0, null
+    /// <summary>
+    /// Méthode permettant de vérifier l'existence d'un booléen en fonction de son nom
+    /// Remarque : sont acceptés pour true : "True", tout entier strictement positif
+    ///            sont acceptés pour false : "False", 0, null
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
+    /// <returns>True si l'élément existe, False sinon.</returns> 
     public bool FetchBoolFromConfig(string variableName)
     {
         var variableNodes = myXmlDoc.Descendants("variable");
@@ -143,7 +172,11 @@ public class Config : Singleton<Config>
         return false;
     }
 
-    //récupère un string depuis le fichier de config. Renvoie false s'il n'a pas trouvé la variable
+    /// <summary>
+    /// Méthode permettant de vérifier l'existence d'un string en fonction de son nom
+    /// </summary>
+    /// <param name="variableName">Nom de la variable</param>
+    /// <returns>True si l'élément existe, False sinon.</returns> 
     public bool FetchStringFromConfig(string variableName)
     {
         var variableNodes = myXmlDoc.Descendants("variable");

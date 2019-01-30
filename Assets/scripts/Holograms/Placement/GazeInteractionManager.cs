@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.WSA.Input;
 
+/// <summary>
+/// Classe permettant de récuperer l'objet ciblé par l'utilisateur
+/// </summary>
 public class GazeInteractionManager : MonoBehaviour
 {
     public static GazeInteractionManager Instance { get; private set; }
@@ -34,7 +37,7 @@ public class GazeInteractionManager : MonoBehaviour
             // If the raycast did not hit a hologram, clear the focused object.
             FocusedObject = null;
         }
-
+        //Si on change de focus, on envoie un message aux objets concernés  
         if (oldFocusObject != FocusedObject)
         {
             if (oldFocusObject!=null)

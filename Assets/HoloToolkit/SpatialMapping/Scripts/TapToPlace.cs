@@ -60,12 +60,11 @@ namespace HoloToolkit.Unity.SpatialMapping
             }
 
             interpolator = EnsureInterpolator();
-
             if (IsBeingPlaced)
             {
                 StartPlacing();
             }
-            else // If we are not starting out with actively placing the object, give it a World Anchor
+            else //Si le reset des Anchors est actif, on détruit l'Anchor, sinon on l'attache à l'objet
             {
                 if (Config.Instance.FetchBoolFromConfig("resetAnchorOnLaunch"))
                 {
@@ -75,7 +74,6 @@ namespace HoloToolkit.Unity.SpatialMapping
                     }
                     else
                     {
-                        //RemoveWorldAnchor();
                         WorldAnchorManager.Instance.RemoveAnchor(gameObject.name);
                     }
                 }

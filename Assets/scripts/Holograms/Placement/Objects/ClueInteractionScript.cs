@@ -47,6 +47,7 @@ public class ClueInteractionScript : MonoBehaviour
                 objectActivated = true;
             }
             else com.material.color = Color.yellow;
+            com.material.color = new Color((int)com.material.color.r/2, (int)com.material.color.g/2, (int)com.material.color.b/2);
         }
     }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using HoloToolkit.Unity;
 
+/// <summary>
+/// Classe permettant de faire des commandes via la voix en utilisant les outils de l'HoloToolkit
+/// </summary>
 public class SpeechManager : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer = null;
@@ -12,44 +15,42 @@ public class SpeechManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Commande vocale "Lock" qui va attacher l'objet avec un Spatial Anchor
         keywords.Add("Lock", () =>
         {
             var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
-                // Call the OnDrop method on just the focused object.
-                //focusObject.SendMessage("OnKill", SendMessageOptions.DontRequireReceiver);
                 WorldAnchorManager.Instance.AttachAnchor(focusObject);
             }
         });
 
+        //Commande vocale "Unlock" qui va détacher l'objet en lui enlevant son Spatial Anchor
         keywords.Add("Unlock", () =>
         {
             var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
-                // Call the OnDrop method on just the focused object.
-                //focusObject.SendMessage("OnKill", SendMessageOptions.DontRequireReceiver);
                 WorldAnchorManager.Instance.RemoveAnchor(focusObject);
             }
         });
 
+        //Commande vocale "Move" qui va déclencher la méthode "OnMove" de l'objet regardé
         keywords.Add("Move", () =>
         {
             var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
-                // Call the OnDrop method on just the focused object.
                 focusObject.SendMessage("OnMove", SendMessageOptions.DontRequireReceiver);
             }
         });
 
+        //Commande vocale "Stop" qui va déclencher la méthode "OnStop" de l'objet regardé
         keywords.Add("Stop", () =>
         {
             var focusObject = GazeInteractionManager.Instance.FocusedObject;
             if (focusObject != null)
             {
-                // Call the OnDrop method on just the focused object.
                 focusObject.SendMessage("OnStop", SendMessageOptions.DontRequireReceiver);
             }
         });

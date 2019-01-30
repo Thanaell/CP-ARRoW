@@ -5,6 +5,9 @@ using UnityEngine;
 using System.IO;
 using HoloToolkit.Unity;
 
+/// <summary>
+/// Classe créeant un fichier WalkedDistance_date.txt contenant la distance parcourue par l'utilisateur
+/// </summary>
 public class WalkedDistance : Singleton<WalkedDistance>
 {
 
@@ -20,7 +23,10 @@ public class WalkedDistance : Singleton<WalkedDistance>
 
     private string path;
 
-    //getter de walked distance
+    /// <summary>
+    /// Méthode récupérant la valeur de walkedDistance
+    /// </summary>
+    /// <returns>La valeur de walkedDistance</returns>
     public float getWalkedDistance()
     {
         return walkedDistance;
@@ -56,12 +62,12 @@ public class WalkedDistance : Singleton<WalkedDistance>
         }
         timer += Time.deltaTime;
         globalTimer += Time.deltaTime;
-        //Debug.Log(walkedDistance);
     }
 
-
-    //permet d'écrire dans le fichier walkedDistance la vitesse moyenne depuis le début de la session quand on quitte l'application
-
+    /// <summary>
+    /// Méthode écrivant dans le fichier WalkedDistance_date.txt la vitesse moyenne depuis 
+    /// le début de la session quand on quitte l'application
+    /// </summary>
     private void OnApplicationQuit()
     {
         File.AppendAllText(path, "Vitesse moyenne au bout de " + globalTimer.ToString() + " : " + walkedDistance / globalTimer + " m/s");

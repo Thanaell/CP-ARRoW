@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Classe permettant au curseur d'être visible et de se coller aux hologrammes présents
+/// </summary>
 public class WorldCursor : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
