@@ -4,7 +4,7 @@
     <variable name="myString" value="this is a string"></variable>
     <variable name="myDouble" value="1337.1337"></variable>
 	<!--Distance maximale entre l'utilisateur et le trésor pour l'activer-->
-    <variable name="distanceToActivateTreasure" value="30"></variable>
+    <variable name="distanceToActivateTreasure" value="5"></variable>
 	<!--Distance minimale parcourue par l'utilisateur avant de pouvoir activer le trésor-->
 	<variable name="minDistanceTraveled" value="0"></variable>
 	<!--Nombre d'indices minimal devant être activés avant de pouvoir activer le trésor-->
@@ -28,5 +28,5 @@
 	<!--Booleen pour déterminer si l'on peut utiliser le clic dans l'application ou non-->
 	<variable name="clickIsAllowed" value="True"></variable>
 	<!--Booleen pour déterminer si on garde les anchors de l'utilisation précédente ou on replace les éléments de manière aléatoire-->
-	<variable name="resetAnchorOnLaunch" value="True"></variable>
+	<variable name="resetAnchorOnLaunch" value="False"></variable>
   </variables>
