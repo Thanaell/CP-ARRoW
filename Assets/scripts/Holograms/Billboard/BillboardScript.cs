@@ -84,7 +84,8 @@ public class BillboardScript : Singleton<BillboardScript>
                         // The stats tell us if we could potentially finish
                         if (SpatialUnderstandingUniqueState.Instance.DoesScanMeetMinBarForCompletion)
                         {
-                            return "When ready, air tap to finalize your playspace";
+                            //air tap ou scanner l'imageTarget en fonction de si Vuforia est activé ou non
+                            return "When ready, air tap to finalize your playspace";                            
                         }
                         return "Walk around and scan in your playspace";
                     case SpatialUnderstanding.ScanStates.Finishing:
