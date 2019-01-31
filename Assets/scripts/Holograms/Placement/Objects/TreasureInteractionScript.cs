@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * TreasureInteractionScript est un script qui gère les interactions de tresor avec le regard d'utilisateur.
+ * Ces fonctions sont appelées par GazeInteractionManager (le message est retransmis par MessageListener)
+ */
+
 public class TreasureInteractionScript : MonoBehaviour {
     
     
