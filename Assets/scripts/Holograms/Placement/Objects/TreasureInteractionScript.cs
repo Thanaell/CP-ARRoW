@@ -24,6 +24,7 @@ public class TreasureInteractionScript : MonoBehaviour {
         newRenderer = GetComponentsInChildren<Renderer>();
     }
 
+    /*distance minimale à faire avant de debloquer le coffre*/
     int minDistanceTraveled;
 
     Renderer com;
@@ -59,11 +60,16 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     void Update()
     {
+        /*Si on a collecté toutes les clés et nous n'avons pas encore ouvert le coffre*/
         if(ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate & !autobusActivated)
         {
             SendMessage("CluesAreCollected", SendMessageOptions.DontRequireReceiver);
         }
 
+        /*
+         * si le trésor est activé (vu par l'utilisateur après avoir collecté toutes les clés)
+         * cette boucle permet d'attendre un certain temps avant d'afficher l'autobus caché dans le coffre
+         */
         if (TreasureActivated && !autobusActivated)
         {
             timeLeft -= Time.deltaTime;
@@ -87,6 +93,9 @@ public class TreasureInteractionScript : MonoBehaviour {
             {
                 if (distanceToCamera() < distanceToActivate)
                 {
+                    /*
+                     * interaction avec le coffre : ouverture avec l'effet des particules
+                     */ 
                     if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
                     {
                         TreasureActivated = true;
