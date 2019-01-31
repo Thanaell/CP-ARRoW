@@ -42,6 +42,7 @@ public class ClueInteractionScript : MonoBehaviour
         {
             if (distanceToCamera() < distanceToActivate)
             {
+                SendMessage("ClueCollected", SendMessageOptions.DontRequireReceiver);
                 ObjectCollectionManager.Instance.ActiveObject = id;
                 gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 objectActivated = true;
