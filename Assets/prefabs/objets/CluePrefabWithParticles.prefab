@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 82268934595317002}
   - component: {fileID: 114077728481432686}
   - component: {fileID: 114329025962277458}
+  - component: {fileID: 114988043596729926}
   m_Layer: 0
   m_Name: CluePrefabWithParticles
   m_TagString: CluePrefab
@@ -349,6 +350,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToActivate: 1.5
+--- !u!114 &114988043596729926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1216910509051500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b3ce1568a462a4e930df39c1296fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCall: {fileID: 8300000, guid: 595afb5e0042dab4a9925d65f389feed, type: 3}
+  audioClueCollected: {fileID: 8300000, guid: 08a1f094126ee0741b07f322684706f5, type: 3}
+  audioSource: {fileID: 82268934595317002}
 --- !u!198 &198121322645851670
 ParticleSystem:
   m_ObjectHideFlags: 1
