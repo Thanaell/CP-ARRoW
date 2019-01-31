@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Ce script est associé aux prefabs de Tresors.
+ * Il est utilisé pour gèrer le son du son
+ * (les fonctions sont appelées par TreasureInteractionScript
+ */
+
 public class SoundTreasureManager : MonoBehaviour {
 
+    /* le son émis lorsque le coffre est fermé et on le fixe*/
     public AudioClip audioTreasureClosed;
+    /* le son émis lorsque le coffre est ouvert et on le fixe*/
     public AudioClip audioTreasureOpened;
+    /* le son émis lorsqu'on a collecté toutes les clés (le coffre appele le joueur)*/
     public AudioClip audioCluesCollected;
+
     public AudioSource audioSource;
 
 	// Use this for initialization
@@ -16,8 +26,9 @@ public class SoundTreasureManager : MonoBehaviour {
         audioSource.volume = 0.40f;
         audioSource.PlayOneShot(audioTreasureClosed);
     }
-	
-	void OpenTreasure()
+
+    /*appelé lorsque le coffre fixé par le cursor est ouvert*/
+    void OpenTreasure()
     {
         if ((!audioSource.isPlaying || audioSource.clip == audioTreasureClosed || audioSource.clip == audioCluesCollected) & audioSource.clip!= audioTreasureOpened)
         {
@@ -28,6 +39,7 @@ public class SoundTreasureManager : MonoBehaviour {
         }
     }
 
+    /*appelé lorsque le coffre fixé par le cursor est fermé*/
     void CloseTreasure()
     {
         if (!audioSource.isPlaying & !isAudioCluesCollectedPlayed)
@@ -39,7 +51,10 @@ public class SoundTreasureManager : MonoBehaviour {
         }
     }
 
+    /*cette variable permet de lancer qu'une seule fois le son audioCluesCollected*/
     bool isAudioCluesCollectedPlayed = false;
+
+    /*appelé lorsque toutes les clés sont collectées*/
     void CluesAreCollected()
     {
         if (!isAudioCluesCollectedPlayed)
