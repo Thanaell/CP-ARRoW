@@ -19,7 +19,7 @@ public class SoundTreasureManager : MonoBehaviour {
 	
 	void OpenTreasure()
     {
-        if (!audioSource.isPlaying || audioSource.clip == audioTreasureClosed || audioSource.clip == audioCluesCollected)
+        if ((!audioSource.isPlaying || audioSource.clip == audioTreasureClosed || audioSource.clip == audioCluesCollected) & audioSource.clip!= audioTreasureOpened)
         {
             audioSource.Stop();
             audioSource.clip = audioTreasureOpened;
@@ -30,7 +30,7 @@ public class SoundTreasureManager : MonoBehaviour {
 
     void CloseTreasure()
     {
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying & !isAudioCluesCollectedPlayed)
         {
             audioSource.Stop();
             // audioSource.clip = audioTreasureClosed;
