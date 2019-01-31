@@ -239,7 +239,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 595afb5e0042dab4a9925d65f389feed, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.41
   m_Pitch: 1
   Loop: 1
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioCall: {fileID: 8300000, guid: 595afb5e0042dab4a9925d65f389feed, type: 3}
   audioClueCollected: {fileID: 8300000, guid: 08a1f094126ee0741b07f322684706f5, type: 3}
+  audioClueSeen: {fileID: 8300000, guid: a28e84e88e513ab429fa1e898f182bb9, type: 3}
   audioSource: {fileID: 82268934595317002}
 --- !u!198 &198121322645851670
 ParticleSystem:
