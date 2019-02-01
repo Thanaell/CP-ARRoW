@@ -62,7 +62,6 @@ public class ClueInteractionScript : MonoBehaviour
             else
             {
                 com.material.color = 0.6f * startColor;
-                SendMessage("ClueSeen", SendMessageOptions.DontRequireReceiver);
             }
         }
     }

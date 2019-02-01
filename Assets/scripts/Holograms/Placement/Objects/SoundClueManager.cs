@@ -13,8 +13,6 @@ public class SoundClueManager : MonoBehaviour {
     public AudioClip audioCall;
     /* le son émis lorsqu'on recupere la clé*/
     public AudioClip audioClueCollected;
-    /*le son émis lorsqu'on regarde la clé*/
-    public AudioClip audioClueSeen;
 
     public AudioSource audioSource;
 
@@ -36,18 +34,7 @@ public class SoundClueManager : MonoBehaviour {
         audioSource.PlayOneShot(audioSource.clip);
     }
 
-    /*appelé lorsqu'on voit la clé avec le cursor (appelée par ClueInteractionScript)*/
-    void ClueSeen()
-    {
-        if (audioSource.clip != audioClueSeen || !audioSource.isPlaying)
-        {
-            audioSource.Stop();
-            audioSource.clip = audioClueSeen;
-            audioSource.volume = 0.60f;
-            audioSource.PlayOneShot(audioSource.clip);
-        }
-    }
-
+   
     void Update()
     {
         /* l'émission de son est décalé de 1s par rapport la création de l'objet*/
@@ -55,7 +42,7 @@ public class SoundClueManager : MonoBehaviour {
         {
             audioSource.clip = audioCall;
             audioSource.loop = true;
-            audioSource.volume = 0.40f;
+            audioSource.volume = 0.80f;
             audioSource.Play();
         }
         timeToStart += Time.deltaTime;
