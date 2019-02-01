@@ -26,8 +26,7 @@ public class TreasureInteractionScript : MonoBehaviour {
 
     /*distance minimale à faire avant de debloquer le coffre*/
     int minDistanceTraveled;
-
-    Renderer com;
+    
 
     private void Start()
     {
@@ -46,11 +45,8 @@ public class TreasureInteractionScript : MonoBehaviour {
 
 
         clueIdToActivate = gameObject.GetComponent<ID>().id;
-        com = gameObject.transform.GetComponentInParent<Renderer>();
-        startColor = com.material.color;
     }
-
-    private Color startColor;
+    
 
     private bool TreasureActivated=false;
 
@@ -101,10 +97,6 @@ public class TreasureInteractionScript : MonoBehaviour {
                         TreasureActivated = true;
                         gameObject.transform.GetChild(2).GetComponent<ParticleSystem>().Play();
                     }
-                    else
-                    {
-                        com.material.color = Color.red;
-                    }
                 }
             }
         }
@@ -125,8 +117,6 @@ public class TreasureInteractionScript : MonoBehaviour {
     void OnGazeExit()
     {
         isOnGaze = false;
-        //var com = gameObject.transform.GetComponentInParent<Renderer>();
-        com.material.color = startColor;
     }
 
     float distanceToCamera()
