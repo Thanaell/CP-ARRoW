@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class SoundClueManager : MonoBehaviour {
 
-    /*le son émis lorsque la clé existe mais l'tilisateur ne la voit pas*/
+    /*le son émis lorsque la clé existe*/
     public AudioClip audioCall;
     /* le son émis lorsqu'on recupere la clé*/
     public AudioClip audioClueCollected;

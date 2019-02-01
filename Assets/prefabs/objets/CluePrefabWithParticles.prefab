@@ -249,7 +249,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -363,7 +363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioCall: {fileID: 8300000, guid: a28e84e88e513ab429fa1e898f182bb9, type: 3}
   audioClueCollected: {fileID: 8300000, guid: 08a1f094126ee0741b07f322684706f5, type: 3}
-  audioClueSeen: {fileID: 8300000, guid: a28e84e88e513ab429fa1e898f182bb9, type: 3}
   audioSource: {fileID: 82268934595317002}
 --- !u!198 &198121322645851670
 ParticleSystem:
