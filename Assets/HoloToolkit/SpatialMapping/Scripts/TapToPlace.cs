@@ -121,6 +121,7 @@ namespace HoloToolkit.Unity.SpatialMapping
                 placementPosition += PlacementPosOffset;
             }
 
+            placementPosition += new Vector3(0, GetComponent<BoxCollider>().size.y/4, 0);
             // Here is where you might consider adding intelligence
             // to how the object is placed.  For example, consider
             // placing based on the bottom of the object's
