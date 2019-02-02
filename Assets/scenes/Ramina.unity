@@ -404,7 +404,7 @@ Prefab:
         type: 2}
       propertyPath: listPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 1579227028163888, guid: a9926e33be6c29147ae27d57ddf6ace7,
+      objectReference: {fileID: 1013707758877674, guid: a9926e33be6c29147ae27d57ddf6ace7,
         type: 2}
     - target: {fileID: 114655401719122086, guid: fec66ec4a3cca58449c200e282d731fb,
         type: 2}

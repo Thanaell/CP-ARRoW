@@ -21,7 +21,7 @@ public class ClueBillboard : MonoBehaviour {
             if (hideText)
                 return string.Empty;
             
-            return string.Format("Get closer to catch the key");
+            return string.Format("Come closer to catch the key");
 
         }
     }
@@ -38,7 +38,6 @@ public class ClueBillboard : MonoBehaviour {
     private void Start()
     {
         /*on positionne l'objet au centre de son parent*/
-        transform.position = gameObject.transform.parent.position + new Vector3(0,-0.1f,0);
         hideText = true;
     }
 
