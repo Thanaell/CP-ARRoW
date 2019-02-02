@@ -497,7 +497,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -653,5 +653,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioTreasureClosed: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
   audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
-  audioCluesCollected: {fileID: 8300000, guid: 19a6230ab9d1c61499fa56335dc42209, type: 3}
+  audioCluesCollected: {fileID: 8300000, guid: 46a213ad4dbe46a4ca3eddf9357c6b4c, type: 3}
   audioSource: {fileID: 82930761379476340}

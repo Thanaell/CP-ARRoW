@@ -1,14 +1,30 @@
 ﻿using UnityEngine;
 
+/*
+ * ClueInteractionScript est un script qui gère les interactions des clés avec le regard d'utilisateur.
+ * Ces fonctions sont appelées par GazeInteractionManager (le message est retransmis par MessageListener)
+ */ 
 
 public class ClueInteractionScript : MonoBehaviour
 {
     private int id=0;
-
     Renderer com;
+
+    /*détecte si le regarde de joueur est fixé sur la clé*/
     bool isOnGaze = false;
+
+    /* le temps entre la prise de clé et la désactivation de clé*/
     float timeLeft;
+
     bool objectActivated;
+
+
+    private Color startColor;
+
+    /*distance à partir de laquelle on peut interagir avec l'objet*/
+    [SerializeField]
+    private float distanceToActivate = 1.5f;
+
     private void Start()
     {
 
@@ -22,10 +38,6 @@ public class ClueInteractionScript : MonoBehaviour
         startColor = com.material.color;
     }
 
-    private Color startColor;
-
-    [SerializeField]
-    private float distanceToActivate = 1.5f;
 
 
     private void Update()
@@ -42,7 +54,7 @@ public class ClueInteractionScript : MonoBehaviour
         {
             if (distanceToCamera() < distanceToActivate)
             {
-                SendMessage("ClueCollected", SendMessageOptions.DontRequireReceiver);
+                SendMessage("ClueCollected", SendMessageOptions.DontRequireReceiver); //soundClueManager & Clue Billboard
                 ObjectCollectionManager.Instance.ActiveObject = id;
                 gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
                 objectActivated = true;
@@ -50,7 +62,6 @@ public class ClueInteractionScript : MonoBehaviour
             else
             {
                 com.material.color = 0.6f * startColor;
-                SendMessage("ClueSeen", SendMessageOptions.DontRequireReceiver);
             }
         }
     }
