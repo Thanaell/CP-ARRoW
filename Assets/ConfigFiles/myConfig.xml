@@ -20,11 +20,11 @@
 	<!--Distance minimale entre les objets-->
 	<variable name="distanceBetweenObjects" value="0.5"></variable>
 	<!--Aire minimum à scanner avant de pouvoir placer les objets-->
-	<variable name="minAreaForComplete" value="10"></variable>
+	<variable name="minAreaForComplete" value="8"></variable>
 	<!--Aire minimum horizontale (sol) avant de pouvoir placer les objets-->
 	<variable name="minHorizontalAreaForComplete" value="2"></variable>
 	<!--Aire verticale (murs) avant de pouvoir placer les objets-->
-	<variable name="minVerticalAreaForComplete" value="8"></variable>
+	<variable name="minVerticalAreaForComplete" value="6"></variable>
 	<!--Booleen pour déterminer si l'on peut utiliser le clic dans l'application ou non-->
 	<variable name="clickIsAllowed" value="True"></variable>
 	<!--Booleen pour déterminer si on garde les anchors de l'utilisation précédente ou on replace les éléments de manière aléatoire-->
