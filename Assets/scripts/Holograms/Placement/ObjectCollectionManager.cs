@@ -2,6 +2,11 @@
 using HoloToolkit.Unity;
 using UnityEngine;
 
+/*
+ * ObjetCollectionManager gère la création des objets à partir des positions venant de ObjectPlacer. 
+ * C'est ici que nous avons définis prtiellement notre démo
+ */ 
+
 public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 {
     private int cluePrefabIndex;
@@ -119,6 +124,7 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
     public void CreateFloorObjects(int number, Vector3 positionCenter, Quaternion rotation)
     {
         CreateObject(FloorPrefabs[number], positionCenter, rotation, FloorObjectSize, idDistributed, ObjectType.FloorObject);
+        //idDistributed++;
     }
 
     /*
@@ -154,6 +160,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * WallObjectSize.x, newObject.transform.localScale.y * WallObjectSize.y, newObject.transform.localScale.z * WallObjectSize.z) * WallScaleFactor / WallObjectSize.y;
 
                     prefab.AddComponent<ID>().id = objectId;
+
+                    // Script MessageListener permet de retransmettre l'information reçu par newObject vers son enfant prefab  
                     newObject.AddComponent<MessageListener>();
 
                     WallActiveHolograms.Add(newObject);
@@ -175,6 +183,8 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
                     newObject.transform.localScale = new Vector3(newObject.transform.localScale.x * FloorObjectSize.x, newObject.transform.localScale.y * FloorObjectSize.y, newObject.transform.localScale.z * FloorObjectSize.z) * FloorScaleFactor / FloorObjectSize.y;
 
                     prefab.AddComponent<ID>().id = objectId;
+
+                    // Script MessageListener permet de retransmettre l'information reçu par newObject vers son enfant prefab  
                     newObject.AddComponent<MessageListener>();
 
                     FloorActiveHolograms.Add(newObject);
@@ -188,9 +198,12 @@ public class ObjectCollectionManager : Singleton<ObjectCollectionManager>
 
     }
 
-    //TODO : commenter
+    
     private void Update()
     {
+        /*
+         * Dans la chasse aux trésors les objets sur les murs (clés) apparaissent un par un au fur à mesure qu'on collecte les clés
+         */ 
         if (idDistributed > 0 & treasureIsSeen)
         {
             if (WallActiveHolograms.Count <= activeObject & activeObject<idDistributed)

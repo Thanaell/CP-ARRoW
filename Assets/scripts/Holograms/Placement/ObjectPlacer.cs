@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using HoloToolkit.Unity;
 using UnityEngine;
 
+/*
+ * ObjectPlacer détermine les position des objets tout en respectant les contraintes grâce au SpatialUnderstanding.
+ * Dans notre démo nous l'utilisons pour placer les objets à des endoits accessibles aux utilisateurs. 
+ */ 
+
 public class ObjectPlacer : MonoBehaviour
 {
     /**
