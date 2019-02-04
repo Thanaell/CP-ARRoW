@@ -708,7 +708,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.521
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -845,7 +845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioTreasureClosed: {fileID: 8300000, guid: 2d93895427b2d7242ab14cae062e1cf5, type: 3}
-  audioTreasureOpened: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
+  audioTreasureOpened: {fileID: 8300000, guid: bc5715defabba0042a57590d38e11016, type: 3}
+  audioAutobus: {fileID: 8300000, guid: 227a343a524be104e988da8f17ea6fa4, type: 3}
   audioCluesCollected: {fileID: 8300000, guid: 46a213ad4dbe46a4ca3eddf9357c6b4c, type: 3}
   audioSource: {fileID: 82790770292959702}
 --- !u!114 &114169918639617960
@@ -903,7 +904,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1244836317563770}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -956,7 +957,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 506166280
+  randomSeed: 823198452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4219,7 +4220,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1846488358225524}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -7748,7 +7749,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907179484919454}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -7801,7 +7802,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1342430379
+  randomSeed: -1191502223
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11154,7 +11155,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800313583119978}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -14602,7 +14603,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1391977856301094}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   looping: 0

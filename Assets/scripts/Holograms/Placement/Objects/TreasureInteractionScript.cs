@@ -79,7 +79,7 @@ public class TreasureInteractionScript : MonoBehaviour {
                 gameObject.transform.GetComponentInParent<Renderer>().enabled = false;
                 gameObject.transform.GetChild(0).localScale = transform.localScale * 0.18f;
                 gameObject.transform.GetChild(0).localPosition -= new Vector3(0, 0.3f, 0);
-                SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
+                SendMessage("ShowAutobus", SendMessageOptions.DontRequireReceiver);
                 autobusActivated = true;
             }
         }
@@ -95,6 +95,7 @@ public class TreasureInteractionScript : MonoBehaviour {
                     if (ObjectCollectionManager.Instance.ActiveObject == clueIdToActivate && WalkedDistance.Instance.getWalkedDistance() > minDistanceTraveled)
                     {
                         TreasureActivated = true;
+                        SendMessage("OpenTreasure", SendMessageOptions.DontRequireReceiver);
                         gameObject.transform.GetChild(2).GetComponent<ParticleSystem>().Play();
                     }
                 }

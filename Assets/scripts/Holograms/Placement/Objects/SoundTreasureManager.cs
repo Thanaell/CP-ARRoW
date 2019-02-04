@@ -14,6 +14,8 @@ public class SoundTreasureManager : MonoBehaviour {
     public AudioClip audioTreasureClosed;
     /* le son émis lorsque le coffre est ouvert et on le fixe*/
     public AudioClip audioTreasureOpened;
+    /* le son émis lorsque le coffre est ouvert et que l'on voit l'autobus */
+    public AudioClip audioAutobus;
     /* le son émis lorsqu'on a collecté toutes les clés (le coffre appele le joueur)*/
     public AudioClip audioCluesCollected;
 
@@ -34,9 +36,17 @@ public class SoundTreasureManager : MonoBehaviour {
         {
             audioSource.Stop();
             audioSource.clip = audioTreasureOpened;
-            audioSource.volume = 0.70f;
+            audioSource.volume = 1.00f;
             audioSource.PlayOneShot(audioSource.clip);
         }
+    }
+
+    void ShowAutobus()
+    {
+        audioSource.Stop();
+        audioSource.clip = audioAutobus;
+        audioSource.volume = 0.70f;
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     /*appelé lorsque le coffre fixé par le cursor est fermé*/
