@@ -42,7 +42,7 @@ public class SoundClueManager : MonoBehaviour {
         {
             audioSource.clip = audioCall;
             audioSource.loop = true;
-            audioSource.volume = 0.80f;
+            audioSource.volume = 0.60f;
             audioSource.Play();
         }
         timeToStart += Time.deltaTime;
