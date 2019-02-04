@@ -32,7 +32,7 @@ public class SoundTreasureManager : MonoBehaviour {
     /*appelé lorsque le coffre fixé par le cursor est ouvert*/
     void OpenTreasure()
     {
-        if ((!audioSource.isPlaying || audioSource.clip == audioTreasureClosed || audioSource.clip == audioCluesCollected) & audioSource.clip!= audioTreasureOpened)
+        if ((!audioSource.isPlaying || audioSource.clip == audioTreasureClosed || audioSource.clip == audioCluesCollected) & audioSource.clip!= audioTreasureOpened & audioSource.clip != audioAutobus)
         {
             audioSource.Stop();
             audioSource.clip = audioTreasureOpened;
