@@ -34,9 +34,9 @@ public class LogPosition : MonoBehaviour {
             x = Camera.main.transform.position.x;
             y = Camera.main.transform.position.y;
             z = Camera.main.transform.position.z;
-            alpha = Camera.main.transform.position.x;
-            beta = Camera.main.transform.position.y;
-            gamma = Camera.main.transform.position.z;  
+            alpha = Camera.main.transform.rotation.x;
+            beta = Camera.main.transform.rotation.y;
+            gamma = Camera.main.transform.rotation.z;  
 
             File.AppendAllText(path, globalTimer.ToString() + ";" + x + ";" + y + ";" + z + ";" + alpha + ";" + beta + ";" + gamma + System.Environment.NewLine);
         }
