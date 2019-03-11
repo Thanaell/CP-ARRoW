@@ -7,7 +7,7 @@
 # Default behavior is to never overwrite files
 TestLogPosition.sln: E16C5F349126962C17F27ADA15354AA2
 TestLogPosition\App.cs: ECAEDCC71A71910310D15B2AC1FA46E3
-TestLogPosition\Package.appxmanifest: 4EEA1E20F6A0D863D6ABD7B9DB1B5C82
+TestLogPosition\Package.appxmanifest: 43FD8A291514DABDE0964626A08A02DB
 TestLogPosition\project.json: 1D02BC64BAC0D041019673A1C4C51737
 TestLogPosition\TestLogPosition.csproj: 67AA2CA4C4340BBE6D096D0229618F07
 TestLogPosition\TestLogPosition.csproj.user: modified
